@@ -1,0 +1,112 @@
+.product-details-info-panel {
+  background: var(--neutral-light);
+  border-radius: 8px;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.product-details-meta {
+  color: var(--neutral-dark);
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.product-details-id {
+  font-weight: bold;
+  font-size: 0.95em;
+  color: var(--secondary-blue);
+}
+
+.product-details-end {
+  color: var(--action-contrast);
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.product-details-current-bid-section {
+  margin-bottom: 20px;
+}
+
+.product-details-current-bid-amount {
+  font-size: 1.5em;
+  color: var(--action-contrast);
+  font-weight: bold;
+}
+
+.product-details-bid-history-section {
+  margin-top: 30px;
+}
+
+.product-details-bid-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-details-bid-history-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.product-details-bid-history-list li:last-child {
+  border-bottom: none;
+}
+
+.product-details-place-bid-section {
+  margin-top: 30px;
+}
+
+.product-details-bid-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.product-details-bid-form input[type="number"] {
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid var(--secondary-blue);
+  border-radius: 4px;
+  width: 120px;
+}
+
+.product-details-form-note {
+  font-size: 0.95em;
+  color: var(--neutral-dark);
+  margin-top: 8px;
+}
+
+.product-details-bid-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 10px;
+  flex-wrap: nowrap;
+}
+
+.product-details-watchlist-button {
+  background: var(--action-contrast);
+  color: white;
+  border-radius: 5px;
+  padding: 6px 16px;
+  font-size: 0.95em;
+}
+
+.product-details-watchlist-button:hover {
+  background-color: var(--principal-blue);
+  color: #fff;
+}
+
+.product-details-time-left-label {
+  display: flex;
+  align-items: center;
+  font-size: 0.98em;
+  color: var(--neutral-dark);
+  font-weight: normal;
+}
+
+.product-details-time-left-value {
+  color: #d32f2f;
+  font-weight: bold;
+  margin-left: 2px;
+}

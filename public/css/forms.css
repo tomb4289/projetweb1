@@ -1,0 +1,240 @@
+/* Forms Styles */
+.login-container,
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--extra-light-blue);
+}
+
+.login-form,
+.register-form {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.register-form {
+  max-width: 500px;
+}
+
+.login-form {
+  max-width: 450px;
+}
+
+.login-header,
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-title,
+.register-title {
+  color: var(--principal-blue);
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: "Playfair Display", serif;
+}
+
+.login-subtitle,
+.register-subtitle {
+  color: var(--neutral-dark);
+  font-size: 1.1em;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--neutral-dark);
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.form-input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  font-family: "Lato", sans-serif;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--principal-blue);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+.form-input.error {
+  border-color: #e74c3c;
+  background: #fdf2f2;
+}
+
+.form-input.success {
+  border-color: #27ae60;
+  background: #f0f9f4;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85em;
+  margin-top: 5px;
+  display: none;
+  padding: 8px 12px;
+  background: #fdf2f2;
+  border-radius: 6px;
+  border-left: 3px solid #e74c3c;
+}
+
+.error-message.show {
+  display: block;
+}
+
+.error-message.general-error {
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  text-align: center;
+  background: #fdf2f2;
+  border: 1px solid #fecaca;
+  padding: 12px;
+}
+
+.success-message {
+  color: #27ae60;
+  font-size: 0.85em;
+  margin-top: 5px;
+  display: none;
+  padding: 8px 12px;
+  background: #f0f9f4;
+  border-radius: 6px;
+  border-left: 3px solid #27ae60;
+}
+
+.success-message.show {
+  display: block;
+}
+
+.password-strength {
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: var(--neutral-dark);
+}
+
+.strength-bar {
+  height: 4px;
+  background: #e1e5e9;
+  border-radius: 2px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.strength-weak { width: 25%; background: #e74c3c; }
+.strength-fair { width: 50%; background: #f39c12; }
+.strength-good { width: 75%; background: #f1c40f; }
+.strength-strong { width: 100%; background: #27ae60; }
+
+.login-link,
+.register-link {
+  text-align: center;
+  margin-top: 25px;
+  color: var(--neutral-dark);
+}
+
+.login-link a,
+.register-link a {
+  color: var(--principal-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover,
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.forgot-password a {
+  color: var(--principal-blue);
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Button full width variant */
+.btn--full {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .login-form,
+  .register-form {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .login-title,
+  .register-title {
+    font-size: 2em;
+  }
+} 
+
+/* Form group focus states */
+.form-group.focused .form-label {
+  color: var(--principal-blue);
+}
+
+.form-group.focused .form-input {
+  border-color: var(--principal-blue);
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+/* Enhanced error states */
+.form-input.error:focus {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+/* Loading state for submit button */
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Animation for error messages */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.form-input.error {
+  animation: shake 0.3s ease-in-out;
+} 

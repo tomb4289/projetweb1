@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auction Details - Blue Mauritius Stamp</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="img/favicon/favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/favicon/favicon-16x16.png"
+    />
+    <link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="img/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="img/favicon/android-chrome-512x512.png"
+    />
+    <link rel="manifest" href="img/favicon/site.webmanifest" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content">
+        <img
+          src="img/redcrownlogo.png"
+          alt="Red Crown Logo"
+          class="header__logo"
+        />
+        <h1 class="header__title">Stampee Auction House</h1>
+        <form class="header-search" action="#" method="get">
+          <input
+            type="text"
+            name="q"
+            class="header-search__input"
+            placeholder="Search stamps, lots, or countries..."
+            aria-label="Search"
+          />
+          <button
+            type="submit"
+            class="header-search__button u-icon-button-base"
+            aria-label="Search"
+          >
+            <span>&#128269;</span>
+          </button>
+        </form>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="index.html" class="header__nav-link">Home</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="index.html" class="header__nav-link">Auctions</a>
+            </li>
+            <li class="header__nav-item header__nav-item--dropdown">
+              <a href="#" class="header__nav-link"
+                >Categories
+                <span class="header__dropdown-arrow">&#9662;</span></a
+              >
+              <ul class="header__subnav-list">
+                <li class="header__subnav-item">
+                  <a href="#" class="header__subnav-link">Rare Stamps</a>
+                </li>
+                <li class="header__subnav-item">
+                  <a href="#" class="header__subnav-link">Modern Stamps</a>
+                </li>
+                <li class="header__subnav-item">
+                  <a href="#" class="header__subnav-link">World Stamps</a>
+                </li>
+                <li class="header__subnav-item">
+                  <a href="auction-details.html" class="header__subnav-link"
+                    >Sample Auction</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link">Account</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link">Services</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="product-details-container">
+      <a href="index.html" class="product-details-back-link"
+        >&larr; Back to Catalogue</a
+      >
+      <div class="product-details-grid">
+        <div class="product-details-images">
+          <img
+            src="img/stamp1.jpg"
+            alt="Blue Mauritius Stamp"
+            class="product-details-main-image"
+            id="mainZoomImg"
+          />
+          <div class="product-details-carousel-wrapper">
+            <span class="product-details-carousel-arrow left u-icon-button-base"
+              >&#9654;</span
+            >
+            <div class="product-details-carousel">
+              <img
+                src="img/stamp1.jpg"
+                alt="Blue Mauritius Stamp"
+                class="product-details-carousel-thumb"
+              />
+              <img
+                src="img/stamp2.jpg"
+                alt="Stamp 2"
+                class="product-details-carousel-thumb"
+              />
+              <img
+                src="img/stamp3.jpg"
+                alt="Stamp 3"
+                class="product-details-carousel-thumb"
+              />
+            </div>
+            <span
+              class="product-details-carousel-arrow right u-icon-button-base"
+              >&#9654;</span
+            >
+          </div>
+        </div>
+        <div class="product-details-info-panel">
+          <h1 class="product-details-title">Lot 001: Blue Mauritius Stamp</h1>
+          <div class="product-details-meta">
+            <span class="product-details-id">Lot #001</span> &bull;
+            <span class="product-details-end">Ends: 2025-06-30 18:00</span>
+          </div>
+          <div class="product-details-current-bid-section">
+            <h2>
+              Current Bid:
+              <span class="product-details-current-bid-amount">$5,000</span>
+            </h2>
+          </div>
+          <div class="product-details-bid-history-section">
+            <h3>Bid History</h3>
+            <ul class="product-details-bid-history-list">
+              <li>JaneDoe: $5,000</li>
+              <li>StampLover: $4,800</li>
+              <li>Philatelist42: $4,500</li>
+            </ul>
+          </div>
+          <div class="product-details-place-bid-section">
+            <h3>Place a Bid</h3>
+            <form class="product-details-bid-form">
+              <label for="bidAmount">Bid Amount:</label>
+              <input
+                type="number"
+                name="bid-amount"
+                id="bidAmount"
+                placeholder="Enter your bid"
+                min="5001"
+                required
+              />
+              <button
+                type="submit"
+                disabled
+                class="u-btn-base u-btn-primary-look"
+              >
+                Place Bid
+              </button>
+            </form>
+            <div class="product-details-bid-actions-row">
+              <button
+                class="product-details-watchlist-button u-btn-base u-flat-interactive"
+              >
+                Add to Watchlist
+              </button>
+              <span class="product-details-time-left-label"
+                ><span>Time left:</span>
+                <span class="product-details-time-left-value"
+                  >43 min</span
+                ></span
+              >
+            </div>
+          </div>
+          <div class="payment-icons" id="payment-icons">
+            <img src="img/payment_icons.webp" alt="Accepted Payment Methods" />
+          </div>
+        </div>
+      </div>
+      <div class="product-details-description-box">
+        <div class="product-details-tabs">
+          <button
+            class="product-details-tab selected u-btn-base u-flat-interactive"
+          >
+            Description
+          </button>
+          <button class="product-details-tab u-btn-base u-flat-interactive">
+            More Images
+          </button>
+        </div>
+        <div class="product-details-tab-content">
+          <p class="product-details-description">
+            This rare Blue Mauritius stamp (Lot 001) is one of the most
+            sought-after philatelic treasures in the world. Issued in 1847, it
+            is renowned for its historical significance and exquisite design. A
+            must-have for any serious collector.<br /><br />
+            Also featured in this auction: Lot 003 (1851 12d Black Canadian),
+            Lot 005 (Penny Black VR Official), and Lot 007 (1849 Ceres 10c
+            Black) — each representing a unique chapter in stamp history.
+          </p>
+          <div class="product-details-stamp-info-box">
+            <h3>Stamp Information</h3>
+            <ul class="product-details-stamp-info-list">
+              <li>
+                <span class="product-details-stamp-info-label">Name:</span
+                ><span class="product-details-stamp-info-value"
+                  >Blue Mauritius</span
+                >
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label"
+                  >Date of Creation:</span
+                ><span class="product-details-stamp-info-value">1847</span>
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label">Color(s):</span
+                ><span class="product-details-stamp-info-value">Blue</span>
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label"
+                  >Country of Origin:</span
+                ><span class="product-details-stamp-info-value">Mauritius</span>
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label">Images:</span
+                ><span class="product-details-stamp-info-value"
+                  ><a href="#">Main Image</a>/
+                  <a href="#">Additional Images</a></span
+                >
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label">Condition:</span
+                ><span class="product-details-stamp-info-value">Excellent</span>
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label">Print Run:</span
+                ><span class="product-details-stamp-info-value"
+                  >500 copies</span
+                >
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label">Dimensions:</span
+                ><span class="product-details-stamp-info-value"
+                  >24mm x 30mm</span
+                >
+              </li>
+              <li>
+                <span class="product-details-stamp-info-label">Certified:</span
+                ><span class="product-details-stamp-info-value">Yes</span>
+              </li>
+            </ul>
+          </div>
+          <div id="imgPopupOverlay" class="img-popup-overlay">
+            <div class="img-popup-content">
+              <button
+                class="img-popup-close u-icon-button-base u-flat-interactive"
+                id="imgPopupClose"
+              >
+                &times;
+              </button>
+              <img
+                src="img/stamp1.jpg"
+                alt="Blue Mauritius Stamp Zoomed"
+                class="img-popup-zoomed"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer__content">
+        <div class="footer-links-grid">
+          <div class="footer-links-section">
+            <h4>About Lord Reginald Stampee III</h4>
+            <ul>
+              <li>
+                <a href="#" class="footer__link">Philately is life.</a>
+              </li>
+              <li><a href="#" class="footer__link">Lord's biography</a></li>
+              <li><a href="#" class="footer__link">Family history</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-section">
+            <h4>News</h4>
+            <ul>
+              <li><a href="#" class="footer__link">Stamps</a></li>
+              <li><a href="#" class="footer__link">Auctions</a></li>
+              <li><a href="#" class="footer__link">Bridge</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-section">
+            <h4>Help</h4>
+            <ul>
+              <li><a href="#" class="footer__link">Profile/Account</a></li>
+              <li>
+                <a href="#" class="footer__link">How to place a bet</a>
+              </li>
+              <li>
+                <a href="#" class="footer__link">Follow an auction</a>
+              </li>
+              <li>
+                <a href="#" class="footer__link">Search for an auction</a>
+              </li>
+              <li>
+                <a href="#" class="footer__link">Contact the web dev</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-links-section">
+            <h4>Contact-us</h4>
+            <ul>
+              <li><a href="#" class="footer__link">UK</a></li>
+              <li><a href="#" class="footer__link">Canada</a></li>
+              <li><a href="#" class="footer__link">US</a></li>
+              <li><a href="#" class="footer__link">Australia</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-section">
+            <h4>Terms & conditions</h4>
+            <ul>
+              <li><a href="#" class="footer__link">Terms & conditions</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="footer__text copyright">
+          &copy; 2025 Auction House. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    <script>
+      const descImg = document.getElementById("descZoomImg");
+      const mainImg = document.getElementById("mainZoomImg");
+      const popup = document.getElementById("imgPopupOverlay");
+      const closeBtn = document.getElementById("imgPopupClose");
+
+      if (mainImg) {
+        mainImg.addEventListener("click", () => {
+          popup.style.display = "flex";
+        });
+      }
+
+      if (descImg) {
+        descImg.addEventListener("click", () => {
+          popup.style.display = "flex";
+        });
+      }
+
+      closeBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+      });
+      popup.addEventListener("click", (e) => {
+        if (e.target === popup) popup.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stampee - Accueil</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/utilities.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/css/features.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
+</head>
+<body>
+    <header class="header">
+        <div class="header__content">
+            <img src="/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            <h1 class="header__title">Stampee Auction House</h1>
+            
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="#" class="header__nav-link">Enchères</a></li>
+                    <li><a href="#" class="header__nav-link">Collections</a></li>
+                    <li><a href="#" class="header__nav-link">À propos</a></li>
+                    <li><a href="#" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header__actions">
+                {% if session.authenticated %}
+                    <span class="header__user">Bonjour, {{ session.username }}</span>
+                    <a href="/logout" class="btn btn--secondary">Déconnexion</a>
+                {% else %}
+                    <a href="/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/register" class="btn btn--primary">Inscription</a>
+                {% endif %}
+            </div>
+            
+            <button class="header__nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        {% if session.authenticated %}
+            <div class="welcome-message">
+                <h2>Bienvenue, {{ session.username }} !</h2>
+                <p>Nous sommes ravis de vous revoir sur Stampee.</p>
+            </div>
+        {% endif %}
+        
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">Découvrez des Timbres Rares et Uniques</h2>
+                <p class="hero-description">
+                    Rejoignez la communauté Stampee et participez aux enchères de timbres 
+                    les plus prestigieuses du Canada. Des pièces d'exception pour des 
+                    collectionneurs passionnés.
+                </p>
+                <div class="hero-actions">
+                    <a href="/register" class="btn btn--primary btn--large">Commencer à Collectionner</a>
+                    <a href="#" class="btn btn--secondary btn--large">Voir les Enchères</a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="/img/stamp1.jpg" alt="Timbre rare" class="hero-stamp">
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="section-header">
+                <h2 class="section-title">Pourquoi Choisir Stampee ?</h2>
+                <p class="section-subtitle">Une expérience d'enchères unique et sécurisée</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card__icon">🏛️</div>
+                    <h3 class="feature-card__title">Expertise</h3>
+                    <p class="feature-card__description">
+                        Plus de 50 ans d'expérience dans l'évaluation et la vente de timbres rares.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-card__icon">🔒</div>
+                    <h3 class="feature-card__title">Sécurité</h3>
+                    <p class="feature-card__description">
+                        Transactions sécurisées et authentification garantie de tous nos timbres.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-card__icon">🌍</div>
+                    <h3 class="feature-card__title">International</h3>
+                    <p class="feature-card__description">
+                        Collectionneurs du monde entier participent à nos enchères.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-card__icon">📱</div>
+                    <h3 class="feature-card__title">Accessible</h3>
+                    <p class="feature-card__description">
+                        Enchérissez depuis n'importe où, à tout moment.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h3 class="footer__title">Stampee</h3>
+                <p class="footer__description">
+                    Votre maison de vente aux enchères de timbres de confiance depuis 1970.
+                </p>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Liens Rapides</h4>
+                <ul class="footer__links">
+                    <li><a href="/" class="footer__link">Accueil</a></li>
+                    <li><a href="#" class="footer__link">Enchères</a></li>
+                    <li><a href="#" class="footer__link">Collections</a></li>
+                    <li><a href="#" class="footer__link">À propos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Support</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Aide</a></li>
+                    <li><a href="#" class="footer__link">Contact</a></li>
+                    <li><a href="#" class="footer__link">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Légal</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © 2024 Stampee Auction House. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.header__nav-toggle');
+            const navList = document.querySelector('.header__nav-list');
+            
+            if (navToggle && navList) {
+                navToggle.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
