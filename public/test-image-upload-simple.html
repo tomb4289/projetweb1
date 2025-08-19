@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Image Upload - Simple</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .error { color: red; margin-top: 5px; }
+        .success { color: green; margin-top: 5px; }
+        .debug { background: #f8f9fa; padding: 10px; border-radius: 4px; margin-top: 10px; font-family: monospace; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Test Image Upload - Simple Form</h1>
+    
+    <div id="messages"></div>
+    
+    <form id="testForm" method="POST" action="/projetweb2/public/auctions/create" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="nom">Nom du Timbre *</label>
+            <input type="text" id="nom" name="nom" value="Test Timbre" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="pays_origine">Pays d'Origine *</label>
+            <select id="pays_origine" name="pays_origine" required>
+                <option value="Canada">Canada</option>
+                <option value="France" selected>France</option>
+                <option value="États-Unis">États-Unis</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="prix_plancher">Prix de Départ *</label>
+            <input type="number" id="prix_plancher" name="prix_plancher" value="25.50" step="0.01" min="0.01" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="date_fin">Date de Fin *</label>
+            <input type="datetime-local" id="date_fin" name="date_fin" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="images">Images (test avec différentes images)</label>
+            <input type="file" id="images" name="images[]" multiple accept="image/*">
+            <small>Testez avec différentes images pour identifier lesquelles causent des problèmes</small>
+        </div>
+        
+        <button type="submit">Tester la Création</button>
+    </form>
+    
+    <div class="debug">
+        <h3>Debug Info:</h3>
+        <div id="debugInfo"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('testForm');
+            const imageInput = document.getElementById('images');
+            const dateFinInput = document.getElementById('date_fin');
+            const debugInfo = document.getElementById('debugInfo');
+            
+            // Set default date (tomorrow)
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateFinInput.value = tomorrow.toISOString().slice(0, 16);
+            
+            // Log form data
+            function logFormData() {
+                const formData = new FormData(form);
+                let debugText = 'Form Data:\n';
+                for (let [key, value] of formData.entries()) {
+                    if (key === 'images[]') {
+                        debugText += `${key}: ${value.name} (${value.size} bytes, ${value.type})\n`;
+                    } else {
+                        debugText += `${key}: ${value}\n`;
+                    }
+                }
+                debugInfo.textContent = debugText;
+            }
+            
+            // Image input change
+            imageInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                let fileInfo = 'Selected Files:\n';
+                files.forEach((file, index) => {
+                    fileInfo += `${index + 1}. ${file.name}\n`;
+                    fileInfo += `   Size: ${(file.size / 1024 / 1024).toFixed(2)}MB\n`;
+                    fileInfo += `   Type: ${file.type}\n`;
+                    fileInfo += `   Last Modified: ${new Date(file.lastModified).toLocaleString()}\n\n`;
+                });
+                debugInfo.textContent = fileInfo;
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                console.log('Form submission started');
+                logFormData();
+                
+                // Show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Envoi en cours...';
+                
+                // Submit form
+                setTimeout(() => {
+                    console.log('Submitting form...');
+                    form.submit();
+                }, 500);
+            });
+            
+            // Initial debug info
+            logFormData();
+        });
+    </script>
+</body>
+</html>

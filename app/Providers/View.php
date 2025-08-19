@@ -6,9 +6,9 @@ class View
     static public function redirect(string $uri)
     {
         if (strpos($uri, '/') === 0) {
-            header("Location: " . $uri);
+            header("Location: /projetweb2/public" . $uri);
         } else {
-            header("Location: /" . $uri);
+            header("Location: /projetweb2/public/" . $uri);
         }
         exit;
     }

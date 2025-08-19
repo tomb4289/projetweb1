@@ -1,0 +1,11 @@
+# Increase PHP upload limits for Stampee auction system
+php_value upload_max_filesize 10M
+php_value post_max_size 20M
+php_value max_execution_time 300
+php_value memory_limit 256M
+php_value max_file_uploads 10
+
+# Enable error reporting for debugging
+php_flag display_errors On
+php_flag log_errors On
+php_value error_reporting E_ALL

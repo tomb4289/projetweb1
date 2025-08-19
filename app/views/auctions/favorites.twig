@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Favoris - Stampee</title>
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/product-listing.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/auctions.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__content">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            </a>
+            <h1 class="header__title">Stampee Auction House</h1>
+            
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    {% if session.authenticated %}
+                        <li><a href="/projetweb2/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
+                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                    {% endif %}
+                    <li><a href="#" class="header__nav-link">À propos</a></li>
+                    <li><a href="#" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header__actions">
+                {% if session.authenticated %}
+                    <span class="header__user">Bonjour, {{ session.username }}</span>
+                    <a href="/projetweb2/public/logout" class="btn btn--secondary">Déconnexion</a>
+                {% else %}
+                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
+                {% endif %}
+            </div>
+            
+            <button class="header__nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="favorites-page">
+            <h1>Mes Favoris</h1>
+            
+            {% if favorites %}
+                <div class="favorites-count">
+                    <p>{{ favorites|length }} enchère(s) dans vos favoris</p>
+                </div>
+                
+                <div class="auctions-grid">
+                    {% for auction in favorites %}
+                    <div class="auction-card">
+                        <div class="auction-card__image">
+                            {% if auction.image_principale %}
+                                <img src="/projetweb2/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
+                            {% else %}
+                                <div class="auction-card__no-image">
+                                    <span class="no-image-icon">🖼️</span>
+                                    <span class="no-image-text">Aucune image</span>
+                                </div>
+                            {% endif %}
+                            {% if auction.coup_de_coeur_lord is defined and auction.coup_de_coeur_lord %}
+                                <div class="auction-card__badge">⭐ Coup de Cœur</div>
+                            {% endif %}
+                            <div class="auction-card__badge auction-card__badge--favorite">❤️ Favori</div>
+                        </div>
+                        <div class="auction-card__content">
+                            <h3 class="auction-card__title">{{ auction.nom }}</h3>
+                            <p class="auction-card__country">{{ auction.pays_origine }}</p>
+                            <p class="auction-card__condition">{{ auction.condition }}</p>
+                            <p class="auction-card__price">
+                                <span class="price-label">{% if auction.prix_actuel and auction.prix_actuel > 0 %}Prix Actuel{% else %}Prix de Départ{% endif %}</span>
+                                <span class="current-price">
+                                    {% if auction.prix_actuel and auction.prix_actuel > 0 %}{{ auction.prix_actuel }}{% else %}{{ auction.prix_plancher }}{% endif %} $
+                                    {% if auction.prix_actuel and auction.prix_actuel > auction.prix_plancher %}
+                                        <span class="price-indicator">↑</span>
+                                    {% endif %}
+                                </span>
+                                <span class="starting-price">Prix de départ: {{ auction.prix_plancher }} $</span>
+                            </p>
+                            <p class="auction-card__ending">Se termine le {{ auction.date_fin|date('d/m/Y H:i') }}</p>
+                            <p class="auction-card__bids">
+                                {% if auction.nombre_offres > 0 %}
+                                    <span class="bid-count active">{{ auction.nombre_offres }} offre(s)</span>
+                                {% else %}
+                                    <span class="bid-count">Aucune offre</span>
+                                {% endif %}
+                            </p>
+                            <div class="auction-card__actions">
+                                <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--primary">Voir l'Enchère</a>
+                                <button class="btn btn--secondary remove-favorite-btn" data-auction-id="{{ auction.id_enchere }}">Retirer des Favoris</button>
+                                {% if session.authenticated and session.user_id == auction.id_membre %}
+                                    <div class="owner-actions">
+                                        <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}/edit" class="btn btn--secondary">✏️ Modifier</a>
+                                        <button class="btn btn--danger delete-auction-btn" data-auction-id="{{ auction.id_enchere }}">🗑️ Supprimer</button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p>Vous n'avez pas encore d'enchères favorites.</p>
+                    <p><a href="/projetweb2/public/auctions">Découvrir des enchères</a> et ajoutez-les à vos favoris !</p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile navigation toggle
+            const navToggle = document.querySelector('.header__nav-toggle');
+            const navList = document.querySelector('.header__nav-list');
+            
+            if (navToggle && navList) {
+                navToggle.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+
+            // Remove from favorites functionality
+            const removeButtons = document.querySelectorAll('.remove-favorite-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const auctionId = this.dataset.auctionId;
+                    
+                    fetch('/projetweb2/public/auctions/favorite', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            auction_id: auctionId
+                        })
+                    })
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        return response.text();
+                    })
+                    .then(text => {
+                        console.log('Response text:', text);
+                        try {
+                            const data = JSON.parse(text);
+                            console.log('Parsed data:', data);
+                            
+                            if (data.success) {
+                                // Remove the card from the DOM
+                                const card = this.closest('.auction-card');
+                                card.remove();
+                                
+                                // Update the count
+                                const countElement = document.querySelector('.favorites-count p');
+                                const currentCount = parseInt(countElement.textContent.match(/\d+/)[0]);
+                                countElement.textContent = `${currentCount - 1} enchère(s) dans vos favoris`;
+                                
+                                // Check if no more favorites
+                                if (currentCount - 1 === 0) {
+                                    location.reload(); // Reload to show no-favorites message
+                                }
+                            } else {
+                                alert('Erreur: ' + data.error);
+                            }
+                        } catch (parseError) {
+                            console.error('JSON parse error:', parseError);
+                            console.error('Raw response:', text);
+                            alert('Erreur de format de réponse du serveur');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Network error:', error);
+                        alert('Erreur de connexion lors de la mise à jour des favoris');
+                    });
+                });
+            });
+            
+            // Delete auction functionality
+            const deleteButtons = document.querySelectorAll('.delete-auction-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const auctionId = this.dataset.auctionId;
+                    
+                    if (confirm('Êtes-vous sûr de vouloir supprimer cette enchère ? Cette action est irréversible.')) {
+                        fetch(`/projetweb2/public/auctions/${auctionId}/delete`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert(data.message);
+                                location.reload();
+                            } else {
+                                alert('Erreur: ' + data.error);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Erreur lors de la suppression de l\'enchère');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Liens Rapides</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Support</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="#" class="footer__link">Contactez-nous</a></li>
+                    <li><a href="#" class="footer__link">FAQ</a></li>
+                    <li><a href="#" class="footer__link">Guide des Enchères</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Légal</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="#" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="#" class="footer__link">Protection des données</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © 2024 Stampee Auction House. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

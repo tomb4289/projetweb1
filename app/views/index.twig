@@ -4,31 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stampee - Accueil</title>
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/utilities.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/homepage.css">
-    <link rel="stylesheet" href="/css/features.css">
-    <link rel="stylesheet" href="/css/button.css">
-    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/homepage.css">
+
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/auctions.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
+    <link rel="icon" href="/projetweb2/public/img/favicon/favicon.ico" sizes="any">
 </head>
 <body>
     <header class="header">
         <div class="header__content">
-            <img src="/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            </a>
             <h1 class="header__title">Stampee Auction House</h1>
             
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li><a href="/" class="header__nav-link">Accueil</a></li>
-                    <li><a href="#" class="header__nav-link">Enchères</a></li>
-                    <li><a href="#" class="header__nav-link">Collections</a></li>
+                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    {% if session.authenticated %}
+                        <li><a href="/projetweb2/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
+                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                    {% endif %}
                     <li><a href="#" class="header__nav-link">À propos</a></li>
                     <li><a href="#" class="header__nav-link">Contact</a></li>
                 </ul>
@@ -37,10 +43,10 @@
             <div class="header__actions">
                 {% if session.authenticated %}
                     <span class="header__user">Bonjour, {{ session.username }}</span>
-                    <a href="/logout" class="btn btn--secondary">Déconnexion</a>
+                    <a href="/projetweb2/public/logout" class="btn btn--secondary">Déconnexion</a>
                 {% else %}
-                    <a href="/login" class="btn btn--secondary">Connexion</a>
-                    <a href="/register" class="btn btn--primary">Inscription</a>
+                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
                 {% endif %}
             </div>
             
@@ -69,83 +75,168 @@
                     collectionneurs passionnés.
                 </p>
                 <div class="hero-actions">
-                    <a href="/register" class="btn btn--primary btn--large">Commencer à Collectionner</a>
-                    <a href="#" class="btn btn--secondary btn--large">Voir les Enchères</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary btn--large">Commencer à Collectionner</a>
+                    <a href="/projetweb2/public/auctions" class="btn btn--secondary btn--large">Voir les Enchères</a>
                 </div>
             </div>
             
             <div class="hero-image">
-                <img src="/img/stamp1.jpg" alt="Timbre rare" class="hero-stamp">
+                <img src="/projetweb2/public/img/stamp1.jpg" alt="Timbre rare" class="hero-stamp">
             </div>
         </section>
 
-        <section class="features">
-            <div class="section-header">
-                <h2 class="section-title">Pourquoi Choisir Stampee ?</h2>
-                <p class="section-subtitle">Une expérience d'enchères unique et sécurisée</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-card__icon">🏛️</div>
-                    <h3 class="feature-card__title">Expertise</h3>
-                    <p class="feature-card__description">
-                        Plus de 50 ans d'expérience dans l'évaluation et la vente de timbres rares.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-card__icon">🔒</div>
-                    <h3 class="feature-card__title">Sécurité</h3>
-                    <p class="feature-card__description">
-                        Transactions sécurisées et authentification garantie de tous nos timbres.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-card__icon">🌍</div>
-                    <h3 class="feature-card__title">International</h3>
-                    <p class="feature-card__description">
-                        Collectionneurs du monde entier participent à nos enchères.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-card__icon">📱</div>
-                    <h3 class="feature-card__title">Accessible</h3>
-                    <p class="feature-card__description">
-                        Enchérissez depuis n'importe où, à tout moment.
-                    </p>
-                </div>
+
+        <section class="search-section">
+            <div class="search-container">
+                <h3 class="search-title">Rechercher des Timbres</h3>
+                <form class="search-form" action="/projetweb2/public/auctions/search" method="GET">
+                    <div class="search-row">
+                        <div class="search-field">
+                            <input type="text" name="recherche" placeholder="Nom du timbre ou pays..." class="search-input">
+                        </div>
+                        <div class="search-field">
+                            <select name="pays" class="search-select">
+                                <option value="">Tous les pays</option>
+                                <option value="Canada">Canada</option>
+                                <option value="États-Unis">États-Unis</option>
+                                <option value="France">France</option>
+                                <option value="Royaume-Uni">Royaume-Uni</option>
+                                <option value="Allemagne">Allemagne</option>
+                                <option value="Japon">Japon</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <select name="condition" class="search-select">
+                                <option value="">Toutes les conditions</option>
+                                <option value="Parfaite">Parfaite</option>
+                                <option value="Excellente">Excellente</option>
+                                <option value="Bonne">Bonne</option>
+                                <option value="Moyenne">Moyenne</option>
+                                <option value="Endommagé">Endommagé</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <input type="number" name="prix_min" placeholder="Prix min" class="search-input">
+                        </div>
+                        <div class="search-field">
+                            <input type="number" name="prix_max" placeholder="Prix max" class="search-input">
+                        </div>
+                        <button type="submit" class="btn btn--primary">Rechercher</button>
+                    </div>
+                </form>
             </div>
         </section>
+
+
+        {% if featuredAuctions %}
+        <section class="featured-auctions">
+            <div class="section-header">
+                <h2 class="section-title">Coups de Cœur du Lord</h2>
+                <p class="section-subtitle">Les enchères les plus prestigieuses sélectionnées par notre expert</p>
+            </div>
+            
+            <div class="auctions-grid">
+                {% for auction in featuredAuctions %}
+                <div class="auction-card">
+                    <div class="auction-card__image">
+                        {% if auction.image_principale %}
+                            <img src="/projetweb2/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
+                        {% else %}
+                            <div class="auction-card__no-image">
+                                <span class="no-image-icon">🖼️</span>
+                                <span class="no-image-text">Aucune image</span>
+                            </div>
+                        {% endif %}
+                        <div class="auction-card__badge">⭐ Coup de Cœur</div>
+                    </div>
+                    <div class="auction-card__content">
+                        <h3 class="auction-card__title">{{ auction.nom }}</h3>
+                        <p class="auction-card__country">{{ auction.pays_origine }}</p>
+                        <p class="auction-card__price">
+                            <span class="price-label">{% if auction.prix_actuel and auction.prix_actuel > 0 %}Prix Actuel{% else %}Prix de Départ{% endif %}</span>
+                            <span class="current-price">{% if auction.prix_actuel and auction.prix_actuel > 0 %}{{ auction.prix_actuel }}{% else %}{{ auction.prix_plancher }}{% endif %} $</span>
+                            <span class="starting-price">Prix de départ: {{ auction.prix_plancher }} $</span>
+                            {% if auction.nombre_offres and auction.nombre_offres > 0 %}
+                                <span class="bid-count">{{ auction.nombre_offres }} offre{{ auction.nombre_offres > 1 ? 's' : '' }}</span>
+                            {% endif %}
+                        </p>
+                        <p class="auction-card__ending">Se termine le {{ auction.date_fin|date('d/m/Y H:i') }}</p>
+                        <div class="auction-card__actions">
+                            <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--primary">Voir l'Enchère</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+
+        {% if endingSoonAuctions %}
+        <section class="ending-soon">
+            <div class="section-header">
+                <h2 class="section-title">Enchères qui se Terminent Bientôt</h2>
+                <p class="section-subtitle">Ne manquez pas ces opportunités uniques</p>
+            </div>
+            
+            <div class="auctions-grid">
+                {% for auction in endingSoonAuctions %}
+                <div class="auction-card auction-card--urgent">
+                    <div class="auction-card__image">
+                        {% if auction.image_principale %}
+                            <img src="/projetweb2/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
+                        {% else %}
+                            <div class="auction-card__no-image">
+                                <span class="no-image-icon">🖼️</span>
+                                <span class="no-image-text">Aucune image</span>
+                            </div>
+                        {% endif %}
+                        <div class="auction-card__badge auction-card__badge--urgent">⏰ Bientôt terminé</div>
+                    </div>
+                    <div class="auction-card__content">
+                        <h3 class="auction-card__title">{{ auction.nom }}</h3>
+                        <p class="auction-card__country">{{ auction.pays_origine }}</p>
+                        <p class="auction-card__price">
+                            <span class="price-label">{% if auction.prix_actuel and auction.prix_actuel > 0 %}Prix Actuel{% else %}Prix de Départ{% endif %}</span>
+                            <span class="current-price">{% if auction.prix_actuel and auction.prix_actuel > 0 %}{{ auction.prix_actuel }}{% else %}{{ auction.prix_plancher }}{% endif %} $</span>
+                            <span class="starting-price">Prix de départ: {{ auction.prix_plancher }} $</span>
+                            {% if auction.nombre_offres and auction.nombre_offres > 0 %}
+                                <span class="bid-count">{{ auction.nombre_offres }} offre{{ auction.nombre_offres > 1 ? 's' : '' }}</span>
+                            {% endif %}
+                        </p>
+                        <p class="auction-card__ending">Se termine le {{ auction.date_fin|date('d/m/Y H:i') }}</p>
+                        <div class="auction-card__actions">
+                            <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--primary">Enchérir Maintenant</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+
     </main>
 
     <footer class="footer">
         <div class="footer__content">
             <div class="footer__section">
-                <h3 class="footer__title">Stampee</h3>
-                <p class="footer__description">
-                    Votre maison de vente aux enchères de timbres de confiance depuis 1970.
-                </p>
-            </div>
-            
-            <div class="footer__section">
                 <h4 class="footer__subtitle">Liens Rapides</h4>
                 <ul class="footer__links">
-                    <li><a href="/" class="footer__link">Accueil</a></li>
-                    <li><a href="#" class="footer__link">Enchères</a></li>
-                    <li><a href="#" class="footer__link">Collections</a></li>
-                    <li><a href="#" class="footer__link">À propos</a></li>
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
                 </ul>
             </div>
             
             <div class="footer__section">
                 <h4 class="footer__subtitle">Support</h4>
                 <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Aide</a></li>
-                    <li><a href="#" class="footer__link">Contact</a></li>
+                    <li><a href="#" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="#" class="footer__link">Contactez-nous</a></li>
                     <li><a href="#" class="footer__link">FAQ</a></li>
+                    <li><a href="#" class="footer__link">Guide des Enchères</a></li>
                 </ul>
             </div>
             
@@ -154,6 +245,8 @@
                 <ul class="footer__links">
                     <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
                     <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="#" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="#" class="footer__link">Protection des données</a></li>
                 </ul>
             </div>
         </div>

@@ -1,9 +1,6 @@
 RewriteEngine On
 
-# The RewriteBase is now '/' because the Virtual Host's DocumentRoot
-# is already set to the 'public' directory.
-RewriteBase /
-
+# Handle front controller
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php [QSA,L]

@@ -26,7 +26,11 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+    if ($config['app']['debug']) {
+        die("Database connection failed: " . $e->getMessage());
+    } else {
+        die("Database connection failed. Please check your configuration.");
+    }
 }
 
 $loader = new FilesystemLoader($config['paths']['templates']);
@@ -36,7 +40,7 @@ $twig = new Environment($loader, [
 ]);
 
 $uri = $_SERVER['REQUEST_URI'];
-$basePath = '/projetweb1/public';
+$basePath = '/projetweb2/public';
 
 if (strpos($uri, $basePath) === 0) {
     $uri = substr($uri, strlen($basePath));
@@ -48,6 +52,10 @@ if ($uri === '') {
     $uri = '/';
 }
 
-require_once __DIR__ . '/../app/routes/web.php';
+if ($config['app']['debug']) {
+    echo "<!-- Debug: URI = '$uri', Method = '{$_SERVER['REQUEST_METHOD']}' -->\n";
+}
+
+require_once __DIR__ . '/../app/Routes/web.php';
 
 Route::dispatch($pdo, $twig, $config, $uri, $_SERVER['REQUEST_METHOD']);

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une Enchère - Stampee</title>
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/forms.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__content">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            </a>
+            <h1 class="header__title">Stampee Auction House</h1>
+            
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    {% if session.authenticated %}
+                        <li><a href="/projetweb2/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
+                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                    {% endif %}
+                    <li><a href="#" class="header__nav-link">À propos</a></li>
+                    <li><a href="#" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header__actions">
+                {% if session.authenticated %}
+                    <span class="header__user">Bonjour, {{ session.username }}</span>
+                    <a href="/projetweb2/public/logout" class="btn btn--secondary">Déconnexion</a>
+                {% else %}
+                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
+                {% endif %}
+            </div>
+            
+            <button class="header__nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <h1>Créer une Nouvelle Enchère</h1>
+        
+        {% if error %}
+            <div class="error-message">
+                <strong>Erreur :</strong> {{ error }}
+                {% if app.debug %}
+                    <br><small>Détails techniques: Vérifiez la console du navigateur pour plus d'informations</small>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        {% if success %}
+            <div class="success-message">
+                <strong>Succès :</strong> {{ success }}
+            </div>
+        {% endif %}
+        
+        <form method="POST" enctype="multipart/form-data" class="auction-form" novalidate>
+            <div class="form-section">
+                <h3>Informations du Timbre</h3>
+                
+                <div class="form-group">
+                    <label for="nom">Nom du Timbre <span class="required">*</span></label>
+                    <input type="text" id="nom" name="nom" required minlength="2" maxlength="255" 
+                           placeholder="Ex: Timbre commémoratif de la Tour Eiffel">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pays_origine">Pays d'Origine <span class="required">*</span></label>
+                    <select id="pays_origine" name="pays_origine" required>
+                        <option value="">Sélectionner un pays</option>
+                        <option value="Canada">Canada</option>
+                        <option value="États-Unis">États-Unis</option>
+                        <option value="France">France</option>
+                        <option value="Royaume-Uni">Royaume-Uni</option>
+                        <option value="Allemagne">Allemagne</option>
+                        <option value="Japon">Japon</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date_creation">Année de Création</label>
+                    <input type="number" id="date_creation" name="date_creation" min="1800" max="2024" 
+                           placeholder="Ex: 1950">
+                </div>
+                
+                <div class="form-group">
+                    <label for="condition">Condition</label>
+                    <select id="condition" name="condition">
+                        <option value="Bonne">Bonne</option>
+                        <option value="Excellente">Excellente</option>
+                        <option value="Parfaite">Parfaite</option>
+                        <option value="Moyenne">Moyenne</option>
+                        <option value="Endommagé">Endommagé</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="couleurs">Couleurs</label>
+                    <input type="text" id="couleurs" name="couleurs" maxlength="100" 
+                           placeholder="ex: Rouge, Bleu, Vert">
+                </div>
+                
+                <div class="form-group">
+                    <label for="tirage">Tirage</label>
+                    <input type="number" id="tirage" name="tirage" min="1" max="999999999" 
+                           placeholder="ex: 1000000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dimensions">Dimensions</label>
+                    <input type="text" id="dimensions" name="dimensions" maxlength="50" 
+                           placeholder="ex: 25x30mm">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="certifie" name="certifie">
+                        Timbre certifié
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Détails de l'Enchère</h3>
+                
+                <div class="form-group">
+                    <label for="prix_plancher">Prix de Départ <span class="required">*</span></label>
+                    <input type="number" id="prix_plancher" name="prix_plancher" step="0.01" min="0.01" max="1000000" required 
+                           placeholder="Ex: 25.50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="date_fin">Date de Fin <span class="required">*</span></label>
+                    <input type="datetime-local" id="date_fin" name="date_fin" required>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Images du Timbre</h3>
+                
+                <div class="form-group">
+                    <label for="images">Images du Timbre</label>
+                    <input type="file" id="images" name="images[]" multiple accept="image/*">
+                    <small class="form-help">
+                        Vous pouvez sélectionner jusqu'à 5 images. La première sera l'image principale.<br>
+                        <strong>Limites :</strong> Taille maximum 5MB par image. Formats acceptés : JPG, PNG, GIF, WebP.
+                    </small>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn--primary">Créer l'Enchère</button>
+                <a href="/projetweb2/public/auctions" class="btn btn--secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageInput = document.getElementById('images');
+            const form = document.querySelector('.auction-form');
+            const nomInput = document.getElementById('nom');
+            const paysInput = document.getElementById('pays_origine');
+            const prixInput = document.getElementById('prix_plancher');
+            const dateFinInput = document.getElementById('date_fin');
+            const dateCreationInput = document.getElementById('date_creation');
+            const tirageInput = document.getElementById('tirage');
+            
+            // File validation constants (matching backend)
+            const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+            const MAX_UPLOAD_COUNT = 5;
+            
+            // Clear previous errors
+            function clearErrors() {
+                const errorDivs = document.querySelectorAll('.field-error');
+                errorDivs.forEach(div => div.remove());
+            }
+            
+            // Show field error
+            function showFieldError(field, message) {
+                clearErrors();
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'field-error error-message';
+                errorDiv.textContent = message;
+                field.parentNode.appendChild(errorDiv);
+                field.classList.add('error');
+            }
+            
+            // Clear field error
+            function clearFieldError(field) {
+                const errorDiv = field.parentNode.querySelector('.field-error');
+                if (errorDiv) {
+                    errorDiv.remove();
+                }
+                field.classList.remove('error');
+            }
+            
+            // Validate required field
+            function validateRequired(field, fieldName) {
+                if (!field.value.trim()) {
+                    showFieldError(field, `${fieldName} est requis`);
+                    return false;
+                }
+                clearFieldError(field);
+                return true;
+            }
+            
+            // Validate price
+            function validatePrice(field) {
+                const price = parseFloat(field.value);
+                if (isNaN(price) || price <= 0) {
+                    showFieldError(field, 'Le prix doit être un nombre positif');
+                    return false;
+                }
+                if (price > 1000000) {
+                    showFieldError(field, 'Le prix ne peut pas dépasser 1,000,000');
+                    return false;
+                }
+                clearFieldError(field);
+                return true;
+            }
+            
+            // Validate date
+            function validateDate(field) {
+                const selectedDate = new Date(field.value);
+                const now = new Date();
+                
+                if (isNaN(selectedDate.getTime())) {
+                    showFieldError(field, 'Date invalide');
+                    return false;
+                }
+                
+                if (selectedDate <= now) {
+                    showFieldError(field, 'La date de fin doit être dans le futur');
+                    return false;
+                }
+                
+                clearFieldError(field);
+                return true;
+            }
+            
+            // Validate year
+            function validateYear(field) {
+                if (field.value && field.value !== '') {
+                    const year = parseInt(field.value);
+                    const currentYear = new Date().getFullYear();
+                    
+                    if (isNaN(year) || year < 1800 || year > currentYear) {
+                        showFieldError(field, `L'année doit être entre 1800 et ${currentYear}`);
+                        return false;
+                    }
+                }
+                clearFieldError(field);
+                return true;
+            }
+            
+            // Validate tirage
+            function validateTirage(field) {
+                if (field.value && field.value !== '') {
+                    const tirage = parseInt(field.value);
+                    if (isNaN(tirage) || tirage < 1) {
+                        showFieldError(field, 'Le tirage doit être un nombre positif');
+                        return false;
+                    }
+                }
+                clearFieldError(field);
+                return true;
+            }
+            
+            // Real-time validation for text fields
+            nomInput.addEventListener('blur', () => validateRequired(nomInput, 'Le nom du timbre'));
+            nomInput.addEventListener('input', () => {
+                if (nomInput.value.trim()) {
+                    clearFieldError(nomInput);
+                }
+            });
+            
+            // Real-time validation for select fields
+            paysInput.addEventListener('change', () => validateRequired(paysInput, 'Le pays d\'origine'));
+            
+            // Real-time validation for price
+            prixInput.addEventListener('blur', () => validatePrice(prixInput));
+            prixInput.addEventListener('input', () => {
+                if (prixInput.value && !isNaN(parseFloat(prixInput.value))) {
+                    clearFieldError(prixInput);
+                }
+            });
+            
+            // Real-time validation for date
+            dateFinInput.addEventListener('blur', () => validateDate(dateFinInput));
+            dateFinInput.addEventListener('change', () => {
+                if (dateFinInput.value) {
+                    clearFieldError(dateFinInput);
+                }
+            });
+            
+            // Real-time validation for year
+            dateCreationInput.addEventListener('blur', () => validateYear(dateCreationInput));
+            dateCreationInput.addEventListener('input', () => {
+                if (dateCreationInput.value) {
+                    clearFieldError(dateCreationInput);
+                }
+            });
+            
+            // Real-time validation for tirage
+            tirageInput.addEventListener('blur', () => validateTirage(tirageInput));
+            tirageInput.addEventListener('input', () => {
+                if (tirageInput.value) {
+                    clearFieldError(tirageInput);
+                }
+            });
+            
+            // Image validation
+            imageInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                const errors = [];
+                
+                // Check file count
+                if (files.length > MAX_UPLOAD_COUNT) {
+                    errors.push(`Maximum ${MAX_UPLOAD_COUNT} images autorisées. Vous avez sélectionné ${files.length} images.`);
+                }
+                
+                // Check each file
+                files.forEach((file, index) => {
+                    // Check file size
+                    if (file.size > MAX_FILE_SIZE) {
+                        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                        errors.push(`L'image "${file.name}" est trop volumineuse (${sizeMB}MB). Taille maximum: 5MB.`);
+                    }
+                    
+                    // Check file type
+                    if (!file.type.startsWith('image/')) {
+                        errors.push(`Le fichier "${file.name}" n'est pas une image.`);
+                    }
+                });
+                
+                // Display errors or clear previous ones
+                let errorDiv = document.getElementById('file-errors');
+                if (errors.length > 0) {
+                    if (!errorDiv) {
+                        errorDiv = document.createElement('div');
+                        errorDiv.id = 'file-errors';
+                        errorDiv.className = 'error-message';
+                        imageInput.parentNode.appendChild(errorDiv);
+                    }
+                    errorDiv.innerHTML = errors.join('<br>');
+                    imageInput.value = ''; // Clear selection
+                } else if (errorDiv) {
+                    errorDiv.remove();
+                }
+            });
+            
+            // Form submission validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                console.log('Form submission started');
+                console.log('Form data:', new FormData(form));
+                
+                // Clear all previous errors
+                clearErrors();
+                
+                let isValid = true;
+                
+                // Validate required fields
+                if (!validateRequired(nomInput, 'Le nom du timbre')) isValid = false;
+                if (!validateRequired(paysInput, 'Le pays d\'origine')) isValid = false;
+                if (!validateRequired(prixInput, 'Le prix de départ')) isValid = false;
+                if (!validateRequired(dateFinInput, 'La date de fin')) isValid = false;
+                
+                // Validate other fields
+                if (!validatePrice(prixInput)) isValid = false;
+                if (!validateDate(dateFinInput)) isValid = false;
+                if (!validateYear(dateCreationInput)) isValid = false;
+                if (!validateTirage(tirageInput)) isValid = false;
+                
+                // Validate images
+                const files = Array.from(imageInput.files);
+                console.log('Selected files:', files);
+                
+                if (files.length > MAX_UPLOAD_COUNT) {
+                    isValid = false;
+                    showFieldError(imageInput, `Maximum ${MAX_UPLOAD_COUNT} images autorisées.`);
+                }
+                
+                for (let file of files) {
+                    console.log('Validating file:', file.name, 'Size:', file.size, 'Type:', file.type);
+                    if (file.size > MAX_FILE_SIZE) {
+                        isValid = false;
+                        showFieldError(imageInput, `L'image "${file.name}" est trop volumineuse. Taille maximum: 5MB.`);
+                        break;
+                    }
+                }
+                
+                // If all validation passes, submit the form
+                if (isValid) {
+                    console.log('Validation passed, submitting form...');
+                    
+                    // Disable submit button to prevent double submission
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Création de l\'enchère...';
+                    
+                    // Add a small delay to ensure button state is updated
+                    setTimeout(() => {
+                        console.log('Submitting form now...');
+                        form.submit();
+                    }, 100);
+                } else {
+                    console.log('Validation failed, not submitting form');
+                    // Scroll to first error
+                    const firstError = document.querySelector('.field-error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    
+                    // Re-enable submit button
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Créer l\'Enchère';
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.header__nav-toggle');
+            const navList = document.querySelector('.header__nav-list');
+            
+            if (navToggle && navList) {
+                navToggle.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Liens Rapides</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Support</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="#" class="footer__link">Contactez-nous</a></li>
+                    <li><a href="#" class="footer__link">FAQ</a></li>
+                    <li><a href="#" class="footer__link">Guide des Enchères</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Légal</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="#" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="#" class="footer__link">Protection des données</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © 2024 Stampee Auction House. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

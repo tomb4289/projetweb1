@@ -97,6 +97,76 @@
   color: #fff;
 }
 
+/* Countdown Timer Styles */
+.auction-countdown {
+  margin: 20px 0;
+  padding: 15px;
+  background: var(--neutral-light);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.auction-countdown h4 {
+  margin: 0 0 10px 0;
+  color: var(--neutral-dark);
+  font-size: 1.1em;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.countdown-timer span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 10px 5px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove colons for cleaner alignment */
+.countdown-timer span:not(:last-child)::after {
+  display: none;
+}
+
+.countdown-timer.urgent {
+  color: var(--action-contrast);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.auction-ended {
+  color: var(--action-contrast);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.auction-status {
+  color: var(--neutral-dark);
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.winner-info {
+  color: var(--secondary-blue);
+  font-weight: bold;
+  font-size: 1em;
+}
+
 .product-details-time-left-label {
   display: flex;
   align-items: center;
@@ -109,4 +179,162 @@
   color: #d32f2f;
   font-weight: bold;
   margin-left: 2px;
+}
+
+/* Enhanced Bidding Form Styles */
+.bid-form {
+  background: var(--neutral-light);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.bid-input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bid-input-group input[type="number"] {
+  flex: 1;
+  padding: 12px;
+  font-size: 1.1em;
+  border: 2px solid var(--secondary-blue);
+  border-radius: 6px;
+  min-width: 150px;
+}
+
+.bid-input-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--principal-blue);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.bid-input-group button {
+  padding: 12px 24px;
+  font-size: 1.1em;
+  white-space: nowrap;
+}
+
+.bid-input-group button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bid-form small {
+  color: var(--neutral-dark);
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/* Auction Details Styles */
+.auction-details-info {
+  background: var(--neutral-light);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.auction-details-info h3 {
+  margin: 0 0 15px 0;
+  color: var(--neutral-dark);
+  font-size: 1.2em;
+}
+
+.auction-details-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.auction-details-info li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.auction-details-info li:last-child {
+  border-bottom: none;
+}
+
+.auction-details-info strong {
+  color: var(--neutral-dark);
+  font-weight: 600;
+}
+
+/* Bids History Styles */
+.bids-history {
+  background: var(--neutral-light);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.bids-history h3 {
+  margin: 0 0 15px 0;
+  color: var(--neutral-dark);
+  font-size: 1.2em;
+}
+
+.bids-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.bid-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  margin: 8px 0;
+  border-radius: 6px;
+  border-left: 4px solid var(--secondary-blue);
+}
+
+.bid-amount {
+  font-weight: bold;
+  color: var(--action-contrast);
+  font-size: 1.1em;
+}
+
+.bid-user {
+  color: var(--neutral-dark);
+  font-weight: 500;
+}
+
+.bid-date {
+  color: var(--neutral-dark);
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/* Price Section Styles */
+.price-section {
+  background: var(--neutral-light);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.price-section h3 {
+  margin: 0 0 15px 0;
+  color: var(--neutral-dark);
+  font-size: 1.3em;
+}
+
+.current-price {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: var(--action-contrast);
+  margin: 10px 0;
+}
+
+.starting-price {
+  color: var(--neutral-dark);
+  font-size: 1.1em;
+  font-style: italic;
 }

@@ -4,18 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stampee - Connexion</title>
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/utilities.css">
-    <link rel="stylesheet" href="/css/button.css">
-    <link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/forms.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
+    <link rel="icon" href="/projetweb2/public/img/favicon/favicon.ico" sizes="any">
 </head>
 <body>
+    <header class="header">
+        <div class="header__content">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            </a>
+            <h1 class="header__title">Stampee Auction House</h1>
+            
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="#" class="header__nav-link">À propos</a></li>
+                    <li><a href="#" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header__actions">
+                <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
+            </div>
+            
+            <button class="header__nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
     <div class="login-container">
         <div class="login-form">
             <div class="login-header">
@@ -35,7 +65,7 @@
                 </div>
             {% endif %}
 
-            <form id="loginForm" action="/authenticate" method="post" novalidate>
+            <form id="loginForm" action="/projetweb2/public/authenticate" method="post" novalidate>
                 <div class="form-group">
                     <label for="nom_utilisateur" class="form-label">Nom d'utilisateur ou e-mail</label>
                     <input type="text" id="nom_utilisateur" name="nom_utilisateur" 
@@ -59,7 +89,7 @@
             </div>
 
             <div class="register-link">
-                Pas encore de compte ? <a href="register">Inscrivez-vous ici</a>
+                Pas encore de compte ? <a href="/projetweb2/public/register">Inscrivez-vous ici</a>
             </div>
         </div>
     </div>
@@ -248,5 +278,60 @@
             });
         });
     </script>
+
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.header__nav-toggle');
+            const navList = document.querySelector('.header__nav-list');
+            
+            if (navToggle && navList) {
+                navToggle.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Liens Rapides</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Support</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="#" class="footer__link">Contactez-nous</a></li>
+                    <li><a href="#" class="footer__link">FAQ</a></li>
+                    <li><a href="#" class="footer__link">Guide des Enchères</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Légal</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="#" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="#" class="footer__link">Protection des données</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © 2024 Stampee Auction House. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

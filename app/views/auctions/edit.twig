@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier l'Enchère - Stampee</title>
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/forms.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__content">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            </a>
+            <h1 class="header__title">Stampee Auction House</h1>
+            
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    {% if session.authenticated %}
+                        <li><a href="/projetweb2/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
+                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                    {% endif %}
+                    <li><a href="#" class="header__nav-link">À propos</a></li>
+                    <li><a href="#" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header__actions">
+                {% if session.authenticated %}
+                    <span class="header__user">Bonjour, {{ session.username }}</span>
+                    <a href="/projetweb2/public/logout" class="btn btn--secondary">Déconnexion</a>
+                {% else %}
+                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
+                {% endif %}
+            </div>
+            
+            <button class="header__nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="edit-auction-page">
+            <div class="page-header">
+                <h1>Modifier l'Enchère</h1>
+                <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--secondary">Retour à l'Enchère</a>
+            </div>
+
+            {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+            
+
+
+            <form method="POST" enctype="multipart/form-data" class="edit-auction-form">
+                <div class="form-section">
+                    <h3>Informations du Timbre</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="nom">Nom du Timbre *</label>
+                            <input type="text" id="nom" name="nom" value="{{ old.nom or auction.nom }}" required>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="pays_origine">Pays d'Origine *</label>
+                            <select id="pays_origine" name="pays_origine" required>
+                                <option value="">Sélectionner un pays</option>
+                                <option value="Canada" {{ (old.pays_origine or auction.pays_origine) == 'Canada' ? 'selected' : '' }}>Canada</option>
+                                <option value="États-Unis" {{ (old.pays_origine or auction.pays_origine) == 'États-Unis' ? 'selected' : '' }}>États-Unis</option>
+                                <option value="France" {{ (old.pays_origine or auction.pays_origine) == 'France' ? 'selected' : '' }}>France</option>
+                                <option value="Royaume-Uni" {{ (old.pays_origine or auction.pays_origine) == 'Royaume-Uni' ? 'selected' : '' }}>Royaume-Uni</option>
+                                <option value="Allemagne" {{ (old.pays_origine or auction.pays_origine) == 'Allemagne' ? 'selected' : '' }}>Allemagne</option>
+                                <option value="Japon" {{ (old.pays_origine or auction.pays_origine) == 'Japon' ? 'selected' : '' }}>Japon</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="date_creation">Année de Création</label>
+                            <input type="number" id="date_creation" name="date_creation" value="{{ old.date_creation or (auction.date_creation ? auction.date_creation|date('Y') : '') }}" min="1800" max="{{ "now"|date('Y') }}">
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="condition">Condition</label>
+                            <select id="condition" name="condition">
+                                <option value="Parfaite" {{ (old.condition or auction.condition) == 'Parfaite' ? 'selected' : '' }}>Parfaite</option>
+                                <option value="Excellente" {{ (old.condition or auction.condition) == 'Excellente' ? 'selected' : '' }}>Excellente</option>
+                                <option value="Bonne" {{ (old.condition or auction.condition) == 'Bonne' ? 'selected' : '' }}>Bonne</option>
+                                <option value="Moyenne" {{ (old.condition or auction.condition) == 'Moyenne' ? 'selected' : '' }}>Moyenne</option>
+                                <option value="Endommagé" {{ (old.condition or auction.condition) == 'Endommagé' ? 'selected' : '' }}>Endommagé</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="couleurs">Couleurs</label>
+                            <input type="text" id="couleurs" name="couleurs" value="{{ old.couleurs or auction.couleurs }}" placeholder="ex: Rouge, Bleu, Vert">
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="tirage">Tirage</label>
+                            <input type="number" id="tirage" name="tirage" value="{{ old.tirage or auction.tirage }}" min="1" placeholder="Nombre d'exemplaires">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="dimensions">Dimensions</label>
+                            <input type="text" id="dimensions" name="dimensions" value="{{ old.dimensions or auction.dimensions }}" placeholder="ex: 25mm x 35mm">
+                        </div>
+                        
+                        <div class="form-field">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="certifie" value="1" {{ (old.certifie or auction.certifie) ? 'checked' : '' }}>
+                                Timbre Certifié
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Détails de l'Enchère</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="prix_plancher">Prix de Départ *</label>
+                            <input type="number" id="prix_plancher" name="prix_plancher" value="{{ old.prix_plancher or auction.prix_plancher }}" step="0.01" min="0.01" required>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="date_fin">Date de Fin *</label>
+                            <input type="datetime-local" id="date_fin" name="date_fin" 
+                                   value="{% if old.date_fin %}{{ old.date_fin }}{% elseif auction.date_fin %}{{ auction.date_fin|date('Y-m-d\\TH:i') }}{% endif %}" 
+                                   min="{{ 'now'|date('Y-m-d\\TH:i') }}" required>
+                            {% if auction.date_fin %}
+                                <small class="form-help">
+                                    Date actuelle: {{ auction.date_fin|date('d/m/Y H:i') }} | 
+                                    Valeur brute: {{ auction.date_fin }} | 
+                                    Formaté: {{ auction.date_fin|date('Y-m-d\\TH:i') }}
+                                </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Images</h3>
+                    
+                    {% if images %}
+                        <div class="current-images">
+                            <h4>Images actuelles</h4>
+                            <div class="images-grid">
+                                {% for image in images %}
+                                    <div class="image-item" data-image-id="{{ image.id_image }}">
+                                        <div class="image-container">
+                                            <img src="/projetweb2/{{ image.chemin }}" alt="Image {{ loop.index }}">
+                                            {% if image.est_principale %}
+                                                <span class="main-image-badge">Principale</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="image-actions">
+                                            <span class="image-name">{{ image.chemin|split('/')|last }}</span>
+                                            <button type="button" class="btn btn--danger btn--small delete-image-btn" 
+                                                    data-image-id="{{ image.id_image }}"
+                                                    onclick="deleteImage({{ image.id_image }})">
+                                                🗑️ Supprimer
+                                            </button>
+                                            {% if not image.est_principale %}
+                                            <button type="button" class="btn btn--secondary btn--small set-main-btn" 
+                                                    onclick="setMainImage({{ image.id_image }})">
+                                                Définir comme principale
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <label for="images">Ajouter de Nouvelles Images</label>
+                        <input type="file" id="images" name="images[]" multiple accept="image/*">
+                        <small class="form-help">
+                            Vous pouvez sélectionner jusqu'à 5 nouvelles images. Formats acceptés : JPG, PNG, GIF, WebP.<br>
+                            <strong>Limites :</strong> Taille maximum 5MB par image.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn--primary">Mettre à Jour l'Enchère</button>
+                    <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Liens Rapides</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Support</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="#" class="footer__link">Contactez-nous</a></li>
+                    <li><a href="#" class="footer__link">FAQ</a></li>
+                    <li><a href="#" class="footer__link">Guide des Enchères</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Légal</h4>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="#" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="#" class="footer__link">Protection des données</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © 2024 Stampee Auction House. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageInput = document.getElementById('images');
+            const form = document.querySelector('.edit-auction-form');
+            const dateFinInput = document.getElementById('date_fin');
+            
+            // File validation constants (matching backend)
+            const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+            const MAX_UPLOAD_COUNT = 5;
+            
+            // Ensure date_fin is properly formatted for datetime-local input
+            if (dateFinInput && dateFinInput.value) {
+                console.log('Date input value:', dateFinInput.value);
+                
+                // The date should already be in correct format from Twig
+                // Just verify it's valid and log for debugging
+                const date = new Date(dateFinInput.value);
+                if (!isNaN(date.getTime())) {
+                    console.log('Date is valid:', date);
+                } else {
+                    console.warn('Date parsing failed, but this shouldn\'t happen with proper Twig formatting');
+                }
+            }
+            
+            imageInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                const errors = [];
+                
+                // Check file count
+                if (files.length > MAX_UPLOAD_COUNT) {
+                    errors.push(`Maximum ${MAX_UPLOAD_COUNT} images autorisées. Vous avez sélectionné ${files.length} images.`);
+                }
+                
+                // Check each file
+                files.forEach((file, index) => {
+                    // Check file size
+                    if (file.size > MAX_FILE_SIZE) {
+                        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                        errors.push(`L'image "${file.name}" est trop volumineuse (${sizeMB}MB). Taille maximum: 5MB.`);
+                    }
+                    
+                    // Check file type
+                    if (!file.type.startsWith('image/')) {
+                        errors.push(`Le fichier "${file.name}" n'est pas une image.`);
+                    }
+                });
+                
+                // Display errors or clear previous ones
+                let errorDiv = document.getElementById('file-errors');
+                if (errors.length > 0) {
+                    if (!errorDiv) {
+                        errorDiv = document.createElement('div');
+                        errorDiv.id = 'file-errors';
+                        errorDiv.className = 'error-message';
+                        imageInput.parentNode.appendChild(errorDiv);
+                    }
+                    errorDiv.innerHTML = errors.join('<br>');
+                    imageInput.value = ''; // Clear selection
+                } else if (errorDiv) {
+                    errorDiv.remove();
+                }
+            });
+            
+            // Form submission validation
+            form.addEventListener('submit', function(e) {
+                const files = Array.from(imageInput.files);
+                if (files.length > MAX_UPLOAD_COUNT) {
+                    e.preventDefault();
+                    alert(`Maximum ${MAX_UPLOAD_COUNT} images autorisées.`);
+                    return;
+                }
+                
+                for (let file of files) {
+                    if (file.size > MAX_FILE_SIZE) {
+                        e.preventDefault();
+                        alert(`L'image "${file.name}" est trop volumineuse. Taille maximum: 5MB.`);
+                        return;
+                    }
+                }
+            });
+        });
+
+        // Image deletion functionality
+        function deleteImage(imageId) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.')) {
+                return;
+            }
+
+            const imageItem = document.querySelector(`[data-image-id="${imageId}"]`);
+            if (!imageItem) return;
+
+            // Show loading state
+            const deleteBtn = imageItem.querySelector('.delete-image-btn');
+            const originalText = deleteBtn.textContent;
+            deleteBtn.disabled = true;
+            deleteBtn.textContent = 'Suppression...';
+
+            // Optimistically remove from DOM, keep reference to restore on error
+            const parent = imageItem.parentNode;
+            const nextSibling = imageItem.nextSibling;
+            const wasMain = !!imageItem.querySelector('.main-image-badge');
+            parent.removeChild(imageItem);
+
+            fetch(`/projetweb2/public/images/${imageId}/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Already removed optimistically
+                    // Show success message
+                    showMessage('Image supprimée avec succès', 'success');
+                    
+                    // If no images left, hide the current-images section
+                    const remainingImages = document.querySelectorAll('.image-item');
+                    if (remainingImages.length === 0) {
+                        const currentImagesSection = document.querySelector('.current-images');
+                        if (currentImagesSection) {
+                            currentImagesSection.style.display = 'none';
+                        }
+                    } else if (wasMain) {
+                        // Promote the first remaining image visually as main to match backend behavior
+                        const newMainItem = remainingImages[0];
+                        const existingBadge = newMainItem.querySelector('.main-image-badge');
+                        if (!existingBadge) {
+                            const container = newMainItem.querySelector('.image-container');
+                            const badge = document.createElement('span');
+                            badge.className = 'main-image-badge';
+                            badge.textContent = 'Principale';
+                            container.appendChild(badge);
+                        }
+                        const btn = newMainItem.querySelector('.set-main-btn');
+                        if (btn) btn.style.display = 'none';
+                    }
+                } else {
+                    throw new Error(data.error || 'Erreur lors de la suppression');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Erreur lors de la suppression de l\'image: ' + error.message, 'error');
+                
+                // Re-insert element back to DOM on error
+                if (nextSibling) {
+                    parent.insertBefore(imageItem, nextSibling);
+                } else {
+                    parent.appendChild(imageItem);
+                }
+
+                // Reset button state
+                deleteBtn.disabled = false;
+                deleteBtn.textContent = originalText;
+            });
+        }
+
+        // Set main image functionality
+        function setMainImage(imageId) {
+            const imageItem = document.querySelector(`[data-image-id="${imageId}"]`);
+            if (!imageItem) return;
+
+            // Track previous main for potential revert
+            const prevBadge = document.querySelector('.image-container .main-image-badge');
+            const prevMainItem = prevBadge ? prevBadge.closest('.image-item') : null;
+
+            // Optimistic UI update
+            if (prevBadge) prevBadge.remove();
+
+            // Ensure previous main gets a set-main button visible
+            let prevAddedBtn = null;
+            if (prevMainItem) {
+                let prevBtn = prevMainItem.querySelector('.set-main-btn');
+                if (!prevBtn) {
+                    prevBtn = document.createElement('button');
+                    prevBtn.type = 'button';
+                    prevBtn.className = 'btn btn--secondary btn--small set-main-btn';
+                    prevBtn.textContent = 'Définir comme principale';
+                    prevBtn.addEventListener('click', () => setMainImage(parseInt(prevMainItem.dataset.imageId, 10)));
+                    const actions = prevMainItem.querySelector('.image-actions');
+                    actions.appendChild(prevBtn);
+                    prevAddedBtn = prevBtn;
+                } else {
+                    prevBtn.style.display = 'inline-block';
+                }
+            }
+
+            // Hide the button for this image and add main badge
+            const btnHere = imageItem.querySelector('.set-main-btn');
+            if (btnHere) btnHere.style.display = 'none';
+            const container = imageItem.querySelector('.image-container');
+            const badge = document.createElement('span');
+            badge.className = 'main-image-badge';
+            badge.textContent = 'Principale';
+            container.appendChild(badge);
+
+            fetch(`/projetweb2/public/images/${imageId}/set-main`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showMessage('Image principale mise à jour', 'success');
+                } else {
+                    throw new Error(data.error || 'Erreur lors de la mise à jour');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Erreur lors de la mise à jour de l\'image principale: ' + error.message, 'error');
+
+                // Revert optimistic changes on error
+                if (badge && badge.parentNode) badge.remove();
+                if (btnHere) btnHere.style.display = 'inline-block';
+                if (prevMainItem) {
+                    const prevContainer = prevMainItem.querySelector('.image-container');
+                    const prevBadgeRestore = document.createElement('span');
+                    prevBadgeRestore.className = 'main-image-badge';
+                    prevBadgeRestore.textContent = 'Principale';
+                    prevContainer.appendChild(prevBadgeRestore);
+                }
+                if (prevAddedBtn && prevAddedBtn.parentNode) {
+                    prevAddedBtn.parentNode.removeChild(prevAddedBtn);
+                }
+            });
+        }
+
+        // Utility function to show messages
+        function showMessage(message, type = 'info') {
+            // Remove existing messages
+            const existingMessages = document.querySelectorAll('.message');
+            existingMessages.forEach(msg => msg.remove());
+
+            // Create new message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message--${type}`;
+            messageDiv.textContent = message;
+            
+            // Insert at the top of the form
+            const form = document.querySelector('.edit-auction-form');
+            form.insertBefore(messageDiv, form.firstChild);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.header__nav-toggle');
+            const navList = document.querySelector('.header__nav-list');
+            
+            if (navToggle && navList) {
+                navToggle.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

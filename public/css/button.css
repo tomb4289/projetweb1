@@ -38,3 +38,58 @@
   background-color: var(--principal-blue);
   color: #fff;
 }
+
+/* Additional button styles */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn--primary {
+  background-color: var(--principal-blue);
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.btn--secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn--secondary:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+.btn--danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn--danger:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+.btn--small {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}

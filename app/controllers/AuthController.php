@@ -23,14 +23,14 @@ class AuthController extends BaseController
         echo $this->twig->render('auth/login.twig', ['errors' => []]);
     }
 
-    public function authenticate(array $postData)
+    public function authenticate()
     {
-        error_log("AuthController::authenticate called with data: " . print_r($postData, true));
+        error_log("AuthController::authenticate called with data: " . print_r($_POST, true));
         
         $errors = [];
         
-        $username = trim($postData['nom_utilisateur'] ?? '');
-        $password = $postData['mot_de_passe'] ?? '';
+        $username = trim($_POST['nom_utilisateur'] ?? '');
+        $password = $_POST['mot_de_passe'] ?? '';
         
         if (empty($username)) {
             $errors['nom_utilisateur'] = 'Le nom d\'utilisateur ou l\'adresse e-mail est requis.';
@@ -56,7 +56,7 @@ class AuthController extends BaseController
             error_log("Validation errors: " . print_r($errors, true));
             echo $this->twig->render('auth/login.twig', [
                 'errors' => $errors,
-                'old' => $postData
+                'old' => $_POST
             ]);
             return;
         }
@@ -68,30 +68,36 @@ class AuthController extends BaseController
 
             if ($user) {
                 error_log("Authentication successful for user: " . print_r($user, true));
-                View::redirect('/');
+                
+                header('Location: /projetweb2/public/');
+                exit;
             } else {
                 error_log("Authentication failed for username: $username");
                 $errors['message'] = "Nom d'utilisateur ou mot de passe invalide. Veuillez vérifier vos informations de connexion.";
                 echo $this->twig->render('auth/login.twig', [
                     'errors' => $errors,
-                    'old' => $postData
+                    'old' => $_POST
                 ]);
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             error_log("Authentication error: " . $e->getMessage());
             $errors['message'] = "Une erreur s'est produite lors de la connexion. Veuillez réessayer.";
             echo $this->twig->render('auth/login.twig', [
                 'errors' => $errors,
-                'old' => $postData
+                'old' => $_POST
             ]);
         }
     }
 
     public function logout()
     {
-        if (Auth::check()) {
+        session_start();
+        if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
+            session_unset();
+            session_destroy();
         }
-        session_destroy();
-        View::redirect('login');
+        
+        header('Location: /projetweb2/public/login');
+        exit;
     }
 }
