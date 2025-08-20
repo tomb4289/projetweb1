@@ -69,7 +69,7 @@ class AuthController extends BaseController
             if ($user) {
                 error_log("Authentication successful for user: " . print_r($user, true));
                 
-                header('Location: /projetweb2/public/');
+                header('Location: /projetweb1/public/');
                 exit;
             } else {
                 error_log("Authentication failed for username: $username");
@@ -97,7 +97,7 @@ class AuthController extends BaseController
             session_destroy();
         }
         
-        header('Location: /projetweb2/public/login');
+        header('Location: /projetweb1/public/login');
         exit;
     }
 }

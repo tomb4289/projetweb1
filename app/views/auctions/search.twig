@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats de Recherche - Stampee</title>
-    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/product-listing.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/auctions.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb1/public/css/base.css">
+<link rel="stylesheet" href="/projetweb1/public/css/variables.css">
+<link rel="stylesheet" href="/projetweb1/public/css/utilities.css">
+<link rel="stylesheet" href="/projetweb1/public/css/product-listing.css">
+<link rel="stylesheet" href="/projetweb1/public/css/auctions.css">
+<link rel="stylesheet" href="/projetweb1/public/css/button.css">
+<link rel="stylesheet" href="/projetweb1/public/css/header.css">
+<link rel="stylesheet" href="/projetweb1/public/css/footer.css">
+<link rel="stylesheet" href="/projetweb1/public/css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -20,18 +20,18 @@
 <body>
     <header class="header">
         <div class="header__content">
-            <a href="/projetweb2/public/" class="header__logo-link">
-                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            <a href="/projetweb1/public/" class="header__logo-link">
+<img src="/projetweb1/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
             </a>
             <h1 class="header__title">Stampee Auction House</h1>
             
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
-                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb1/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb1/public/auctions" class="header__nav-link">Enchères</a></li>
                     {% if session.authenticated %}
-                        <li><a href="/projetweb2/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
-                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                        <li><a href="/projetweb1/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
+                        <li><a href="/projetweb1/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
                     {% endif %}
                     <li><a href="#" class="header__nav-link">À propos</a></li>
                     <li><a href="#" class="header__nav-link">Contact</a></li>
@@ -41,10 +41,10 @@
             <div class="header__actions">
                 {% if session.authenticated %}
                     <span class="header__user">Bonjour, {{ session.username }}</span>
-                    <a href="/projetweb2/public/logout" class="btn btn--secondary">Déconnexion</a>
+                    <a href="/projetweb1/public/logout" class="btn btn--secondary">Déconnexion</a>
                 {% else %}
-                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
-                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
+                    <a href="/projetweb1/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb1/public/register" class="btn btn--primary">Inscription</a>
                 {% endif %}
             </div>
             
@@ -64,7 +64,7 @@
             <div class="search-section">
                 <div class="search-container">
                     <h3 class="search-title">Filtres de Recherche</h3>
-                    <form method="GET" action="/projetweb2/public/auctions/search" class="search-form">
+                    <form method="GET" action="/projetweb1/public/auctions/search" class="search-form">
                         <div class="search-row">
                             <div class="search-field">
                                 <input type="text" name="recherche" value="{{ filters.recherche }}" placeholder="Nom du timbre ou pays..." class="search-input">
@@ -114,7 +114,7 @@
                     <div class="auction-card">
                         <div class="auction-card__image">
                             {% if auction.image_principale %}
-                                <img src="/projetweb2/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
+                                <img src="/projetweb1/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
                             {% else %}
                                 <div class="auction-card__no-image">
                                     <span class="no-image-icon">🖼️</span>
@@ -148,10 +148,10 @@
                                 {% endif %}
                             </p>
                             <div class="auction-card__actions">
-                                <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--primary">Voir l'Enchère</a>
+                                <a href="/projetweb1/public/auctions/{{ auction.id_enchere }}" class="btn btn--primary">Voir l'Enchère</a>
                                 {% if session.authenticated and session.user_id == auction.id_membre %}
                                     <div class="owner-actions">
-                                        <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}/edit" class="btn btn--secondary">✏️ Modifier</a>
+                                        <a href="/projetweb1/public/auctions/{{ auction.id_enchere }}/edit" class="btn btn--secondary">✏️ Modifier</a>
                                         <button class="btn btn--danger delete-auction-btn" data-auction-id="{{ auction.id_enchere }}">🗑️ Supprimer</button>
                                     </div>
                                 {% endif %}
@@ -163,7 +163,7 @@
             {% else %}
                 <div class="empty-state">
                     <p>Aucune enchère ne correspond à vos critères de recherche.</p>
-                    <p>Essayez de modifier vos filtres ou <a href="/projetweb2/public/auctions">voir toutes les enchères</a>.</p>
+                    <p>Essayez de modifier vos filtres ou <a href="/projetweb1/public/auctions">voir toutes les enchères</a>.</p>
                 </div>
             {% endif %}
         </div>
@@ -174,10 +174,10 @@
             <div class="footer__section">
                 <h4 class="footer__subtitle">Liens Rapides</h4>
                 <ul class="footer__links">
-                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
-                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
-                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
-                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                    <li><a href="/projetweb1/public/" class="footer__link">Accueil</a></li>
+<li><a href="/projetweb1/public/auctions" class="footer__link">Enchères</a></li>
+<li><a href="/projetweb1/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+<li><a href="/projetweb1/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
                 </ul>
             </div>
             
@@ -229,7 +229,7 @@
                     const auctionId = this.dataset.auctionId;
                     
                     if (confirm('Êtes-vous sûr de vouloir supprimer cette enchère ? Cette action est irréversible.')) {
-                        fetch(`/projetweb2/public/auctions/${auctionId}/delete`, {
+                        fetch(`/projetweb1/public/auctions/${auctionId}/delete`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

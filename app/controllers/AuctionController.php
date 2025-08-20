@@ -96,7 +96,7 @@ class AuctionController extends BaseController
         
         if (!isset($_SESSION['user_id'])) {
             error_log("User not logged in, redirecting to login");
-            header('Location: /projetweb2/public/login');
+            header('Location: /projetweb1/public/login');
             return;
         }
 
@@ -203,8 +203,8 @@ class AuctionController extends BaseController
                 error_log("No images to save for timbre ID: $timbreId");
             }
 
-            error_log("Auction creation completed successfully. Redirecting to: /projetweb2/public/auctions/$auctionId");
-            header('Location: /projetweb2/public/auctions/' . $auctionId);
+            error_log("Auction creation completed successfully. Redirecting to: /projetweb1/public/auctions/$auctionId");
+            header('Location: /projetweb1/public/auctions/' . $auctionId);
             exit;
 
         } catch (\Exception $e) {
@@ -630,7 +630,7 @@ class AuctionController extends BaseController
     public function favorites()
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: /projetweb2/public/login');
+            header('Location: /projetweb1/public/login');
             return;
         }
 
@@ -645,7 +645,7 @@ class AuctionController extends BaseController
     public function edit($id)
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: /projetweb2/public/login');
+            header('Location: /projetweb1/public/login');
             return;
         }
 
@@ -720,7 +720,7 @@ class AuctionController extends BaseController
                 }
             }
 
-            header('Location: /projetweb2/public/auctions/' . $auctionId);
+            header('Location: /projetweb1/public/auctions/' . $auctionId);
             exit;
 
         } catch (\Exception $e) {

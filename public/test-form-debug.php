@@ -6,7 +6,7 @@
 <body>
     <h2>Form Debug Test</h2>
     
-    <form method="POST" action="/projetweb2/public/auctions/create">
+    <form method="POST" action="/projetweb1/public/auctions/create">
         <div>
             <label>Nom du Timbre:</label>
             <input type="text" name="nom" value="Debug Test" required>

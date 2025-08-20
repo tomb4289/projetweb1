@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier l'Enchère - Stampee</title>
-    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/forms.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
-    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb1/public/css/base.css">
+<link rel="stylesheet" href="/projetweb1/public/css/variables.css">
+<link rel="stylesheet" href="/projetweb1/public/css/utilities.css">
+<link rel="stylesheet" href="/projetweb1/public/css/forms.css">
+<link rel="stylesheet" href="/projetweb1/public/css/button.css">
+<link rel="stylesheet" href="/projetweb1/public/css/header.css">
+<link rel="stylesheet" href="/projetweb1/public/css/footer.css">
+<link rel="stylesheet" href="/projetweb1/public/css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -19,18 +19,18 @@
 <body>
     <header class="header">
         <div class="header__content">
-            <a href="/projetweb2/public/" class="header__logo-link">
-                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            <a href="/projetweb1/public/" class="header__logo-link">
+<img src="/projetweb1/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
             </a>
             <h1 class="header__title">Stampee Auction House</h1>
             
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
-                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb1/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb1/public/auctions" class="header__nav-link">Enchères</a></li>
                     {% if session.authenticated %}
-                        <li><a href="/projetweb2/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
-                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                        <li><a href="/projetweb1/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
+                        <li><a href="/projetweb1/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
                     {% endif %}
                     <li><a href="#" class="header__nav-link">À propos</a></li>
                     <li><a href="#" class="header__nav-link">Contact</a></li>
@@ -40,10 +40,10 @@
             <div class="header__actions">
                 {% if session.authenticated %}
                     <span class="header__user">Bonjour, {{ session.username }}</span>
-                    <a href="/projetweb2/public/logout" class="btn btn--secondary">Déconnexion</a>
+                    <a href="/projetweb1/public/logout" class="btn btn--secondary">Déconnexion</a>
                 {% else %}
-                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
-                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
+                    <a href="/projetweb1/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb1/public/register" class="btn btn--primary">Inscription</a>
                 {% endif %}
             </div>
             
@@ -59,7 +59,7 @@
         <div class="edit-auction-page">
             <div class="page-header">
                 <h1>Modifier l'Enchère</h1>
-                <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--secondary">Retour à l'Enchère</a>
+                <a href="/projetweb1/public/auctions/{{ auction.id_enchere }}" class="btn btn--secondary">Retour à l'Enchère</a>
             </div>
 
             {% if error %}
@@ -174,7 +174,7 @@
                                 {% for image in images %}
                                     <div class="image-item" data-image-id="{{ image.id_image }}">
                                         <div class="image-container">
-                                            <img src="/projetweb2/{{ image.chemin }}" alt="Image {{ loop.index }}">
+                                            <img src="/projetweb1/{{ image.chemin }}" alt="Image {{ loop.index }}">
                                             {% if image.est_principale %}
                                                 <span class="main-image-badge">Principale</span>
                                             {% endif %}
@@ -211,7 +211,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn--primary">Mettre à Jour l'Enchère</button>
-                    <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--secondary">Annuler</a>
+                    <a href="/projetweb1/public/auctions/{{ auction.id_enchere }}" class="btn btn--secondary">Annuler</a>
                 </div>
             </form>
         </div>
@@ -222,10 +222,10 @@
             <div class="footer__section">
                 <h4 class="footer__subtitle">Liens Rapides</h4>
                 <ul class="footer__links">
-                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
-                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
-                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
-                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                    <li><a href="/projetweb1/public/" class="footer__link">Accueil</a></li>
+<li><a href="/projetweb1/public/auctions" class="footer__link">Enchères</a></li>
+<li><a href="/projetweb1/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+<li><a href="/projetweb1/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
                 </ul>
             </div>
             
@@ -360,7 +360,7 @@
             const wasMain = !!imageItem.querySelector('.main-image-badge');
             parent.removeChild(imageItem);
 
-            fetch(`/projetweb2/public/images/${imageId}/delete`, {
+            fetch(`/projetweb1/public/images/${imageId}/delete`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -454,7 +454,7 @@
             badge.textContent = 'Principale';
             container.appendChild(badge);
 
-            fetch(`/projetweb2/public/images/${imageId}/set-main`, {
+            fetch(`/projetweb1/public/images/${imageId}/set-main`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

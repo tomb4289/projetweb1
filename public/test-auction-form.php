@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['user_id'])) {
     echo "You need to be logged in to create an auction.<br>";
-    echo "<a href='/projetweb2/public/login'>Login here</a><br>";
+    echo "<a href='/projetweb1/public/login'>Login here</a><br>";
     exit;
 }
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($result) {
                 $auctionId = $pdo->lastInsertId();
                 echo "Auction created with ID: $auctionId<br>";
-                echo "Success! <a href='/projetweb2/public/auctions'>View all auctions</a><br>";
+                echo "Success! <a href='/projetweb1/public/auctions'>View all auctions</a><br>";
             } else {
                 echo "Failed to create auction<br>";
             }

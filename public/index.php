@@ -6,7 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $config = require_once __DIR__ . '/../config.php';
 
-use App\Routes\Route;
+use App\routes\Route;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -40,7 +40,7 @@ $twig = new Environment($loader, [
 ]);
 
 $uri = $_SERVER['REQUEST_URI'];
-$basePath = '/projetweb2/public';
+$basePath = '/projetweb1/public';
 
 if (strpos($uri, $basePath) === 0) {
     $uri = substr($uri, strlen($basePath));
@@ -56,6 +56,6 @@ if ($config['app']['debug']) {
     echo "<!-- Debug: URI = '$uri', Method = '{$_SERVER['REQUEST_METHOD']}' -->\n";
 }
 
-require_once __DIR__ . '/../app/Routes/web.php';
+require_once __DIR__ . '/../app/routes/web.php';
 
 Route::dispatch($pdo, $twig, $config, $uri, $_SERVER['REQUEST_METHOD']);
