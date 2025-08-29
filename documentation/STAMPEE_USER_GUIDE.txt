@@ -8,24 +8,25 @@ TABLE DES MATIÈRES
 ==================
 
 1. Introduction
-2. Accès et Authentification
-3. Navigation et Interface
-4. Fonctionnalités Principales
-5. Gestion des Enchères
-6. Système de Favoris
-7. Recherche et Filtrage
-8. Archives et Historique
-9. Gestion du Profil
-10. Commentaires et Interactions
-11. FAQ et Dépannage
-12. Informations Techniques
-   12.1. Installation et Configuration
-   12.2. Prérequis Système
-13. Comptes de Test
-14. Script de Peuplement de Base de Données Locale
-15. Support et Contact
-17. Notes de Version
-18. Licence et Conditions
+2. Liens et Accès Importants
+3. Accès et Authentification
+4. Navigation et Interface
+5. Fonctionnalités Principales
+6. Gestion des Enchères
+7. Système de Favoris
+8. Recherche et Filtrage
+9. Archives et Historique
+10. Gestion du Profil
+11. Commentaires et Interactions
+12. FAQ et Dépannage
+13. Informations Techniques
+   13.1. Installation et Configuration
+   13.2. Prérequis Système
+14. Comptes de Test
+15. Script de Peuplement de Base de Données Locale
+16. Support et Contact
+18. Notes de Version
+19. Licence et Conditions
 
 ================================================================================
 
@@ -57,7 +58,44 @@ PUBLIC CIBLE
 
 ================================================================================
 
-2. ACCÈS ET AUTHENTIFICATION
+2. LIENS ET ACCÈS IMPORTANTS
+============================
+
+LIENS GITHUB
+------------
+• **User Guide Source** : https://github.com/tomb4289/projetweb1/blob/master/documentation/STAMPEE_USER_GUIDE.txt
+   - Guide utilisateur source sur GitHub
+   - Version la plus à jour du document
+
+LIENS SERVEUR WEB DEV
+---------------------
+• **Site Principal** : https://e2496310.webdev.cmaisonneuve.qc.ca/projetweb2/
+   - Version déployée sur le serveur web de l'école
+   - Accessible publiquement
+
+• **Guide Utilisateur Web Dev** : https://e2496310.webdev.cmaisonneuve.qc.ca/projetweb2/help
+   - Guide utilisateur en ligne sur le serveur web
+   - Interface interactive et responsive
+
+LIENS LOCAUX (DÉVELOPPEMENT)
+----------------------------
+• **Site Local** : http://localhost/projetweb2/public/
+   - Version locale pour le développement
+   - Nécessite un serveur web local (XAMPP, WAMP, etc.)
+
+• **Guide Utilisateur Local** : http://localhost/projetweb2/public/help
+   - Guide utilisateur en local
+   - Idéal pour les tests et le développement
+
+NOTES IMPORTANTES
+-----------------
+⚠️ **Différence de noms** : Le projet se nomme `projetweb1` sur GitHub mais `projetweb2` en local
+⚠️ **Serveur local requis** : Les liens locaux nécessitent un serveur web local configuré
+⚠️ **Synchronisation** : Le guide sur GitHub est la source de vérité pour les mises à jour
+
+================================================================================
+
+3. ACCÈS ET AUTHENTIFICATION
 ============================
 
 Admin username: testuser 
@@ -88,7 +126,7 @@ DÉCONNEXION
 
 ================================================================================
 
-3. NAVIGATION ET INTERFACE
+4. NAVIGATION ET INTERFACE
 ===========================
 
 MENU PRINCIPAL
@@ -113,7 +151,7 @@ BARRE DE RECHERCHE
 
 ================================================================================
 
-4. FONCTIONNALITÉS PRINCIPALES
+5. FONCTIONNALITÉS PRINCIPALES
 ===============================
 
 PAGE D'ACCUEIL
@@ -140,7 +178,7 @@ PARTICIPATION AUX ENCHÈRES
 
 ================================================================================
 
-5. GESTION DES ENCHÈRES
+6. GESTION DES ENCHÈRES
 ========================
 
 5.1. FONCTIONNALITÉS UTILISATEUR
@@ -232,7 +270,7 @@ ACCÈS ADMINISTRATEUR
 
 ================================================================================
 
-6. SYSTÈME DE FAVORIS
+7. SYSTÈME DE FAVORIS
 ======================
 
 AJOUTER AUX FAVORIS
@@ -255,7 +293,7 @@ AVANTAGES DES FAVORIS
 
 ================================================================================
 
-7. RECHERCHE ET FILTRAGE
+8. RECHERCHE ET FILTRAGE
 =========================
 
 RECHERCHE AVANCÉE
@@ -284,7 +322,7 @@ RÉSULTATS DE RECHERCHE
 
 ================================================================================
 
-8. ARCHIVES ET HISTORIQUE
+9. ARCHIVES ET HISTORIQUE
 ==========================
 
 ACCÈS AUX ARCHIVES
@@ -308,7 +346,7 @@ INFORMATIONS DISPONIBLES
 
 ================================================================================
 
-9. GESTION DU PROFIL
+10. GESTION DU PROFIL
 =====================
 
 ACCÈS AU PROFIL
@@ -330,7 +368,7 @@ HISTORIQUE PERSONNEL
 
 ================================================================================
 
-10. COMMENTAIRES ET INTERACTIONS
+11. COMMENTAIRES ET INTERACTIONS
 =================================
 
 SYSTÈME DE COMMENTAIRES
@@ -353,7 +391,7 @@ BONNES PRATIQUES
 
 ================================================================================
 
-11. FAQ ET DÉPANNAGE
+12. FAQ ET DÉPANNAGE
 ======================
 
 QUESTIONS FRÉQUEMMENT POSÉES
@@ -396,7 +434,7 @@ Enchères qui ne se chargent pas
 
 ================================================================================
 
-12. INFORMATIONS TECHNIQUES
+13. INFORMATIONS TECHNIQUES
 ============================
 
 INSTALLATION ET CONFIGURATION
@@ -435,7 +473,7 @@ SÉCURITÉ
 
 ================================================================================
 
-13. COMPTES DE TEST
+14. COMPTES DE TEST
 ====================
 
 COMPTE ADMINISTRATEUR PRINCIPAL
@@ -465,7 +503,7 @@ UTILISATION DES COMPTES DE TEST
 
 ================================================================================
 
-14. SCRIPT DE PEUPLEMENT DE BASE DE DONNÉES LOCALE
+15. SCRIPT DE PEUPLEMENT DE BASE DE DONNÉES LOCALE
 ==================================================
 
 SCRIPT LOCAL : populate_database_local.txt
@@ -556,7 +594,7 @@ Admin password: testpass123
 
 ================================================================================
 
-17. NOTES DE VERSION
+18. NOTES DE VERSION
 =====================
 
 VERSION ACTUELLE
@@ -583,7 +621,7 @@ PROCHAINES MISES À JOUR
 
 ================================================================================
 
-16. LICENCE ET CONDITIONS
+19. LICENCE ET CONDITIONS
 ==========================
 
 CONDITIONS D'UTILISATION
