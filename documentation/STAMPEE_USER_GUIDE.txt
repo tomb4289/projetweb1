@@ -1,4 +1,5 @@
-Admin username: testuser password: testpass123
+Admin username: testuser 
+Admin password: testpass123
 
 STAMPEE AUCTION HOUSE - Guide Utilisateur Complet
 ================================================================================
@@ -56,7 +57,8 @@ PUBLIC CIBLE
 2. ACCÈS ET AUTHENTIFICATION
 ============================
 
-Admin username: testuser password: testpass123
+Admin username: testuser 
+Admin password: testpass123
 
 CRÉATION DE COMPTE
 ------------------
@@ -138,6 +140,9 @@ PARTICIPATION AUX ENCHÈRES
 5. GESTION DES ENCHÈRES
 ========================
 
+5.1. FONCTIONNALITÉS UTILISATEUR
+---------------------------------
+
 CRÉATION D'ENCHÈRE
 ------------------
 1. Connectez-vous à votre compte
@@ -160,6 +165,67 @@ SUPPRESSION D'ENCHÈRE
 ⚠️ ATTENTION : Action irréversible
 • Disponible uniquement pour vos propres enchères
 • Confirmation requise avant suppression
+
+5.2. FONCTIONNALITÉS ADMINISTRATEUR
+------------------------------------
+
+GESTION DES UTILISATEURS
+------------------------
+• Consultation : Liste complète des utilisateurs inscrits
+• Modification : Mise à jour des informations utilisateur
+• Suspension : Désactivation temporaire de comptes problématiques
+• Suppression : Suppression définitive de comptes (avec confirmation)
+• Rôle : Attribution et modification des rôles utilisateur
+
+GESTION DES ENCHÈRES
+--------------------
+• Modération : Validation des nouvelles enchères avant publication
+• Suspension : Mise en pause d'enchères problématiques
+• Suppression : Suppression d'enchères inappropriées
+• Modification : Correction des informations d'enchères
+• Promotion : Mise en vedette d'enchères sélectionnées
+
+GESTION DES IMAGES
+------------------
+• Validation : Approubation des images uploadées
+• Modération : Suppression d'images inappropriées
+• Stockage : Gestion de l'espace de stockage des images
+• Optimisation : Compression automatique des images
+
+SYSTÈME DE COMMENTAIRES
+-----------------------
+• Modération : Validation des commentaires avant publication
+• Suppression : Suppression de commentaires inappropriés
+• Signalement : Gestion des commentaires signalés par les utilisateurs
+• Filtrage : Mise en place de filtres automatiques
+
+PARAMÈTRES SYSTÈME
+------------------
+• Configuration : Paramètres globaux du site
+• Limites : Définition des limites de fichiers, utilisateurs, enchères
+• Sécurité : Paramètres de sécurité et authentification
+• Performance : Optimisation des performances du système
+
+STATISTIQUES ET RAPPORTS
+------------------------
+• Utilisateurs : Statistiques d'inscription et d'activité
+• Enchères : Métriques de performance des enchères
+• Trafic : Statistiques de visite et d'utilisation
+• Financier : Rapports sur les transactions (si applicable)
+
+SAUVEGARDE ET MAINTENANCE
+-------------------------
+• Sauvegarde : Sauvegarde automatique de la base de données
+• Logs : Consultation des logs système et d'erreurs
+• Maintenance : Mode maintenance et notifications utilisateur
+• Mises à jour : Gestion des mises à jour du système
+
+ACCÈS ADMINISTRATEUR
+--------------------
+• Interface dédiée : Panneau d'administration sécurisé
+• Permissions : Gestion des droits d'accès par fonction
+• Audit : Traçabilité des actions administratives
+• Sécurité : Authentification à deux facteurs recommandée
 
 ================================================================================
 
@@ -353,24 +419,17 @@ SÉCURITÉ
 13. COMPTES DE TEST
 ====================
 
-COMPTE ADMINISTRATEUR
----------------------
-Nom d'utilisateur: admin
-Mot de passe: admin123
-Rôle: Administrateur
-Accès: Toutes les fonctionnalités
+COMPTE ADMINISTRATEUR PRINCIPAL
+-------------------------------
+Nom d'utilisateur: testuser
+Mot de passe: testpass123
+Rôle: Administrateur principal
+Accès: Toutes les fonctionnalités système
 
 COMPTE UTILISATEUR NORMAL
---------------------------
-Nom d'utilisateur: user
-Mot de passe: user123
-Rôle: Utilisateur standard
-Accès: Fonctionnalités utilisateur
-
-COMPTE TEST SUPPLÉMENTAIRE
----------------------------
-Nom d'utilisateur: test
-Mot de passe: test123
+-------------------------
+Nom d'utilisateur: testuser2@gmail.com
+Mot de passe: testuser2testuser2
 Rôle: Utilisateur standard
 Accès: Fonctionnalités utilisateur
 
@@ -407,6 +466,12 @@ INFORMATIONS DE CONTACT
 • Téléphone : 1-800-STAMPEE
 • Adresse : Stampee Auction House, Canada
 • Site web : https://stampee.ca
+
+INFORMATIONS ADMIN
+-----------------------
+
+Admin username: testuser 
+Admin password: testpass123
 
 ================================================================================
 
@@ -457,6 +522,137 @@ SUPPORT ET MAINTENANCE
 • Support technique inclus
 • Mises à jour régulières
 • Documentation maintenue à jour
+
+================================================================================
+
+CAPTURES D'ÉCRAN REQUISES
+==========================
+
+Pour améliorer ce guide utilisateur, les captures d'écran suivantes sont nécessaires :
+
+PAGES PRINCIPALES
+-----------------
+1. **Page d'accueil** - Vue complète montrant :
+   - Header avec navigation et barre de recherche
+   - Section "Coups de Cœur du Lord"
+   - Section "Enchères qui se Terminent Bientôt"
+   - Section "Centre de Découverte"
+   - Footer avec liens
+
+2. **Page des enchères** - Vue de la liste des enchères :
+   - Grille des enchères actives
+   - Filtres de tri
+   - Pagination
+   - Boutons d'action (Favori, Voir détails)
+
+3. **Page de détail d'enchère** - Vue complète d'une enchère :
+   - Images du timbre
+   - Informations détaillées
+   - Formulaire d'enchère
+   - Commentaires et évaluations
+   - Boutons d'action
+
+4. **Page de création d'enchère** - Formulaire de création :
+   - Tous les champs du formulaire
+   - Upload d'images
+   - Validation des champs
+   - Boutons de soumission
+
+5. **Page de modification d'enchère** - Interface d'édition :
+   - Formulaire pré-rempli
+   - Gestion des images existantes
+   - Boutons de suppression/modification
+
+6. **Page de recherche avancée** - Interface de recherche :
+   - Tous les filtres disponibles
+   - Formulaire de recherche
+   - Résultats de recherche
+   - Options de tri
+
+7. **Page des favoris** - Liste des enchères favorites :
+   - Grille des favoris
+   - Boutons d'action
+   - Options de gestion
+
+8. **Page de profil utilisateur** - Gestion du compte :
+   - Informations personnelles
+   - Historique des enchères
+   - Paramètres de sécurité
+   - Options de notification
+
+9. **Page de connexion** - Interface d'authentification :
+   - Formulaire de connexion
+   - Lien d'inscription
+   - Options de récupération de mot de passe
+
+10. **Page d'inscription** - Création de compte :
+    - Formulaire d'inscription complet
+    - Validation des champs
+    - Conditions d'utilisation
+
+PAGES ADMINISTRATEUR
+--------------------
+11. **Panneau d'administration** - Dashboard principal :
+    - Vue d'ensemble du système
+    - Statistiques principales
+    - Accès rapide aux fonctions
+
+12. **Gestion des utilisateurs** - Interface de modération :
+    - Liste des utilisateurs
+    - Options de modification/suspension
+    - Gestion des rôles
+
+13. **Modération des enchères** - Validation des contenus :
+    - Enchères en attente de validation
+    - Options de modération
+    - Historique des actions
+
+14. **Gestion des commentaires** - Modération des interactions :
+    - Commentaires signalés
+    - Options de modération
+    - Filtres automatiques
+
+15. **Paramètres système** - Configuration globale :
+    - Paramètres de sécurité
+    - Limites du système
+    - Configuration des performances
+
+INTERFACES RESPONSIVES
+----------------------
+16. **Version mobile** - Adaptations pour petits écrans :
+    - Navigation mobile
+    - Formulaires adaptés
+    - Grilles responsives
+
+17. **Version tablette** - Interface intermédiaire :
+    - Adaptation des menus
+    - Optimisation des formulaires
+    - Navigation tactile
+
+FONCTIONNALITÉS SPÉCIFIQUES
+----------------------------
+18. **Upload d'images** - Processus de téléchargement :
+    - Sélection de fichiers
+    - Validation en temps réel
+    - Gestion des erreurs
+
+19. **Système de favoris** - Interactions utilisateur :
+    - Ajout/suppression de favoris
+    - Gestion de la liste
+    - Notifications
+
+20. **Recherche et filtrage** - Fonctionnalités avancées :
+    - Interface de recherche
+    - Application des filtres
+    - Résultats filtrés
+
+NOTES TECHNIQUES
+----------------
+• **Format** : PNG ou JPG, résolution minimale 1920x1080
+• **Qualité** : Haute qualité, texte lisible
+• **Navigation** : Inclure les éléments de navigation visibles
+• **États** : Capturer les différents états (normal, hover, focus, erreur)
+• **Responsive** : Captures sur différents appareils si possible
 
 ================================================================================
 
