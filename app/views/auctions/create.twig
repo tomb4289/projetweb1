@@ -315,6 +315,43 @@
                 return true;
             }
             
+            // Validate auction end date (should be in the future)
+            function validateAuctionEndDate(field) {
+                console.log('Validating auction end date:', field.value);
+                
+                if (!field.value) {
+                    console.log('No date value provided');
+                    showFieldError(field, 'La date de fin est requise');
+                    return false;
+                }
+                
+                const selectedDate = new Date(field.value);
+                const now = new Date();
+                
+                console.log('Selected date:', selectedDate);
+                console.log('Current date:', now);
+                console.log('Selected date timestamp:', selectedDate.getTime());
+                console.log('Current date timestamp:', now.getTime());
+                console.log('Is selected date valid?', !isNaN(selectedDate.getTime()));
+                console.log('Is selected date in future?', selectedDate > now);
+                
+                if (isNaN(selectedDate.getTime())) {
+                    console.log('Invalid date detected');
+                    showFieldError(field, 'Date invalide');
+                    return false;
+                }
+                
+                if (selectedDate <= now) {
+                    console.log('Date is not in the future');
+                    showFieldError(field, 'La date de fin doit être dans le futur');
+                    return false;
+                }
+                
+                console.log('Date validation passed');
+                clearFieldError(field);
+                return true;
+            }
+            
             // Real-time validation for text fields
             nomInput.addEventListener('blur', () => validateRequired(nomInput, 'Le nom du timbre'));
             nomInput.addEventListener('input', () => {
@@ -335,7 +372,7 @@
             });
             
             // Real-time validation for date
-            dateFinInput.addEventListener('blur', () => validateDate(dateFinInput));
+            dateFinInput.addEventListener('blur', () => validateAuctionEndDate(dateFinInput));
             dateFinInput.addEventListener('change', () => {
                 if (dateFinInput.value) {
                     clearFieldError(dateFinInput);
@@ -392,7 +429,8 @@
                         imageInput.parentNode.appendChild(errorDiv);
                     }
                     errorDiv.innerHTML = errors.join('<br>');
-                    imageInput.value = ''; // Clear selection
+                    // Don't clear the file input - let user fix the errors
+                    // imageInput.value = ''; // This was causing the issue
                 } else if (errorDiv) {
                     errorDiv.remove();
                 }
@@ -418,7 +456,7 @@
                 
                 // Validate other fields
                 if (!validatePrice(prixInput)) isValid = false;
-                if (!validateDate(dateFinInput)) isValid = false;
+                if (!validateAuctionEndDate(dateFinInput)) isValid = false;
                 if (!validateYear(dateCreationInput)) isValid = false;
                 if (!validateTirage(tirageInput)) isValid = false;
                 
@@ -443,6 +481,7 @@
                 // If all validation passes, submit the form
                 if (isValid) {
                     console.log('Validation passed, submitting form...');
+                    console.log('Files to upload:', files.map(f => ({name: f.name, size: f.size, type: f.type})));
                     
                     // Disable submit button to prevent double submission
                     const submitBtn = form.querySelector('button[type="submit"]');
@@ -452,10 +491,18 @@
                     // Add a small delay to ensure button state is updated
                     setTimeout(() => {
                         console.log('Submitting form now...');
-                        form.submit();
+                        try {
+                            form.submit();
+                        } catch (error) {
+                            console.error('Error submitting form:', error);
+                            // Re-enable submit button on error
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Créer l\'Enchère';
+                        }
                     }, 100);
                 } else {
                     console.log('Validation failed, not submitting form');
+                    console.log('Validation errors found, preventing submission');
                     // Scroll to first error
                     const firstError = document.querySelector('.field-error');
                     if (firstError) {

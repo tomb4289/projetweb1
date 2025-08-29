@@ -120,17 +120,29 @@ class AuctionController extends BaseController
         ]);
     }
 
+    /**
+     * Traite la création complète d'une enchère
+     * Méthode privée appelée par create() pour gérer la logique de création
+     * Gère la création du timbre, de l'enchère et le téléchargement des images
+     * 
+     * @return void Redirige vers la nouvelle enchère créée ou affiche les erreurs
+     */
     private function handleCreateAuction()
     {
         try {
             error_log("Starting auction creation process...");
             error_log("POST data: " . print_r($_POST, true));
             error_log("FILES data: " . print_r($_FILES, true));
+            error_log("Request method: " . $_SERVER['REQUEST_METHOD']);
+            error_log("Content type: " . ($_SERVER['CONTENT_TYPE'] ?? 'not set'));
+            error_log("Content length: " . ($_SERVER['CONTENT_LENGTH'] ?? 'not set'));
             
+            // Log des informations sur les images téléchargées
             if (isset($_FILES['images']) && !empty($_FILES['images']['name'][0])) {
                 error_log("Images detected in upload");
                 error_log("Number of images: " . count($_FILES['images']['name']));
                 
+                // Détail de chaque image téléchargée
                 for ($i = 0; $i < count($_FILES['images']['name']); $i++) {
                     if (!empty($_FILES['images']['name'][$i])) {
                         error_log("Image $i: " . $_FILES['images']['name'][$i] . 
@@ -141,8 +153,10 @@ class AuctionController extends BaseController
                 }
             } else {
                 error_log("No images detected in upload");
+                error_log("FILES structure: " . print_r($_FILES, true));
             }
             
+            // Validation des champs obligatoires
             $requiredFields = ['nom', 'pays_origine', 'prix_plancher', 'date_fin'];
             foreach ($requiredFields as $field) {
                 if (empty($_POST[$field])) {
@@ -152,6 +166,7 @@ class AuctionController extends BaseController
 
             error_log("Input validation passed");
 
+            // Traitement des images téléchargées
             try {
                 $images = $this->handleImageUploads($_FILES['images'] ?? []);
                 error_log("Images processed successfully: " . print_r($images, true));
@@ -160,17 +175,19 @@ class AuctionController extends BaseController
                 throw new \Exception("Erreur lors du traitement des images: " . $e->getMessage());
             }
 
+            // Préparation des données du timbre
             $timbreData = [
-                'nom' => $_POST['nom'],
-                'date_creation' => !empty($_POST['date_creation']) ? $_POST['date_creation'] . '-01-01' : null,
-                'couleurs' => !empty($_POST['couleurs']) ? $_POST['couleurs'] : null,
-                'pays_origine' => $_POST['pays_origine'],
-                'condition' => $_POST['condition'] ?? 'Bonne',
-                'tirage' => !empty($_POST['tirage']) ? (int)$_POST['tirage'] : null,
-                'dimensions' => !empty($_POST['dimensions']) ? $_POST['dimensions'] : null,
-                'certifie' => isset($_POST['certifie']) ? 1 : 0
+                'nom' => $_POST['nom'],                                    // Nom du timbre
+                'date_creation' => !empty($_POST['date_creation']) ? $_POST['date_creation'] . '-01-01' : null,  // Date de création (format YYYY-01-01)
+                'couleurs' => !empty($_POST['couleurs']) ? $_POST['couleurs'] : null,                           // Couleurs du timbre
+                'pays_origine' => $_POST['pays_origine'],                  // Pays d'origine
+                'condition' => $_POST['condition'] ?? 'Bonne',             // État du timbre
+                'tirage' => !empty($_POST['tirage']) ? (int)$_POST['tirage'] : null,                           // Nombre d'exemplaires
+                'dimensions' => !empty($_POST['dimensions']) ? $_POST['dimensions'] : null,                     // Dimensions du timbre
+                'certifie' => isset($_POST['certifie']) ? 1 : 0           // Statut de certification
             ];
             
+            // Création du timbre dans la base de données
             error_log("Creating timbre with data: " . print_r($timbreData, true));
             $timbreId = $this->timbreModel->create($timbreData);
             error_log("Timbre created with ID: $timbreId");
@@ -179,16 +196,18 @@ class AuctionController extends BaseController
                 throw new \Exception("Failed to create timbre");
             }
 
+            // Préparation des données de l'enchère
             $auctionData = [
-                'id_timbre' => $timbreId,
-                'id_membre' => $_SESSION['user_id'],
-                'date_debut' => date('Y-m-d H:i:s'),
-                'date_fin' => $_POST['date_fin'],
-                'prix_plancher' => $_POST['prix_plancher'],
-                'coup_de_coeur_lord' => 0,
-                'statut' => 'Active'
+                'id_timbre' => $timbreId,                                 // ID du timbre créé
+                'id_membre' => $_SESSION['user_id'],                      // ID du membre créateur
+                'date_debut' => date('Y-m-d H:i:s'),                     // Date de début (maintenant)
+                'date_fin' => $_POST['date_fin'],                        // Date de fin de l'enchère
+                'prix_plancher' => $_POST['prix_plancher'],              // Prix de départ
+                'coup_de_coeur_lord' => 0,                               // Pas de coup de cœur par défaut
+                'statut' => 'Active'                                     // Statut actif
             ];
             
+            // Création de l'enchère dans la base de données
             error_log("Creating auction with data: " . print_r($auctionData, true));
             $auctionId = $this->auctionModel->create($auctionData);
             error_log("Auction created with ID: $auctionId");
