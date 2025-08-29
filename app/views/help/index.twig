@@ -102,6 +102,10 @@
                         <h3>Introduction</h3>
                         <p>Présentation du projet et de ses fonctionnalités</p>
                     </a>
+                    <a href="#installation" class="toc-card">
+                        <h3>Installation</h3>
+                        <p>Configuration et installation du projet</p>
+                    </a>
                     <a href="#acces" class="toc-card">
                         <h3>Accès au Site</h3>
                         <p>Connexion et création de compte</p>
@@ -139,75 +143,185 @@
                     
                     <div class="help-article">
                         <h3>Présentation du Projet</h3>
-                        <p>Stampee Auction House est une plateforme d'enchères philatéliques en ligne, conçue pour permettre aux collectionneurs de timbres de participer à des enchères de qualité et de découvrir des pièces rares et uniques.</p>
+                        <p>Stampee Auction House est une plateforme d'enchères philatéliques en ligne développée dans le cadre du cours Web Dynamique. Le système permet aux utilisateurs de consulter, créer et participer à des enchères de timbres.</p>
                         
-                        <h4>Finalité du Site</h4>
-                        <ul>
-                            <li>Faciliter l'accès aux enchères philatéliques de qualité</li>
-                            <li>Permettre aux collectionneurs de vendre et acheter des timbres</li>
-                            <li>Offrir une plateforme sécurisée et transparente pour les transactions</li>
-                            <li>Préserver et promouvoir l'art philatélique</li>
-                        </ul>
-
-                        <h4>Principales Fonctionnalités</h4>
+                        <h4>Fonctionnalités Implémentées</h4>
                         <div class="help-grid">
                             <div class="help-grid-item">
-                                <h5>Enchères en Temps Réel</h5>
-                                <p>Participation aux enchères actives avec système de surenchère automatique</p>
+                                <h5>✓ Gestion des utilisateurs</h5>
+                                <p>Inscription, connexion, profils et gestion des comptes</p>
                             </div>
                             <div class="help-grid-item">
-                                <h5>Gestion des Collections</h5>
-                                <p>Création et gestion de collections personnelles de timbres</p>
+                                <h5>✓ Système d'enchères</h5>
+                                <p>Création, consultation et participation aux enchères</p>
                             </div>
                             <div class="help-grid-item">
-                                <h5>Recherche Avancée</h5>
-                                <p>Outils de recherche et de filtrage sophistiqués</p>
+                                <h5>✓ Recherche avancée</h5>
+                                <p>Filtres multiples et recherche textuelle</p>
                             </div>
                             <div class="help-grid-item">
-                                <h5>Authentification des Pièces</h5>
-                                <p>Vérification et certification de l'authenticité des timbres</p>
+                                <h5>✓ Système de favoris</h5>
+                                <p>Marquage et gestion des enchères préférées</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>✓ Archives</h5>
+                                <p>Consultation des enchères terminées</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>✓ Commentaires</h5>
+                                <p>Système d'évaluation et commentaires</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>✓ Interface responsive</h5>
+                                <p>Compatible mobile et desktop</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>✓ Gestion des images</h5>
+                                <p>Upload et affichage des timbres</p>
                             </div>
                         </div>
 
                         <h4>Public Cible</h4>
                         <p>Ce guide s'adresse principalement aux :</p>
                         <ul>
-                            <li><strong>Utilisateurs finaux</strong> : Collectionneurs de timbres, amateurs et professionnels</li>
-                            <li><strong>Gestionnaires</strong> : Vendeurs et organisateurs d'enchères</li>
-                            <li><strong>Administrateurs</strong> : Personnel de gestion de la plateforme</li>
+                            <li><strong>Collectionneurs</strong> : Consultation et participation aux enchères</li>
+                            <li><strong>Vendeurs</strong> : Création et gestion d'enchères</li>
+                            <li><strong>Administrateurs</strong> : Gestion du système et modération</li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- Section Installation -->
+                <div class="help-section" id="installation">
+                    <h2 class="help-section__title">Installation et Configuration</h2>
+                    
+                    <div class="help-article">
+                        <div class="help-warning">
+                            <strong>⚠️ IMPORTANT - NOM DU PROJET :</strong> 
+                            Lors du téléchargement depuis GitHub, le projet se nomme <code>projetweb1-master</code>. 
+                            Pour éviter toute confusion, renommez le dossier en <code>projetweb2</code> après 
+                            téléchargement.
+                        </div>
+
+                        <h3>Étapes d'Installation</h3>
+                        <ol>
+                            <li><strong>Téléchargez le projet</strong> depuis GitHub</li>
+                            <li><strong>Renommez le dossier</strong> <code>projetweb1-master</code> en <code>projetweb2</code></li>
+                            <li><strong>Placez le dossier</strong> dans votre répertoire de travail</li>
+                            <li><strong>Configurez votre serveur web local</strong> (XAMPP, WAMP, etc.)</li>
+                            <li><strong>Importez la base de données</strong> avec le script <code>query.sql</code></li>
+                            <li><strong>Configurez les paramètres</strong> de base de données dans <code>app/config/database.php</code></li>
+                        </ol>
+
+                        <h3>Script de Peuplement de Base de Données Locale</h3>
+                        <p>Le projet Stampee utilise un script de peuplement de base de données locale pour créer des données de test et de démonstration.</p>
+                        
+                        <h4>Informations Techniques</h4>
+                        <ul>
+                            <li><strong>Nom du projet</strong> : projetweb2</li>
+                            <li><strong>Environnement</strong> : Base de données locale (stampee_db)</li>
+                            <li><strong>Fichier</strong> : documentation/populate_database_local.txt</li>
+                            <li><strong>Compatible</strong> : MySQL/MariaDB local</li>
+                        </ul>
+
+                        <h4>Contenu du Script</h4>
+                        <p>Le script crée et peuple les tables suivantes avec des données de test :</p>
+                        <ul>
+                            <li><strong>Utilisateurs</strong> : Comptes de test (testuser, testuser2)</li>
+                            <li><strong>Timbres</strong> : 20 timbres philatéliques avec descriptions détaillées</li>
+                            <li><strong>Images</strong> : Utilise TOUS les fichiers images disponibles dans public/img/</li>
+                            <li><strong>Enchères</strong> : 20 enchères actives avec dates et prix</li>
+                            <li><strong>Offres</strong> : Offres de test pour simuler l'activité</li>
+                            <li><strong>Favoris</strong> : Favoris de test pour démontrer la fonctionnalité</li>
+                        </ul>
+
+                        <h4>Utilisation</h4>
+                        <ol>
+                            <li><strong>Prérequis</strong> : Base de données locale créée avec query.sql</li>
+                            <li><strong>Exécution</strong> : Importer le script via phpMyAdmin ou ligne de commande</li>
+                            <li><strong>Résultat</strong> : Base de données complète avec données de test</li>
+                            <li><strong>Test</strong> : Vérifier que toutes les images s'affichent correctement</li>
+                        </ol>
                     </div>
                 </div>
 
                 <!-- Section Accès au Site -->
                 <div class="help-section" id="acces">
-                    <h2 class="help-section__title">Accès au Site</h2>
+                    <h2 class="help-section__title">Accès et Authentification</h2>
                     
                     <div class="help-article">
+                        <h3>Comptes de Test</h3>
+                        
+                        <h4>Compte Administrateur Principal</h4>
+                        <div class="help-grid">
+                            <div class="help-grid-item">
+                                <h5>Nom d'utilisateur</h5>
+                                <p>testuser</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>Mot de passe</h5>
+                                <p>testpass123</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>Rôle</h5>
+                                <p>Administrateur principal</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>Accès</h5>
+                                <p>Toutes les fonctionnalités système</p>
+                            </div>
+                        </div>
+
+                        <h4>Compte Utilisateur Normal</h4>
+                        <div class="help-grid">
+                            <div class="help-grid-item">
+                                <h5>Nom d'utilisateur</h5>
+                                <p>testuser2@gmail.com</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>Mot de passe</h5>
+                                <p>testuser2testuser2</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>Rôle</h5>
+                                <p>Utilisateur standard</p>
+                            </div>
+                            <div class="help-grid-item">
+                                <h5>Accès</h5>
+                                <p>Fonctionnalités utilisateur</p>
+                            </div>
+                        </div>
+
                         <h3>Processus de Connexion</h3>
                         
-                        <h4>Accès à la Page d'Accueil</h4>
-                        <ol>
-                            <li>Ouvrez votre navigateur web</li>
-                            <li>Naviguez vers l'URL : <code>https://stampee.ca</code></li>
-                            <li>La page d'accueil se charge automatiquement</li>
-                        </ol>
-
                         <h4>Création de Compte</h4>
                         <ol>
-                            <li>Cliquez sur le bouton "Inscription" en haut à droite de la page</li>
-                            <li>Remplissez le formulaire avec vos informations personnelles</li>
-                            <li>Vérifiez votre adresse email en cliquant sur le lien reçu</li>
-                            <li>Votre compte est maintenant actif et vous pouvez vous connecter</li>
+                            <li>Accédez à la page d'accueil</li>
+                            <li>Cliquez sur "Inscription" en haut à droite</li>
+                            <li>Remplissez le formulaire avec :
+                                <ul>
+                                    <li>Nom d'utilisateur unique</li>
+                                    <li>Adresse email valide</li>
+                                    <li>Mot de passe sécurisé</li>
+                                    <li>Informations personnelles</li>
+                                </ul>
+                            </li>
+                            <li>Validez votre inscription</li>
                         </ol>
 
                         <h4>Connexion avec Identifiants</h4>
                         <ol>
-                            <li>Cliquez sur le bouton "Connexion" en haut à droite</li>
+                            <li>Cliquez sur "Connexion" en haut à droite</li>
                             <li>Entrez votre nom d'utilisateur ou email</li>
                             <li>Saisissez votre mot de passe</li>
                             <li>Cliquez sur "Se connecter"</li>
                         </ol>
+
+                        <h4>Déconnexion</h4>
+                        <ul>
+                            <li>Cliquez sur votre nom d'utilisateur en haut à droite</li>
+                            <li>Sélectionnez "Déconnexion" dans le menu déroulant</li>
+                        </ul>
 
                         <h4>Prérequis Techniques</h4>
                         <div class="help-grid">
@@ -242,7 +356,7 @@
 
                 <!-- Section Navigation Générale -->
                 <div class="help-section" id="navigation">
-                    <h2 class="help-section__title">Navigation Générale</h2>
+                    <h2 class="help-section__title">Navigation et Interface</h2>
                     
                     <div class="help-article">
                         <h3>Structure Générale du Site</h3>
@@ -267,12 +381,12 @@
                             </div>
                         </div>
 
-                        <h4>Sous-menus et Fonctionnalités</h4>
+                        <h4>Menu Utilisateur (Connecté)</h4>
                         <ul>
-                            <li><strong>Mes Favoris</strong> : Gestion des enchères marquées comme favorites</li>
-                            <li><strong>Mon Profil</strong> : Gestion des informations personnelles et historique</li>
-                            <li><strong>Archives</strong> : Consultation des enchères terminées</li>
-                            <li><strong>Centre d'Aide</strong> : Documentation et support utilisateur</li>
+                            <li><strong>Compte</strong> : Gestion du profil personnel</li>
+                            <li><strong>Mes Favoris</strong> : Enchères marquées comme favorites</li>
+                            <li><strong>Centre d'Aide</strong> : Documentation et support</li>
+                            <li><strong>Déconnexion</strong> : Fermeture de session</li>
                         </ul>
 
                         <h4>Fonctionnalités Accessibles depuis la Page d'Accueil</h4>
@@ -282,16 +396,16 @@
                                 <p>Section spéciale présentant les timbres sélectionnés par notre expert philatéliste</p>
                             </div>
                             <div class="help-tip-item">
-                                <h5>Enchères en Vedette</h5>
-                                <p>Mise en avant des enchères les plus populaires et intéressantes</p>
+                                <h5>Enchères qui se Terminent Bientôt</h5>
+                                <p>Urgences et opportunités pour les collectionneurs</p>
+                            </div>
+                            <div class="help-tip-item">
+                                <h5>Centre de Découverte</h5>
+                                <p>Navigation vers les fonctionnalités principales</p>
                             </div>
                             <div class="help-tip-item">
                                 <h5>Recherche Rapide</h5>
                                 <p>Barre de recherche principale pour trouver rapidement des timbres</p>
-                            </div>
-                            <div class="help-tip-item">
-                                <h5>Navigation par Catégories</h5>
-                                <p>Accès direct aux différentes catégories de timbres</p>
                             </div>
                         </div>
 
@@ -303,7 +417,7 @@
 
                 <!-- Section Utilisation des Fonctionnalités -->
                 <div class="help-section" id="fonctionnalites">
-                    <h2 class="help-section__title">Utilisation des Fonctionnalités</h2>
+                    <h2 class="help-section__title">Fonctionnalités Principales</h2>
                     
                     <div class="help-article">
                         <h3>Actions Principales sur le Site</h3>
@@ -317,12 +431,18 @@
                             <li>Consultez l'historique des enchères et les commentaires</li>
                         </ol>
 
-                        <h4>Effectuer des Recherches et Appliquer des Filtres</h4>
+                        <h4>Recherche Avancée et Filtrage</h4>
                         <ol>
                             <li>Cliquez sur "Recherche Avancée" dans le menu principal</li>
-                            <li>Remplissez les critères de recherche (nom, pays, année, etc.)</li>
-                            <li>Utilisez les filtres de prix pour définir votre budget</li>
-                            <li>Appliquez des filtres de condition et de rareté</li>
+                            <li>Utilisez les filtres disponibles :
+                                <ul>
+                                    <li><strong>Texte</strong> : Recherche par nom de timbre</li>
+                                    <li><strong>Pays</strong> : Filtrage par pays d'origine</li>
+                                    <li><strong>Année</strong> : Période de création du timbre</li>
+                                    <li><strong>Condition</strong> : État de conservation</li>
+                                    <li><strong>Prix</strong> : Fourchette de prix (min/max)</li>
+                                </ul>
+                            </li>
                             <li>Cliquez sur "Rechercher" pour afficher les résultats</li>
                         </ol>
 
@@ -340,28 +460,39 @@
                         <ol>
                             <li>Connectez-vous à votre compte</li>
                             <li>Cliquez sur "Créer une Enchère" dans le menu</li>
-                            <li>Remplissez le formulaire avec les informations du timbre</li>
-                            <li>Ajoutez des photos de qualité du timbre</li>
-                            <li>Définissez le prix de départ et la durée de l'enchère</li>
+                            <li>Remplissez le formulaire avec :
+                                <ul>
+                                    <li>Informations du timbre : Nom, pays, condition, année</li>
+                                    <li>Détails de l'enchère : Prix de départ, durée, description</li>
+                                    <li>Images : Photos de qualité du timbre</li>
+                                </ul>
+                            </li>
                             <li>Révisez et publiez votre enchère</li>
                         </ol>
 
-                        <h4>Gérer son Profil et ses Préférences</h4>
-                        <ol>
-                            <li>Cliquez sur votre nom d'utilisateur en haut à droite</li>
-                            <li>Accédez à "Mon Profil" dans le menu déroulant</li>
-                            <li>Modifiez vos informations personnelles si nécessaire</li>
-                            <li>Configurez vos préférences de notification</li>
-                            <li>Consultez votre historique d'enchères et de ventes</li>
-                        </ol>
-
-                        <h4>Marquer des Enchères en Favoris</h4>
+                        <h4>Système de Favoris</h4>
                         <ol>
                             <li>Naviguez vers une enchère qui vous intéresse</li>
-                            <li>Cliquez sur l'icône "Cœur" ou "Ajouter aux favoris"</li>
+                            <li>Cliquez sur l'icône "❤️ Favori"</li>
                             <li>L'enchère apparaît maintenant dans votre section "Mes Favoris"</li>
                             <li>Recevez des notifications sur l'évolution de vos enchères favorites</li>
                         </ol>
+
+                        <h4>Archives et Historique</h4>
+                        <ul>
+                            <li><strong>Accès</strong> : Menu "Archives" depuis la page des enchères</li>
+                            <li><strong>Contenu</strong> : Enchères terminées avec statistiques complètes</li>
+                            <li><strong>Filtres</strong> : Tri par date, prix, nombre d'offres, nom</li>
+                            <li><strong>Informations</strong> : Prix final, nombre d'offres, date de fin, gagnant</li>
+                        </ul>
+
+                        <h4>Commentaires et Interactions</h4>
+                        <ul>
+                            <li><strong>Ajout</strong> : Laissez des commentaires sur les enchères</li>
+                            <li><strong>Évaluation</strong> : Note de 1 à 5 étoiles (optionnel)</li>
+                            <li><strong>Gestion</strong> : Modifiez ou supprimez vos propres commentaires</li>
+                            <li><strong>Modération</strong> : Gestion des commentaires inappropriés</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -374,30 +505,52 @@
                         
                         <h4>Gestion des Utilisateurs</h4>
                         <ul>
-                            <li><strong>Modération des comptes</strong> : Validation et suspension des comptes utilisateurs</li>
-                            <li><strong>Gestion des rôles</strong> : Attribution des permissions et niveaux d'accès</li>
-                            <li><strong>Support utilisateur</strong> : Assistance et résolution des problèmes</li>
+                            <li><strong>Consultation</strong> : Liste complète des utilisateurs inscrits</li>
+                            <li><strong>Modification</strong> : Mise à jour des informations utilisateur</li>
+                            <li><strong>Suspension</strong> : Désactivation temporaire de comptes problématiques</li>
+                            <li><strong>Suppression</strong> : Suppression définitive de comptes (avec confirmation)</li>
+                            <li><strong>Rôle</strong> : Attribution et modification des rôles utilisateur</li>
                         </ul>
 
-                        <h4>Modification des Paramètres Globaux</h4>
+                        <h4>Gestion des Enchères</h4>
                         <ul>
-                            <li><strong>Configuration du site</strong> : Paramètres généraux et apparence</li>
-                            <li><strong>Gestion des catégories</strong> : Création et modification des catégories de timbres</li>
-                            <li><strong>Paramètres de sécurité</strong> : Configuration des règles de sécurité</li>
+                            <li><strong>Modération</strong> : Validation des nouvelles enchères avant publication</li>
+                            <li><strong>Suspension</strong> : Mise en pause d'enchères problématiques</li>
+                            <li><strong>Suppression</strong> : Suppression d'enchères inappropriées</li>
+                            <li><strong>Modification</strong> : Correction des informations d'enchères</li>
+                            <li><strong>Promotion</strong> : Mise en vedette d'enchères sélectionnées</li>
                         </ul>
 
-                        <h4>Exportation de Données</h4>
+                        <h4>Gestion des Images</h4>
                         <ul>
-                            <li><strong>Rapports d'activité</strong> : Statistiques des enchères et utilisateurs</li>
-                            <li><strong>Export des données</strong> : Sauvegarde et analyse des informations</li>
-                            <li><strong>Audit et conformité</strong> : Suivi des activités et respect des réglementations</li>
+                            <li><strong>Validation</strong> : Approubation des images uploadées</li>
+                            <li><strong>Modération</strong> : Suppression d'images inappropriées</li>
+                            <li><strong>Stockage</strong> : Gestion de l'espace de stockage des images</li>
+                            <li><strong>Optimisation</strong> : Compression automatique des images</li>
                         </ul>
 
-                        <h4>Modération du Contenu</h4>
+                        <h4>Système de Commentaires</h4>
                         <ul>
-                            <li><strong>Validation des enchères</strong> : Vérification du contenu avant publication</li>
-                            <li><strong>Modération des commentaires</strong> : Surveillance et gestion des interactions</li>
-                            <li><strong>Signalement d'abus</strong> : Traitement des signalements et sanctions</li>
+                            <li><strong>Modération</strong> : Validation des commentaires avant publication</li>
+                            <li><strong>Suppression</strong> : Suppression de commentaires inappropriés</li>
+                            <li><strong>Signalement</strong> : Gestion des commentaires signalés par les utilisateurs</li>
+                            <li><strong>Filtrage</strong> : Mise en place de filtres automatiques</li>
+                        </ul>
+
+                        <h4>Paramètres Système</h4>
+                        <ul>
+                            <li><strong>Configuration</strong> : Paramètres globaux du site</li>
+                            <li><strong>Limites</strong> : Définition des limites de fichiers, utilisateurs, enchères</li>
+                            <li><strong>Sécurité</strong> : Paramètres de sécurité et authentification</li>
+                            <li><strong>Performance</strong> : Optimisation des performances du système</li>
+                        </ul>
+
+                        <h4>Statistiques et Rapports</h4>
+                        <ul>
+                            <li><strong>Utilisateurs</strong> : Statistiques d'inscription et d'activité</li>
+                            <li><strong>Enchères</strong> : Métriques de performance des enchères</li>
+                            <li><strong>Trafic</strong> : Statistiques de visite et d'utilisation</li>
+                            <li><strong>Financier</strong> : Rapports sur les transactions (si applicable)</li>
                         </ul>
 
                         <div class="help-warning">
@@ -408,7 +561,7 @@
 
                 <!-- Section FAQ et Résolution -->
                 <div class="help-section" id="faq">
-                    <h2 class="help-section__title">FAQ et Résolution des Problèmes</h2>
+                    <h2 class="help-section__title">FAQ et Dépannage</h2>
                     
                     <div class="help-article">
                         <h3>Questions Fréquemment Posées</h3>
@@ -417,35 +570,28 @@
                             <div class="faq-item">
                                 <h4 class="faq-question">Comment fonctionne le système d'enchères ?</h4>
                                 <div class="faq-answer">
-                                    <p>Stampee utilise un système d'enchères classique où chaque utilisateur peut placer une offre supérieure à la précédente. L'enchère se termine à la date et heure spécifiées, et le plus offrant remporte le timbre. Le système gère automatiquement les surenchères et maintient un historique complet des offres.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <h4 class="faq-question">Que se passe-t-il si je gagne une enchère ?</h4>
-                                <div class="faq-answer">
-                                    <p>Vous recevrez une notification par email confirmant votre victoire. Le vendeur vous contactera dans les 48 heures pour organiser le paiement et l'expédition. Assurez-vous d'avoir les fonds disponibles et de respecter les conditions de vente spécifiées dans l'enchère.</p>
+                                    <p>Chaque utilisateur peut placer une offre supérieure à la précédente. L'enchère se termine à la date spécifiée, et le plus offrant remporte le timbre.</p>
                                 </div>
                             </div>
 
                             <div class="faq-item">
                                 <h4 class="faq-question">Puis-je annuler une offre ?</h4>
                                 <div class="faq-answer">
-                                    <p>Non, une fois placée, une offre est ferme et ne peut pas être retirée. C'est pourquoi il est important de bien réfléchir avant d'enchérir et de ne pas dépasser votre budget maximum. En cas de problème technique, contactez immédiatement notre support.</p>
+                                    <p>Non, une fois placée, une offre est ferme et ne peut pas être retirée. Réfléchissez bien avant d'enchérir.</p>
                                 </div>
                             </div>
 
                             <div class="faq-item">
                                 <h4 class="faq-question">Comment sont authentifiés les timbres ?</h4>
                                 <div class="faq-answer">
-                                    <p>Tous les timbres proposés aux enchères sont examinés par notre équipe d'experts philatéliques. Nous utilisons des techniques d'analyse avancées et des bases de données de référence pour garantir l'authenticité de chaque pièce. En cas de doute, nous refusons la publication de l'enchère.</p>
+                                    <p>Les timbres sont examinés par notre équipe d'experts philatéliques avant publication.</p>
                                 </div>
                             </div>
 
                             <div class="faq-item">
-                                <h4 class="faq-question">Quels sont les frais associés aux enchères ?</h4>
+                                <h4 class="faq-question">Quels sont les frais associés ?</h4>
                                 <div class="faq-answer">
-                                    <p>Les frais varient selon le type de compte et le montant de l'enchère. Les vendeurs paient une commission sur les ventes réussies, tandis que les acheteurs peuvent avoir des frais de port et d'assurance. Consultez notre page des tarifs pour plus de détails sur la structure des frais.</p>
+                                    <p>Consultez notre page des tarifs pour les détails sur la structure des frais.</p>
                                 </div>
                             </div>
                         </div>
@@ -478,21 +624,12 @@
                             <li>Essayez un autre navigateur</li>
                             <li>Contactez notre support avec une capture d'écran de l'erreur</li>
                         </ol>
-
-                        <h4>Problèmes de Paiement</h4>
-                        <ol>
-                            <li>Vérifiez que votre carte de crédit est valide</li>
-                            <li>Assurez-vous que vous avez suffisamment de fonds</li>
-                            <li>Vérifiez que votre banque autorise les transactions en ligne</li>
-                            <li>Essayez un autre mode de paiement si disponible</li>
-                            <li>Contactez notre service client pour une assistance</li>
-                        </ol>
                     </div>
                 </div>
 
                 <!-- Section Contact et Support -->
                 <div class="help-section" id="contact">
-                    <h2 class="help-section__title">Contact et Support</h2>
+                    <h2 class="help-section__title">Support et Contact</h2>
                     
                     <div class="help-article">
                         <h3>Moyens de Contacter le Support Technique</h3>
@@ -503,12 +640,6 @@
                                 <p><strong>Adresse :</strong> support@stampee.ca</p>
                                 <p><strong>Délai de réponse :</strong> Sous 24 heures ouvrables</p>
                                 <p><strong>Idéal pour :</strong> Questions détaillées, problèmes techniques complexes, demandes de fonctionnalités</p>
-                            </div>
-                            <div class="contact-method">
-                                <h4>Chat en Ligne</h4>
-                                <p><strong>Disponibilité :</strong> Lundi à vendredi, 9h-17h (EST)</p>
-                                <p><strong>Accès :</strong> Bouton "Chat" en bas à droite de chaque page</p>
-                                <p><strong>Idéal pour :</strong> Questions rapides, assistance immédiate, résolution de problèmes simples</p>
                             </div>
                             <div class="contact-method">
                                 <h4>Support Téléphonique</h4>
