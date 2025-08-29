@@ -202,11 +202,11 @@ INSERT INTO `stampee_db`.`membre` (`nom_utilisateur`, `courriel`, `mot_de_passe`
 -- -----------------------------------------------------
 -- Admin user: testuser / testpass123
 INSERT INTO `stampee_db`.`membre` (`nom_utilisateur`, `courriel`, `mot_de_passe`, `is_admin`) VALUES
-('testuser', 'testuser@stampee.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1);
+('testuser', 'testuser@stampee.com', '$2y$12$bm2gvItA6A44kS1ig5.I..8GsXHvUtoJPNi7Q1V3rXkcQfgFgi5j2', 1);
 
 -- Normal user: testuser2@gmail.com / testuser2testuser2
 INSERT INTO `stampee_db`.`membre` (`nom_utilisateur`, `courriel`, `mot_de_passe`, `is_admin`) VALUES
-('testuser2', 'testuser2@gmail.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 0);
+('testuser2', 'testuser2@gmail.com', '$2y$12$T629l8.GbN5Q5Jprl.J4cOIpXyyXbEW0gl2tARahm/c7kUUgRiunS', 0);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
