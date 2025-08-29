@@ -30,15 +30,11 @@
             
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
                     <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
                     <li><a href="/projetweb2/public/auctions/search" class="header__nav-link">Recherche Avancée</a></li>
                     {% if session.authenticated %}
-                        <li><a href="/projetweb2/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
                         <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
                     {% endif %}
-                    <li><a href="#" class="header__nav-link">À propos</a></li>
-                    <li><a href="#" class="header__nav-link">Contact</a></li>
                 </ul>
             </nav>
             
@@ -56,8 +52,20 @@
             
             <div class="header__actions">
                 {% if session.authenticated %}
-                    <span class="header__user">Bonjour, {{ session.username }}</span>
-                    <a href="/projetweb2/public/logout" class="btn btn--secondary">Déconnexion</a>
+                    <div class="header__user-dropdown">
+                        <button class="header__user-btn" aria-label="Menu utilisateur">
+                            <span class="header__user">Bonjour, {{ session.username }}</span>
+                            <svg class="header__dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="header__dropdown-menu">
+                            <a href="/projetweb2/public/profile" class="header__dropdown-item">Votre profil</a>
+                            <a href="/projetweb2/public/auctions/favorites" class="header__dropdown-item">Mes Favoris</a>
+                            <a href="/projetweb2/public/help" class="header__dropdown-item">Centre d'Aide</a>
+                            <a href="/projetweb2/public/logout" class="header__dropdown-item">Déconnexion</a>
+                        </div>
+                    </div>
                 {% else %}
                     <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
                     <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
@@ -234,45 +242,7 @@
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer__content">
-            <div class="footer__section">
-                <h4 class="footer__subtitle">Liens Rapides</h4>
-                <ul class="footer__links">
-                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
-                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
-                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
-                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer__section">
-                <h4 class="footer__subtitle">Support</h4>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Centre d'Aide</a></li>
-                    <li><a href="#" class="footer__link">Contactez-nous</a></li>
-                    <li><a href="#" class="footer__link">FAQ</a></li>
-                    <li><a href="#" class="footer__link">Guide des Enchères</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer__section">
-                <h4 class="footer__subtitle">Légal</h4>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
-                    <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
-                    <li><a href="#" class="footer__link">Règles des enchères</a></li>
-                    <li><a href="#" class="footer__link">Protection des données</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer__bottom">
-            <p class="footer__copyright">
-                © 2024 Stampee Auction House. Tous droits réservés.
-            </p>
-        </div>
-    </footer>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -537,7 +507,74 @@
                     navToggle.classList.toggle('active');
                 });
             }
+            
+            // User dropdown functionality
+            const userDropdown = document.querySelector('.header__user-dropdown');
+            const userBtn = document.querySelector('.header__user-btn');
+            const dropdownMenu = document.querySelector('.header__dropdown-menu');
+            
+            if (userDropdown && userBtn && dropdownMenu) {
+                // Toggle dropdown on click for mobile
+                userBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!userDropdown.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+                
+                // Handle window resize to reset dropdown state
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Liens Rapides</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Support</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/help" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="/projetweb2/public/help#contact" class="footer__link">Contactez-nous</a></li>
+                    <li><a href="/projetweb2/public/help#faq" class="footer__link">FAQ</a></li>
+                    <li><a href="/projetweb2/public/help#auctions" class="footer__link">Guide des Enchères</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Légal</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="/projetweb2/public/help#auctions" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Protection des données</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © 2024 Stampee Auction House. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
