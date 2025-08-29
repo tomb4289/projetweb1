@@ -1,0 +1,258 @@
+-- =====================================================
+-- STAMPEE DATABASE POPULATION SCRIPT - LOCAL VERSION
+-- =====================================================
+-- This script populates the LOCAL database with fake auctions, stamps, and images
+-- Uses the images available in the public/img folder
+-- Run this AFTER creating the database structure from query.sql
+-- Database: stampee_db (local development)
+-- =====================================================
+
+-- Switch to the stampee_db database
+USE `stampee_db`;
+
+-- =====================================================
+-- CHECK EXISTING MEMBER IDS FIRST
+-- =====================================================
+-- This ensures we use the correct member IDs regardless of AUTO_INCREMENT values
+-- Run these queries first to see what member IDs actually exist:
+
+/*
+SELECT id_membre, nom_utilisateur, courriel, is_admin FROM membre ORDER BY id_membre;
+
+-- Expected result should show:
+-- id_membre | nom_utilisateur | courriel                    | is_admin
+-- 1         | admin           | admin@stampee.com           | 1
+-- 2         | testuser        | testuser@stampee.com        | 1  
+-- 3         | testuser2       | testuser2@gmail.com         | 0
+*/
+
+-- =====================================================
+-- Insert fake stamps (timbre) - Using local structure with explicit IDs
+-- =====================================================
+-- Using ALL available images for maximum variety (excluding background, payment, and logo files)
+INSERT INTO `timbre` (`id_timbre`, `nom`, `date_creation`, `couleurs`, `pays_origine`, `image_principale`, `images_supplementaires`, `condition`, `tirage`, `dimensions`, `certifie`) VALUES
+(1, 'Timbre Royal Victoria', '1850-01-01', 'Rouge et bleu', 'Royaume-Uni', 'public/img/stamp1.jpg', '["public/img/stamp2.jpg", "public/img/stamp3.jpg"]', 'Excellente', 10000, '25x30mm', 1),
+(2, 'Blue Mauritius', '1847-01-01', 'Bleu', 'Maurice', 'public/img/stamp4.jpg', '["public/img/stamp5.jpg", "public/img/stamp6.jpg"]', 'Parfaite', 500, '25x30mm', 1),
+(3, 'Liberty Bell', '1876-01-01', 'Rouge, blanc et bleu', 'États-Unis', 'public/img/stamp7.jpg', '["public/img/stamp8.jpg", "public/img/stamp9.jpg"]', 'Excellente', 15000, '25x30mm', 1),
+(4, 'Tour Eiffel', '1889-01-01', 'Vert et gris', 'France', 'public/img/stamp10.jpg', '["public/img/stamp11.jpg", "public/img/stamp12.jpg"]', 'Bonne', 20000, '25x30mm', 0),
+(5, 'Maple Leaf', '1851-01-01', 'Rouge et vert', 'Canada', 'public/img/portraitred.png', '["public/img/portraitred.jpeg", "public/img/portraitgreencash.jpg"]', 'Excellente', 12000, '25x30mm', 1),
+(6, 'Kangaroo', '1850-01-01', 'Marron et vert', 'Australie', 'public/img/portraitgreen.jpg', '["public/img/portraitblue2.jpg", "public/img/portraitblue.jpg"]', 'Excellente', 8000, '25x30mm', 1),
+(7, 'Cherry Blossom', '1871-01-01', 'Rose et blanc', 'Japon', 'public/img/planeredblue.jpg', '["public/img/oldyellow.jpg", "public/img/oldportraitbrown.jpg"]', 'Bonne', 18000, '25x30mm', 0),
+(8, 'Swiss Cross', '1850-01-01', 'Rouge et blanc', 'Suisse', 'public/img/oldorange1.jpg', '["public/img/oldblue3.png", "public/img/old1kr.png"]', 'Excellente', 10000, '25x30mm', 1),
+(9, 'Dutch Windmill', '1852-01-01', 'Orange et bleu', 'Pays-Bas', 'public/img/floweryellow.jpg', '["public/img/boatred.jpg", "public/img/boatblue.jpg"]', 'Excellente', 12000, '25x30mm', 1),
+(10, 'Russian Bear', '1857-01-01', 'Marron et or', 'Russie', 'public/img/beautyblue.jpg', '["public/img/tokyoblue.png", "public/img/rarered.jpg"]', 'Bonne', 15000, '25x30mm', 0),
+(11, 'Italian Opera', '1861-01-01', 'Vert et or', 'Italie', 'public/img/stamp1.jpg', '["public/img/stamp2.jpg", "public/img/stamp3.jpg"]', 'Excellente', 10000, '25x30mm', 1),
+(12, 'German Eagle', '1872-01-01', 'Noir et or', 'Allemagne', 'public/img/stamp4.jpg', '["public/img/stamp5.jpg", "public/img/stamp6.jpg"]', 'Excellente', 12000, '25x30mm', 1),
+(13, 'Spanish Bull', '1850-01-01', 'Rouge et noir', 'Espagne', 'public/img/stamp7.jpg', '["public/img/stamp8.jpg", "public/img/stamp9.jpg"]', 'Bonne', 15000, '25x30mm', 0),
+(14, 'Portuguese Ship', '1853-01-01', 'Bleu et blanc', 'Portugal', 'public/img/stamp10.jpg', '["public/img/stamp11.jpg", "public/img/stamp12.jpg"]', 'Excellente', 8000, '25x30mm', 1),
+(15, 'Belgian Lion', '1849-01-01', 'Jaune et noir', 'Belgique', 'public/img/portraitred.png', '["public/img/portraitred.jpeg", "public/img/portraitgreencash.jpg"]', 'Excellente', 10000, '25x30mm', 1),
+(16, 'Swedish Crown', '1855-01-01', 'Bleu et or', 'Suède', 'public/img/portraitgreen.jpg', '["public/img/portraitblue2.jpg", "public/img/portraitblue.jpg"]', 'Bonne', 12000, '25x30mm', 0),
+(17, 'Norwegian Viking', '1851-01-01', 'Rouge et blanc', 'Norvège', 'public/img/planeredblue.jpg', '["public/img/oldyellow.jpg", "public/img/oldportraitbrown.jpg"]', 'Excellente', 8000, '25x30mm', 1),
+(18, 'Danish Heart', '1851-01-01', 'Rouge et rose', 'Danemark', 'public/img/oldorange1.jpg', '["public/img/oldblue3.png", "public/img/old1kr.png"]', 'Excellente', 10000, '25x30mm', 1),
+(19, 'Finnish Forest', '1856-01-01', 'Vert et marron', 'Finlande', 'public/img/floweryellow.jpg', '["public/img/boatred.jpg", "public/img/boatblue.jpg"]', 'Bonne', 12000, '25x30mm', 0),
+(20, 'Polish Eagle', '1860-01-01', 'Blanc et rouge', 'Pologne', 'public/img/beautyblue.jpg', '["public/img/tokyoblue.png", "public/img/rarered.jpg"]', 'Excellente', 10000, '25x30mm', 1);
+
+-- =====================================================
+-- Insert images for stamps (using local structure)
+-- =====================================================
+-- Each stamp gets 3 images: 1 main + 2 additional
+-- Using ALL available images for maximum variety (excluding background, payment, and logo files)
+-- Fixed paths: using 'public/img/' instead of '/img/' for proper web access
+INSERT INTO `images` (`id_timbre`, `chemin`, `est_principale`) VALUES
+-- Stamp 1: Royal Victoria (Stamp images)
+(1, 'public/img/stamp1.jpg', 1),
+(1, 'public/img/stamp2.jpg', 0),
+(1, 'public/img/stamp3.jpg', 0),
+
+-- Stamp 2: Blue Mauritius (Stamp images)
+(2, 'public/img/stamp4.jpg', 1),
+(2, 'public/img/stamp5.jpg', 0),
+(2, 'public/img/stamp6.jpg', 0),
+
+-- Stamp 3: Liberty Bell (Stamp images)
+(3, 'public/img/stamp7.jpg', 1),
+(3, 'public/img/stamp8.jpg', 0),
+(3, 'public/img/stamp9.jpg', 0),
+
+-- Stamp 4: Tour Eiffel (Stamp images)
+(4, 'public/img/stamp10.jpg', 1),
+(4, 'public/img/stamp11.jpg', 0),
+(4, 'public/img/stamp12.jpg', 0),
+
+-- Stamp 5: Maple Leaf (Portrait images)
+(5, 'public/img/portraitred.png', 1),
+(5, 'public/img/portraitred.jpeg', 0),
+(5, 'public/img/portraitgreencash.jpg', 0),
+
+-- Stamp 6: Kangaroo (Portrait images)
+(6, 'public/img/portraitgreen.jpg', 1),
+(6, 'public/img/portraitblue2.jpg', 0),
+(6, 'public/img/portraitblue.jpg', 0),
+
+-- Stamp 7: Cherry Blossom (Old/Historical images)
+(7, 'public/img/planeredblue.jpg', 1),
+(7, 'public/img/oldyellow.jpg', 0),
+(7, 'public/img/oldportraitbrown.jpg', 0),
+
+-- Stamp 8: Swiss Cross (Old/Historical images)
+(8, 'public/img/oldorange1.jpg', 1),
+(8, 'public/img/oldblue3.png', 0),
+(8, 'public/img/old1kr.png', 0),
+
+-- Stamp 9: Dutch Windmill (Nature/Artistic images)
+(9, 'public/img/floweryellow.jpg', 1),
+(9, 'public/img/boatred.jpg', 0),
+(9, 'public/img/boatblue.jpg', 0),
+
+-- Stamp 10: Russian Bear (Artistic images)
+(10, 'public/img/beautyblue.jpg', 1),
+(10, 'public/img/tokyoblue.png', 0),
+(10, 'public/img/rarered.jpg', 0),
+
+-- Stamp 11: Italian Opera (Stamp images)
+(11, 'public/img/stamp1.jpg', 1),
+(11, 'public/img/stamp2.jpg', 0),
+(11, 'public/img/stamp3.jpg', 0),
+
+-- Stamp 12: German Eagle (Stamp images)
+(12, 'public/img/stamp4.jpg', 1),
+(12, 'public/img/stamp5.jpg', 0),
+(12, 'public/img/stamp6.jpg', 0),
+
+-- Stamp 13: Spanish Bull (Stamp images)
+(13, 'public/img/stamp7.jpg', 1),
+(13, 'public/img/stamp8.jpg', 0),
+(13, 'public/img/stamp9.jpg', 0),
+
+-- Stamp 14: Portuguese Ship (Stamp images)
+(14, 'public/img/stamp10.jpg', 1),
+(14, 'public/img/stamp11.jpg', 0),
+(14, 'public/img/stamp12.jpg', 0),
+
+-- Stamp 15: Belgian Lion (Portrait images)
+(15, 'public/img/portraitred.png', 1),
+(15, 'public/img/portraitred.jpeg', 0),
+(15, 'public/img/portraitgreencash.jpg', 0),
+
+-- Stamp 16: Swedish Crown (Portrait images)
+(16, 'public/img/portraitgreen.jpg', 1),
+(16, 'public/img/portraitblue2.jpg', 0),
+(16, 'public/img/portraitblue.jpg', 0),
+
+-- Stamp 17: Norwegian Viking (Old/Historical images)
+(17, 'public/img/planeredblue.jpg', 1),
+(17, 'public/img/oldyellow.jpg', 0),
+(17, 'public/img/oldportraitbrown.jpg', 0),
+
+-- Stamp 18: Danish Heart (Old/Historical images)
+(18, 'public/img/oldorange1.jpg', 1),
+(18, 'public/img/oldblue3.png', 0),
+(18, 'public/img/old1kr.png', 0),
+
+-- Stamp 19: Finnish Forest (Nature/Artistic images)
+(19, 'public/img/floweryellow.jpg', 1),
+(19, 'public/img/boatred.jpg', 0),
+(19, 'public/img/boatblue.jpg', 0),
+
+-- Stamp 20: Polish Eagle (Artistic images)
+(20, 'public/img/beautyblue.jpg', 1),
+(20, 'public/img/tokyoblue.png', 0),
+(20, 'public/img/rarered.jpg', 0);
+
+-- =====================================================
+-- Insert fake auctions (enchere) - Using local structure
+-- =====================================================
+SELECT '=== INSERTING AUCTIONS ===' as info;
+-- IMPORTANT: Using member IDs that will start from 1 after fixing query.sql
+-- ID 1: Admin user (is_admin = 1)
+-- ID 2: Admin user (is_admin = 1) 
+-- ID 3: Normal user (is_admin = 0)
+
+INSERT INTO `enchere` (`id_timbre`, `id_membre`, `date_debut`, `date_fin`, `prix_plancher`, `coup_de_coeur_lord`, `statut`) VALUES
+(1, 2, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 2500.00, 1, 'Active'),
+(2, 2, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY), 15000.00, 1, 'Active'),
+(3, 2, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY), 800.00, 0, 'Active'),
+(4, 2, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY), 450.00, 0, 'Active'),
+(5, 2, NOW(), DATE_ADD(NOW(), INTERVAL 8 DAY), 1200.00, 1, 'Active'),
+(6, 2, NOW(), DATE_ADD(NOW(), INTERVAL 6 DAY), 950.00, 0, 'Active'),
+(7, 2, NOW(), DATE_ADD(NOW(), INTERVAL 9 DAY), 600.00, 0, 'Active'),
+(8, 2, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 750.00, 0, 'Active'),
+(9, 2, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY), 550.00, 0, 'Active'),
+(10, 2, NOW(), DATE_ADD(NOW(), INTERVAL 12 DAY), 400.00, 0, 'Active'),
+(11, 2, NOW(), DATE_ADD(NOW(), INTERVAL 8 DAY), 650.00, 0, 'Active'),
+(12, 2, NOW(), DATE_ADD(NOW(), INTERVAL 6 DAY), 700.00, 0, 'Active'),
+(13, 2, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY), 500.00, 0, 'Active'),
+(14, 2, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 600.00, 0, 'Active'),
+(15, 2, NOW(), DATE_ADD(NOW(), INTERVAL 9 DAY), 800.00, 0, 'Active'),
+(16, 2, NOW(), DATE_ADD(NOW(), INTERVAL 8 DAY), 450.00, 0, 'Active'),
+(17, 2, NOW(), DATE_ADD(NOW(), INTERVAL 6 DAY), 550.00, 0, 'Active'),
+(18, 2, NOW(), DATE_ADD(NOW(), INTERVAL 11 DAY), 400.00, 0, 'Active'),
+(19, 2, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 350.00, 0, 'Active'),
+(20, 2, NOW(), DATE_ADD(NOW(), INTERVAL 9 DAY), 500.00, 0, 'Active');
+
+-- Verify auctions were inserted
+SELECT '=== VERIFYING AUCTIONS ===' as info;
+SELECT COUNT(*) as total_auctions FROM enchere;
+SELECT id_enchere, id_timbre, id_membre, statut FROM enchere ORDER BY id_enchere LIMIT 5;
+
+-- =====================================================
+-- Insert fake bids (offre) for some auctions
+-- =====================================================
+SELECT '=== INSERTING BIDS ===' as info;
+-- IMPORTANT: Using member IDs that will start from 1 after fixing query.sql
+INSERT INTO `offre` (`id_enchere`, `id_membre`, `montant`, `date_offre`) VALUES
+(1, 3, 2600.00, NOW()),
+(1, 2, 2700.00, NOW()),
+(2, 3, 15500.00, NOW()),
+(2, 2, 16000.00, NOW()),
+(3, 3, 850.00, NOW()),
+(3, 2, 900.00, NOW()),
+(4, 3, 480.00, NOW()),
+(4, 2, 520.00, NOW()),
+(5, 3, 1250.00, NOW()),
+(5, 2, 1300.00, NOW()),
+(6, 3, 980.00, NOW()),
+(6, 2, 1020.00, NOW()),
+(7, 3, 620.00, NOW()),
+(7, 2, 650.00, NOW()),
+(8, 3, 780.00, NOW()),
+(8, 2, 800.00, NOW()),
+(9, 3, 570.00, NOW()),
+(9, 2, 590.00, NOW()),
+(10, 3, 420.00, NOW()),
+(10, 2, 440.00, NOW());
+
+-- Verify bids were inserted
+SELECT '=== VERIFYING BIDS ===' as info;
+SELECT COUNT(*) as total_bids FROM offre;
+SELECT id_offre, id_enchere, id_membre, montant FROM offre ORDER BY id_offre LIMIT 5;
+
+-- =====================================================
+-- Insert some favorites
+-- =====================================================
+SELECT '=== INSERTING FAVORITES ===' as info;
+-- IMPORTANT: Using member IDs that will start from 1 after fixing query.sql
+INSERT INTO `favoris` (`id_membre`, `id_enchere`, `date_ajout`) VALUES
+(3, 1, NOW()),
+(3, 2, NOW()),
+(3, 5, NOW()),
+(2, 3, NOW()),
+(2, 7, NOW()),
+(2, 12, NOW());
+
+-- =====================================================
+-- Note: Completed auctions removed due to UNIQUE constraint on id_timbre
+-- Each stamp can only have one auction in your local database structure
+-- =====================================================
+
+-- =====================================================
+-- END OF LOCAL DATABASE POPULATION SCRIPT
+-- =====================================================
+-- This script creates:
+-- - 20 fake stamps with realistic details (using local structure)
+-- - 20 active auctions with descriptions
+-- - 40+ images using your available stamp images
+-- - 20 fake bids to simulate activity
+-- - 6 favorites
+-- Note: Each stamp can only have one auction due to UNIQUE constraint
+-- =====================================================

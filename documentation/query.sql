@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `stampee_db`.`membre` (
   PRIMARY KEY (`id_membre`),
   UNIQUE KEY `nom_utilisateur` (`nom_utilisateur`),
   UNIQUE KEY `courriel` (`courriel`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to store user accounts and profiles.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to store user accounts and profiles.';
 
 -- -----------------------------------------------------
 -- Table `stampee_db`.`timbre`
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `stampee_db`.`timbre` (
   `dimensions` varchar(50) DEFAULT NULL COMMENT 'Physical dimensions of the stamp (e.g., "25x30mm")',
   `certifie` tinyint(1) DEFAULT '0' COMMENT 'Indicates if the stamp is certified (TRUE/FALSE)',
   PRIMARY KEY (`id_timbre`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to store details about collectible stamps.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to store details about collectible stamps.';
 
 -- -----------------------------------------------------
 -- Table `stampee_db`.`images`
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `stampee_db`.`images` (
   PRIMARY KEY (`id_image`),
   KEY `id_timbre` (`id_timbre`),
   CONSTRAINT `images_ibfk_1` FOREIGN KEY (`id_timbre`) REFERENCES `stampee_db`.`timbre` (`id_timbre`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
 -- Table `stampee_db`.`enchere`
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `stampee_db`.`enchere` (
   KEY `fk_enchere_membre` (`id_membre`),
   CONSTRAINT `fk_enchere_membre` FOREIGN KEY (`id_membre`) REFERENCES `stampee_db`.`membre` (`id_membre`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_enchere_timbre` FOREIGN KEY (`id_timbre`) REFERENCES `stampee_db`.`timbre` (`id_timbre`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to manage auction details for stamps.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to manage auction details for stamps.';
 
 -- -----------------------------------------------------
 -- Table `stampee_db`.`offre`
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `stampee_db`.`offre` (
   KEY `fk_offre_membre` (`id_membre`),
   CONSTRAINT `fk_offre_enchere` FOREIGN KEY (`id_enchere`) REFERENCES `stampee_db`.`enchere` (`id_enchere`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_offre_membre` FOREIGN KEY (`id_membre`) REFERENCES `stampee_db`.`membre` (`id_membre`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to record bids placed on auctions.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table to record bids placed on auctions.';
 
 -- -----------------------------------------------------
 -- Table `stampee_db`.`favoris`
