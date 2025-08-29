@@ -177,14 +177,14 @@ class AuctionController extends BaseController
 
             // Préparation des données du timbre
             $timbreData = [
-                'nom' => $_POST['nom'],                                    // Nom du timbre
-                'date_creation' => !empty($_POST['date_creation']) ? $_POST['date_creation'] . '-01-01' : null,  // Date de création (format YYYY-01-01)
-                'couleurs' => !empty($_POST['couleurs']) ? $_POST['couleurs'] : null,                           // Couleurs du timbre
-                'pays_origine' => $_POST['pays_origine'],                  // Pays d'origine
-                'condition' => $_POST['condition'] ?? 'Bonne',             // État du timbre
-                'tirage' => !empty($_POST['tirage']) ? (int)$_POST['tirage'] : null,                           // Nombre d'exemplaires
-                'dimensions' => !empty($_POST['dimensions']) ? $_POST['dimensions'] : null,                     // Dimensions du timbre
-                'certifie' => isset($_POST['certifie']) ? 1 : 0           // Statut de certification
+                'nom' => $_POST['nom'],
+                'date_creation' => !empty($_POST['date_creation']) ? $_POST['date_creation'] . '-01-01' : null,
+                'couleurs' => !empty($_POST['couleurs']) ? $_POST['couleurs'] : null,
+                'pays_origine' => $_POST['pays_origine'],
+                'condition' => $_POST['condition'] ?? 'Bonne',
+                'tirage' => !empty($_POST['tirage']) ? (int)$_POST['tirage'] : null,
+                'dimensions' => !empty($_POST['dimensions']) ? $_POST['dimensions'] : null,
+                'certifie' => isset($_POST['certifie']) ? 1 : 0
             ];
             
             // Création du timbre dans la base de données
@@ -198,13 +198,13 @@ class AuctionController extends BaseController
 
             // Préparation des données de l'enchère
             $auctionData = [
-                'id_timbre' => $timbreId,                                 // ID du timbre créé
-                'id_membre' => $_SESSION['user_id'],                      // ID du membre créateur
-                'date_debut' => date('Y-m-d H:i:s'),                     // Date de début (maintenant)
-                'date_fin' => $_POST['date_fin'],                        // Date de fin de l'enchère
-                'prix_plancher' => $_POST['prix_plancher'],              // Prix de départ
-                'coup_de_coeur_lord' => 0,                               // Pas de coup de cœur par défaut
-                'statut' => 'Active'                                     // Statut actif
+                'id_timbre' => $timbreId,
+                'id_membre' => $_SESSION['user_id'],
+                'date_debut' => date('Y-m-d H:i:s'),
+                'date_fin' => $_POST['date_fin'],
+                'prix_plancher' => $_POST['prix_plancher'],
+                'coup_de_coeur_lord' => 0,
+                'statut' => 'Active'
             ];
             
             // Création de l'enchère dans la base de données

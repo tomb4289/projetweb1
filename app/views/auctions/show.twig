@@ -39,7 +39,7 @@
 				</ul>
 			</nav>
 			
-			<!-- Simple Search Bar -->
+			        <!-- Barre de Recherche Simple -->
 			<div class="header__search">
 				<form class="header__search-form" action="/projetweb2/public/auctions/search" method="GET">
 					<input type="text" name="recherche" placeholder="Rechercher des timbres..." class="header__search-input">
@@ -97,7 +97,7 @@
 			<div class="auction-images">
 				{% if images and images|length > 0 %}
 					<div class="image-carousel">
-						<!-- Favorite button overlay -->
+						        <!-- Superposition du bouton Favori -->
 						{% if session.authenticated %}
 							<button id="favoriteBtn" class="favorite-overlay-btn {{ isFavorite ? 'favorited' : '' }}" data-auction-id="{{ auction.id_enchere }}" aria-label="{% if isFavorite %}Retirer des favoris{% else %}Ajouter aux favoris{% endif %}">
 								{% if isFavorite %}
@@ -165,7 +165,7 @@
 			</div>
 		</div>
 
-		<!-- Centered Content Box -->
+		        <!-- Boîte de Contenu Centrée -->
 		<div class="auction-content-box">
 			<div class="bidding-section">
 				<h3>Placer une Offre</h3>
@@ -203,14 +203,14 @@
 
 
 
-			<!-- Auction Info Tabs -->
+			        <!-- Onglets d'Informations sur l'Enchère -->
 			<div class="auction-info-tabs">
 				<button class="tab-btn active" data-tab="details">Détails de l'Enchère</button>
 				<button class="tab-btn" data-tab="history">Historique des Offres</button>
 				<button class="tab-btn" data-tab="actions">Actions</button>
 			</div>
 
-			<!-- Details Tab -->
+			                <!-- Onglet Détails -->
 			<div class="tab-content active" id="details-tab">
 				<div class="auction-details-info">
 					<ul>
@@ -231,7 +231,7 @@
 				</div>
 			</div>
 
-			<!-- History Tab -->
+			                <!-- Onglet Historique -->
 			<div class="tab-content" id="history-tab">
 				<div class="bids-history">
 					{% if offres %}
@@ -250,7 +250,7 @@
 				</div>
 			</div>
 
-			<!-- Actions Tab -->
+			                <!-- Onglet Actions -->
 			<div class="tab-content" id="actions-tab">
 				<div class="actions-section">
 					{% if session.authenticated %}
@@ -292,7 +292,7 @@
 									{% endif %}
 								</button>
 								
-								<!-- Additional action buttons can be added here -->
+								        <!-- Des boutons d'action supplémentaires peuvent être ajoutés ici -->
 								<button class="btn btn--secondary" onclick="window.print()">🖨️ Imprimer</button>
 								<button class="btn btn--secondary" onclick="shareAuction()">📤 Partager</button>
 							</div>

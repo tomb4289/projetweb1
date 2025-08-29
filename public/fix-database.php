@@ -44,7 +44,7 @@ try {
     $statuses = $stmt->fetchAll(PDO::FETCH_COLUMN);
     echo "<p><strong>Current auction statuses:</strong> " . implode(', ', $statuses) . "</p>";
     
-    // Update auctions that have ended to 'Terminée' status
+    // Mise à jour des enchères terminées vers le statut 'Terminée'
     $sql = "UPDATE enchere SET statut = 'Terminée' WHERE date_fin < NOW() AND statut = 'Active'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();

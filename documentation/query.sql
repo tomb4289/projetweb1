@@ -197,6 +197,17 @@ INSERT INTO `stampee_db`.`categories_timbres` (`nom_categorie`, `description`) V
 INSERT INTO `stampee_db`.`membre` (`nom_utilisateur`, `courriel`, `mot_de_passe`, `is_admin`) VALUES
 ('admin', 'admin@stampee.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1);
 
+-- -----------------------------------------------------
+-- Insert test users for the user guide
+-- -----------------------------------------------------
+-- Admin user: testuser / testpass123
+INSERT INTO `stampee_db`.`membre` (`nom_utilisateur`, `courriel`, `mot_de_passe`, `is_admin`) VALUES
+('testuser', 'testuser@stampee.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1);
+
+-- Normal user: testuser2@gmail.com / testuser2testuser2
+INSERT INTO `stampee_db`.`membre` (`nom_utilisateur`, `courriel`, `mot_de_passe`, `is_admin`) VALUES
+('testuser2', 'testuser2@gmail.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 0);
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
