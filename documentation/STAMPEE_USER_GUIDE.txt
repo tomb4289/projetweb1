@@ -20,9 +20,10 @@ TABLE DES MATIÈRES
 11. FAQ et Dépannage
 12. Informations Techniques
 13. Comptes de Test
-14. Support et Contact
-15. Notes de Version
-16. Licence et Conditions
+14. Script de Peuplement de Base de Données Locale
+15. Support et Contact
+17. Notes de Version
+18. Licence et Conditions
 
 ================================================================================
 
@@ -446,7 +447,69 @@ UTILISATION DES COMPTES DE TEST
 
 ================================================================================
 
-14. SUPPORT ET CONTACT
+14. SCRIPT DE PEUPLEMENT DE BASE DE DONNÉES LOCALE
+==================================================
+
+SCRIPT LOCAL : populate_database_local.txt
+-----------------------------------------
+Le projet Stampee utilise un script de peuplement de base de données locale 
+pour créer des données de test et de démonstration.
+
+INFORMATIONS TECHNIQUES
+-----------------------
+• **Nom du projet** : projetweb2
+• **Environnement** : Base de données locale (stampee_db)
+• **Fichier** : documentation/populate_database_local.txt
+• **Compatible** : MySQL/MariaDB local
+
+CONTENU DU SCRIPT
+------------------
+Le script crée et peuple les tables suivantes avec des données de test :
+• **Utilisateurs** : Comptes de test (testuser, testuser2)
+• **Timbres** : 20 timbres philatéliques avec descriptions détaillées
+• **Images** : Utilise TOUS les fichiers images disponibles dans public/img/
+• **Enchères** : 20 enchères actives avec dates et prix
+• **Offres** : Offres de test pour simuler l'activité
+• **Favoris** : Favoris de test pour démontrer la fonctionnalité
+
+IMAGES UTILISÉES
+----------------
+Le script utilise une grande variété d'images pour maximiser la diversité :
+• **Images de timbres** : stamp1.jpg à stamp12.jpg
+• **Images de portraits** : portraitred.png, portraitgreen.jpg, etc.
+• **Images historiques** : oldyellow.jpg, oldportraitbrown.jpg, etc.
+• **Images artistiques** : beautyblue.jpg, tokyoblue.png, rarered.jpg
+• **Images naturelles** : floweryellow.jpg, boatred.jpg, boatblue.jpg
+
+⚠️ EXCLUSIONS : Le script exclut automatiquement :
+   - background.jpg (image de fond)
+   - Fichiers de paiement (payment*.png, payment*.svg, payment*.webp)
+   - Fichiers de logo (redcrownlogo.png, etc.)
+
+UTILISATION
+-----------
+1. **Prérequis** : Base de données locale créée avec query.sql
+2. **Exécution** : Importer le script via phpMyAdmin ou ligne de commande
+3. **Résultat** : Base de données complète avec données de test
+4. **Test** : Vérifier que toutes les images s'affichent correctement
+
+STRUCTURE DES DONNÉES
+---------------------
+• **20 enchères actives** avec images variées
+• **3 images par timbre** (1 principale + 2 supplémentaires)
+• **Données réalistes** : dates historiques, pays d'origine, conditions
+• **Prix variés** : De 50$ à 5000$ pour tester différents scénarios
+
+NOTES IMPORTANTES
+-----------------
+• Le script est conçu pour l'environnement local uniquement
+• Toutes les images doivent être présentes dans public/img/
+• Les chemins d'images utilisent le format 'public/img/fichier.jpg'
+• Compatible avec la structure de base de données locale
+
+================================================================================
+
+16. SUPPORT ET CONTACT
 =======================
 
 SUPPORT TECHNIQUE
@@ -475,7 +538,7 @@ Admin password: testpass123
 
 ================================================================================
 
-15. NOTES DE VERSION
+17. NOTES DE VERSION
 =====================
 
 VERSION ACTUELLE
@@ -660,7 +723,7 @@ PIED DE PAGE
 ============
 
 Dernière mise à jour : Décembre 2024
-Version du document : 2.0
+Version du document : 2.1
 Stampee Auction House - Tous droits réservés
 
 ================================================================================
