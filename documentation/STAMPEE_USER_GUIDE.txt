@@ -19,6 +19,8 @@ TABLE DES MATIÈRES
 10. Commentaires et Interactions
 11. FAQ et Dépannage
 12. Informations Techniques
+   12.1. Installation et Configuration
+   12.2. Prérequis Système
 13. Comptes de Test
 14. Script de Peuplement de Base de Données Locale
 15. Support et Contact
@@ -396,6 +398,22 @@ Enchères qui ne se chargent pas
 
 12. INFORMATIONS TECHNIQUES
 ============================
+
+INSTALLATION ET CONFIGURATION
+----------------------------
+⚠️ **IMPORTANT - NOM DU PROJET** : 
+Lors du téléchargement depuis GitHub, le projet se nomme `projetweb1-master`. 
+Pour éviter toute confusion, renommez le dossier en `projetweb2` après 
+téléchargement.
+
+ÉTAPES D'INSTALLATION
+---------------------
+1. Téléchargez le projet depuis GitHub
+2. Renommez le dossier `projetweb1-master` en `projetweb2`
+3. Placez le dossier dans votre répertoire de travail
+4. Configurez votre serveur web local (XAMPP, WAMP, etc.)
+5. Importez la base de données avec le script `query.sql`
+6. Configurez les paramètres de base de données dans `app/config/database.php`
 
 PRÉREQUIS SYSTÈME
 -----------------
