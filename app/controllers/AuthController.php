@@ -1,12 +1,12 @@
 <?php
-namespace App\Controllers;
+namespace App\controllers;
 
 use PDO;
 use Twig\Environment;
-use App\Models\MembreModel;
-use App\Providers\View;
-use App\Providers\Validator;
-use App\Providers\Auth;
+use App\models\MembreModel;
+use App\providers\View;
+use App\providers\Validator;
+use App\providers\Auth;
 
 class AuthController extends BaseController
 {
@@ -20,7 +20,10 @@ class AuthController extends BaseController
 
     public function login()
     {
-        echo $this->twig->render('auth/login.twig', ['errors' => []]);
+        echo $this->twig->render('auth/login.twig', [
+            'errors' => [],
+            'session' => $_SESSION ?? []
+        ]);
     }
 
     public function authenticate()
@@ -46,8 +49,8 @@ class AuthController extends BaseController
         
         if (empty($password)) {
             $errors['mot_de_passe'] = 'Le mot de passe est requis.';
-        } elseif (strlen($password) < 6) {
-            $errors['mot_de_passe'] = 'Le mot de passe doit avoir au moins 6 caractères.';
+        } elseif (strlen($password) < 8) {
+            $errors['mot_de_passe'] = 'Le mot de passe doit avoir au moins 8 caractères.';
         } elseif (strlen($password) > 128) {
             $errors['mot_de_passe'] = 'Le mot de passe ne peut pas dépasser 128 caractères.';
         }
@@ -56,7 +59,8 @@ class AuthController extends BaseController
             error_log("Validation errors: " . print_r($errors, true));
             echo $this->twig->render('auth/login.twig', [
                 'errors' => $errors,
-                'old' => $_POST
+                'old' => $_POST,
+                'session' => $_SESSION ?? []
             ]);
             return;
         }
@@ -69,14 +73,14 @@ class AuthController extends BaseController
             if ($user) {
                 error_log("Authentication successful for user: " . print_r($user, true));
                 
-                header('Location: /projetweb1/public/');
-                exit;
+                View::redirect('/');
             } else {
                 error_log("Authentication failed for username: $username");
                 $errors['message'] = "Nom d'utilisateur ou mot de passe invalide. Veuillez vérifier vos informations de connexion.";
                 echo $this->twig->render('auth/login.twig', [
                     'errors' => $errors,
-                    'old' => $_POST
+                    'old' => $_POST,
+                    'session' => $_SESSION ?? []
                 ]);
             }
         } catch (\Exception $e) {
@@ -84,7 +88,8 @@ class AuthController extends BaseController
             $errors['message'] = "Une erreur s'est produite lors de la connexion. Veuillez réessayer.";
             echo $this->twig->render('auth/login.twig', [
                 'errors' => $errors,
-                'old' => $_POST
+                'old' => $_POST,
+                'session' => $_SESSION ?? []
             ]);
         }
     }
@@ -97,7 +102,6 @@ class AuthController extends BaseController
             session_destroy();
         }
         
-        header('Location: /projetweb1/public/login');
-        exit;
+        View::redirect('login');
     }
 }

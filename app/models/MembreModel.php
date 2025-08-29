@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App\models;
 
 use PDO;
 use PDOException;
@@ -32,6 +32,20 @@ class MembreModel
         }
     }
 
+    public function findById(int $id): ?array
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id_membre = :id LIMIT 1");
+            $stmt->execute([':id' => $id]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return $result ?: null;
+        } catch (PDOException $e) {
+            error_log("Error in MembreModel::findById: " . $e->getMessage());
+            return null;
+        }
+    }
+
     public function checkUser(string $username, string $password)
     {
         error_log("MembreModel::checkUser called for username: $username");
@@ -54,7 +68,7 @@ class MembreModel
                 $_SESSION['user_email'] = $user['courriel'];
                 $_SESSION['user_name'] = $user['nom_utilisateur'];
                 $_SESSION['user_role'] = $user['role'] ?? 'utilisateur';
-                $_SESSION['fingerPrint'] = md5($_SERVER['HTTP_USER_AGENT'] ?? 'unknown' . $_SERVER['REMOTE_ADDR'] ?? 'unknown');
+                $_SESSION['fingerPrint'] = md5(($_SERVER['HTTP_USER_AGENT'] ?? 'unknown') . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
                 $_SESSION['authenticated'] = true;
                 $_SESSION['login_time'] = time();
                 
@@ -120,6 +134,33 @@ class MembreModel
             
         } catch (PDOException $e) {
             error_log("Error in MembreModel::unique: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateProfile(int $userId, array $data): bool
+    {
+        try {
+            $fields = [];
+            $params = [':id' => $userId];
+            
+            foreach ($data as $field => $value) {
+                if (in_array($field, ['nom_utilisateur', 'courriel'])) {
+                    $fields[] = "{$field} = :{$field}";
+                    $params[":{$field}"] = $value;
+                }
+            }
+            
+            if (empty($fields)) {
+                return false;
+            }
+            
+            $sql = "UPDATE {$this->table} SET " . implode(', ', $fields) . " WHERE id_membre = :id";
+            $stmt = $this->pdo->prepare($sql);
+            
+            return $stmt->execute($params);
+        } catch (PDOException $e) {
+            error_log("Error in MembreModel::updateProfile: " . $e->getMessage());
             return false;
         }
     }

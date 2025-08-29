@@ -1,10 +1,13 @@
 <?php
 
-use App\Controllers\MembreController;
-use App\Controllers\AuthController;
-use App\Controllers\HomeController;
-use App\Controllers\AuctionController;
-use App\Routes\Route;
+use App\controllers\MembreController;
+use App\controllers\AuthController;
+use App\controllers\HomeController;
+use App\controllers\AuctionController;
+use App\controllers\CommentController;
+use App\controllers\ProfileController;
+use App\controllers\AboutController;
+use App\routes\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -31,4 +34,20 @@ Route::post('/images/{id}/set-main', [AuctionController::class, 'setMainImage'])
 Route::post('/auctions/bid', [AuctionController::class, 'placeBid']);
 Route::post('/auctions/favorite', [AuctionController::class, 'toggleFavorite']);
 Route::get('/auctions/favorites', [AuctionController::class, 'favorites']);
+Route::get('/auctions/archives', [AuctionController::class, 'archives']);
 Route::post('/auctions/toggle-lord-favorite', [AuctionController::class, 'toggleLordFavorite']);
+
+Route::post('/comments/create', [CommentController::class, 'createComment']);
+Route::put('/comments/{id}/update', [CommentController::class, 'updateComment']);
+Route::delete('/comments/{id}/delete', [CommentController::class, 'deleteComment']);
+Route::get('/comments/{auction_id}', [CommentController::class, 'getComments']);
+
+Route::get('/profile', [ProfileController::class, 'showProfile']);
+Route::get('/profile/personal-info', [ProfileController::class, 'getPersonalInfo']);
+Route::put('/profile/update', [ProfileController::class, 'updateProfile']);
+Route::get('/profile/offer-history', [ProfileController::class, 'getOfferHistory']);
+Route::get('/profile/published-auctions', [ProfileController::class, 'getPublishedAuctions']);
+
+Route::get('/about', [AboutController::class, 'index']);
+
+Route::get('/help', [HomeController::class, 'help']);

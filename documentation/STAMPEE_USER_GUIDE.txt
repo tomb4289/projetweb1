@@ -1,0 +1,473 @@
+Admin username: testuser password: testpass123
+
+STAMPEE AUCTION HOUSE - Guide Utilisateur Complet
+================================================================================
+
+TABLE DES MATIÈRES
+==================
+
+1. Introduction
+2. Accès et Authentification
+3. Navigation et Interface
+4. Fonctionnalités Principales
+5. Gestion des Enchères
+6. Système de Favoris
+7. Recherche et Filtrage
+8. Archives et Historique
+9. Gestion du Profil
+10. Commentaires et Interactions
+11. FAQ et Dépannage
+12. Informations Techniques
+13. Comptes de Test
+14. Support et Contact
+15. Notes de Version
+16. Licence et Conditions
+
+================================================================================
+
+1. INTRODUCTION
+===============
+
+PRÉSENTATION DU PROJET
+----------------------
+Stampee Auction House est une plateforme d'enchères philatéliques en ligne 
+développée dans le cadre du cours Web Dynamique. Le système permet aux 
+utilisateurs de consulter, créer et participer à des enchères de timbres.
+
+FONCTIONNALITÉS IMPLÉMENTÉES
+-----------------------------
+✓ Gestion des utilisateurs : Inscription, connexion, profils
+✓ Système d'enchères : Création, consultation, participation
+✓ Recherche avancée : Filtres multiples et recherche textuelle
+✓ Système de favoris : Marquage et gestion des enchères préférées
+✓ Archives : Consultation des enchères terminées
+✓ Commentaires : Système d'évaluation et commentaires
+✓ Interface responsive : Compatible mobile et desktop
+✓ Gestion des images : Upload et affichage des timbres
+
+PUBLIC CIBLE
+------------
+• Collectionneurs : Consultation et participation aux enchères
+• Vendeurs : Création et gestion d'enchères
+• Administrateurs : Gestion du système et modération
+
+================================================================================
+
+2. ACCÈS ET AUTHENTIFICATION
+============================
+
+Admin username: testuser password: testpass123
+
+CRÉATION DE COMPTE
+------------------
+1. Accédez à la page d'accueil
+2. Cliquez sur "Inscription" en haut à droite
+3. Remplissez le formulaire avec :
+   - Nom d'utilisateur unique
+   - Adresse email valide
+   - Mot de passe sécurisé
+   - Informations personnelles
+4. Validez votre inscription
+
+CONNEXION
+----------
+1. Cliquez sur "Connexion" en haut à droite
+2. Entrez votre nom d'utilisateur ou email
+3. Saisissez votre mot de passe
+4. Cliquez sur "Se connecter"
+
+DÉCONNEXION
+------------
+• Cliquez sur votre nom d'utilisateur en haut à droite
+• Sélectionnez "Déconnexion" dans le menu déroulant
+
+================================================================================
+
+3. NAVIGATION ET INTERFACE
+===========================
+
+MENU PRINCIPAL
+--------------
+• Accueil : Page principale avec enchères en vedette
+• Enchères : Liste complète des enchères actives
+• Recherche Avancée : Outils de recherche et filtrage
+• Créer une Enchère : Interface de création (utilisateurs connectés)
+
+MENU UTILISATEUR (CONNECTÉ)
+---------------------------
+• Compte : Gestion du profil personnel
+• Mes Favoris : Enchères marquées comme favorites
+• Centre d'Aide : Documentation et support
+• Déconnexion : Fermeture de session
+
+BARRE DE RECHERCHE
+------------------
+• Recherche rapide par nom de timbre
+• Accessible depuis toutes les pages
+• Redirection vers la recherche avancée
+
+================================================================================
+
+4. FONCTIONNALITÉS PRINCIPALES
+===============================
+
+PAGE D'ACCUEIL
+---------------
+• Coups de Cœur du Lord : Enchères sélectionnées par l'expert
+• Enchères qui se Terminent Bientôt : Urgences et opportunités
+• Centre de Découverte : Navigation vers les fonctionnalités
+• Recherche Rapide : Accès direct aux timbres
+
+CONSULTATION DES ENCHÈRES
+-------------------------
+1. Accédez à la page "Enchères"
+2. Parcourez la grille des enchères actives
+3. Cliquez sur une enchère pour voir les détails
+4. Examinez les photos, descriptions et conditions
+
+PARTICIPATION AUX ENCHÈRES
+--------------------------
+1. Connectez-vous à votre compte
+2. Naviguez vers l'enchère désirée
+3. Lisez attentivement les conditions
+4. Placez votre offre dans le champ approprié
+5. Confirmez votre participation
+
+================================================================================
+
+5. GESTION DES ENCHÈRES
+========================
+
+CRÉATION D'ENCHÈRE
+------------------
+1. Connectez-vous à votre compte
+2. Cliquez sur "Créer une Enchère"
+3. Remplissez le formulaire :
+   • Informations du timbre : Nom, pays, condition, année
+   • Détails de l'enchère : Prix de départ, durée, description
+   • Images : Photos de qualité du timbre
+4. Révisez et publiez votre enchère
+
+MODIFICATION D'ENCHÈRE
+----------------------
+1. Accédez à votre enchère depuis votre profil
+2. Cliquez sur "Modifier"
+3. Apportez les modifications nécessaires
+4. Sauvegardez les changements
+
+SUPPRESSION D'ENCHÈRE
+---------------------
+⚠️ ATTENTION : Action irréversible
+• Disponible uniquement pour vos propres enchères
+• Confirmation requise avant suppression
+
+================================================================================
+
+6. SYSTÈME DE FAVORIS
+======================
+
+AJOUTER AUX FAVORIS
+-------------------
+1. Consultez une enchère
+2. Cliquez sur le bouton "❤️ Favori"
+3. L'enchère apparaît dans "Mes Favoris"
+
+GESTION DES FAVORIS
+-------------------
+• Consultation : Accédez à "Mes Favoris" depuis le menu
+• Suppression : Cliquez sur "Retirer des Favoris"
+• Suivi : Recevez des notifications sur l'évolution
+
+AVANTAGES DES FAVORIS
+---------------------
+• Suivi facile des enchères intéressantes
+• Accès rapide depuis le menu principal
+• Historique de vos préférences
+
+================================================================================
+
+7. RECHERCHE ET FILTRAGE
+=========================
+
+RECHERCHE AVANCÉE
+------------------
+1. Cliquez sur "Recherche Avancée" dans le menu
+2. Utilisez les filtres disponibles :
+   • Texte : Recherche par nom de timbre
+   • Pays : Filtrage par pays d'origine
+   • Année : Période de création du timbre
+   • Condition : État de conservation
+   • Prix : Fourchette de prix (min/max)
+3. Cliquez sur "Rechercher"
+
+FILTRES DISPONIBLES
+-------------------
+• Pays d'origine : Canada, États-Unis, Royaume-Uni, etc.
+• Condition : Neuf, Très bon, Bon, Moyen
+• Prix : Définir des fourchettes personnalisées
+• Année : Périodes spécifiques ou années précises
+
+RÉSULTATS DE RECHERCHE
+----------------------
+• Affichage en grille avec informations essentielles
+• Tri par pertinence, prix, date
+• Pagination pour les résultats nombreux
+
+================================================================================
+
+8. ARCHIVES ET HISTORIQUE
+==========================
+
+ACCÈS AUX ARCHIVES
+------------------
+• Menu : "Archives" depuis la page des enchères
+• URL directe : /auctions/archives
+
+CONTENU DES ARCHIVES
+--------------------
+• Enchères terminées : Historique complet des ventes
+• Statistiques : Nombre total, valeur, offres
+• Filtres : Tri par date, prix, nombre d'offres, nom
+
+INFORMATIONS DISPONIBLES
+------------------------
+• Prix final de vente
+• Nombre total d'offres
+• Date de fin de l'enchère
+• Gagnant (si applicable)
+• Statut de l'enchère
+
+================================================================================
+
+9. GESTION DU PROFIL
+=====================
+
+ACCÈS AU PROFIL
+---------------
+1. Cliquez sur votre nom d'utilisateur en haut à droite
+2. Sélectionnez "Compte" dans le menu déroulant
+
+INFORMATIONS GÉRÉES
+-------------------
+• Données personnelles : Nom, email, informations de contact
+• Sécurité : Changement de mot de passe
+• Préférences : Paramètres de notification
+
+HISTORIQUE PERSONNEL
+--------------------
+• Enchères créées : Vos ventes et créations
+• Participation : Historique de vos offres
+• Favoris : Enchères marquées
+
+================================================================================
+
+10. COMMENTAIRES ET INTERACTIONS
+=================================
+
+SYSTÈME DE COMMENTAIRES
+-----------------------
+• Ajout : Laissez des commentaires sur les enchères
+• Évaluation : Note de 1 à 5 étoiles (optionnel)
+• Modération : Gestion des commentaires inappropriés
+
+GESTION DES COMMENTAIRES
+------------------------
+• Modification : Éditez vos propres commentaires
+• Suppression : Supprimez vos commentaires
+• Signalement : Signalez les commentaires problématiques
+
+BONNES PRATIQUES
+----------------
+• Commentaires constructifs et respectueux
+• Informations pertinentes sur les timbres
+• Respect des autres utilisateurs
+
+================================================================================
+
+11. FAQ ET DÉPANNAGE
+======================
+
+QUESTIONS FRÉQUEMMENT POSÉES
+----------------------------
+
+Q: Comment fonctionne le système d'enchères ?
+R: Chaque utilisateur peut placer une offre supérieure à la précédente. 
+   L'enchère se termine à la date spécifiée, et le plus offrant remporte 
+   le timbre.
+
+Q: Puis-je annuler une offre ?
+R: Non, une fois placée, une offre est ferme et ne peut pas être retirée. 
+   Réfléchissez bien avant d'enchérir.
+
+Q: Comment sont authentifiés les timbres ?
+R: Les timbres sont examinés par notre équipe d'experts philatéliques 
+   avant publication.
+
+Q: Quels sont les frais associés ?
+R: Consultez notre page des tarifs pour les détails sur la structure 
+   des frais.
+
+PROBLÈMES COURANTS
+------------------
+
+Mot de passe oublié
+1. Cliquez sur "Mot de passe oublié" sur la page de connexion
+2. Entrez votre adresse email
+3. Suivez le lien de réinitialisation reçu
+
+Problèmes de connexion
+1. Vérifiez que votre navigateur est à jour
+2. Effacez le cache et les cookies
+3. Vérifiez votre connexion internet
+
+Enchères qui ne se chargent pas
+1. Actualisez la page (F5)
+2. Vérifiez que JavaScript est activé
+3. Désactivez temporairement les extensions
+
+================================================================================
+
+12. INFORMATIONS TECHNIQUES
+============================
+
+PRÉREQUIS SYSTÈME
+-----------------
+• Navigateurs : Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+• Résolution : Minimum 1024x768, recommandé 1920x1080
+• Connexion : Minimum 1 Mbps, recommandé 5 Mbps
+
+COMPATIBILITÉ
+-------------
+• Desktop : Windows, macOS, Linux
+• Mobile : iOS, Android (responsive design)
+• Tablettes : Toutes tailles d'écran supportées
+
+SÉCURITÉ
+---------
+• HTTPS : Connexions sécurisées
+• Validation : Vérification des données utilisateur
+• Session : Gestion sécurisée des connexions
+
+================================================================================
+
+13. COMPTES DE TEST
+====================
+
+COMPTE ADMINISTRATEUR
+---------------------
+Nom d'utilisateur: admin
+Mot de passe: admin123
+Rôle: Administrateur
+Accès: Toutes les fonctionnalités
+
+COMPTE UTILISATEUR NORMAL
+--------------------------
+Nom d'utilisateur: user
+Mot de passe: user123
+Rôle: Utilisateur standard
+Accès: Fonctionnalités utilisateur
+
+COMPTE TEST SUPPLÉMENTAIRE
+---------------------------
+Nom d'utilisateur: test
+Mot de passe: test123
+Rôle: Utilisateur standard
+Accès: Fonctionnalités utilisateur
+
+UTILISATION DES COMPTES DE TEST
+-------------------------------
+1. Test des fonctionnalités : Utilisez ces comptes pour tester toutes 
+   les fonctionnalités
+2. Démonstrations : Parfaits pour les présentations et démonstrations
+3. Développement : Utiles pour le développement et les tests
+4. Formation : Idéaux pour former de nouveaux utilisateurs
+
+⚠️ IMPORTANT : Ces comptes sont destinés aux tests uniquement. 
+   Ne les utilisez pas pour des transactions réelles.
+
+================================================================================
+
+14. SUPPORT ET CONTACT
+=======================
+
+SUPPORT TECHNIQUE
+-----------------
+• Email : support@stampee.ca
+• Délai de réponse : Sous 24 heures ouvrables
+• Horaires : Lundi à vendredi, 9h-17h (EST)
+
+ÉQUIPE DE DÉVELOPPEMENT
+-----------------------
+• Email technique : dev@stampee.ca
+• Suivi des bugs : bugs.stampee.ca
+• Documentation API : api.stampee.ca
+
+INFORMATIONS DE CONTACT
+-----------------------
+• Téléphone : 1-800-STAMPEE
+• Adresse : Stampee Auction House, Canada
+• Site web : https://stampee.ca
+
+================================================================================
+
+15. NOTES DE VERSION
+=====================
+
+VERSION ACTUELLE
+----------------
+• Numéro : 2.0
+• Date : Décembre 2024
+• Statut : Production
+
+FONCTIONNALITÉS RÉCENTES
+-------------------------
+✓ Système de commentaires amélioré
+✓ Interface responsive optimisée
+✓ Système de favoris complet
+✓ Recherche avancée avec filtres
+✓ Archives des enchères terminées
+✓ Gestion des images améliorée
+
+PROCHAINES MISES À JOUR
+-----------------------
+🔄 Système de notifications en temps réel
+🔄 Intégration de paiements sécurisés
+🔄 Application mobile native
+🔄 Système de messagerie entre utilisateurs
+
+================================================================================
+
+16. LICENCE ET CONDITIONS
+==========================
+
+CONDITIONS D'UTILISATION
+------------------------
+• Utilisation personnelle et commerciale autorisée
+• Respect des droits d'auteur et de propriété intellectuelle
+• Conformité aux lois locales et internationales
+
+POLITIQUE DE CONFIDENTIALITÉ
+----------------------------
+• Protection des données personnelles
+• Non-partage des informations utilisateur
+• Conformité RGPD et lois de protection des données
+
+SUPPORT ET MAINTENANCE
+---------------------
+• Support technique inclus
+• Mises à jour régulières
+• Documentation maintenue à jour
+
+================================================================================
+
+PIED DE PAGE
+============
+
+Dernière mise à jour : Décembre 2024
+Version du document : 2.0
+Stampee Auction House - Tous droits réservés
+
+================================================================================
+
+FIN DU DOCUMENT
+===============

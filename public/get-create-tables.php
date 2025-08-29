@@ -3,8 +3,7 @@ require_once __DIR__ . '/../app/config/database.php';
 
 try {
     echo "<h1>Complete CREATE TABLE Statements</h1>";
-    
-    // Get all tables
+
     $stmt = $pdo->query("SHOW TABLES");
     $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
     
@@ -13,8 +12,7 @@ try {
     foreach ($tables as $table) {
         echo "<hr>";
         echo "<h3>Table: $table</h3>";
-        
-        // Get table creation SQL
+
         $stmt = $pdo->query("SHOW CREATE TABLE `$table`");
         $createTable = $stmt->fetch();
         
@@ -29,8 +27,7 @@ try {
         echo ";\n";
         echo "</textarea>";
     }
-    
-    // Generate complete SQL file content
+
     echo "<hr>";
     echo "<h2>Complete SQL File Content</h2>";
     echo "<textarea style='width: 100%; height: 400px; font-family: monospace;'>";

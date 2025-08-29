@@ -4,47 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats de Recherche - Stampee</title>
-    <link rel="stylesheet" href="/projetweb1/public/css/base.css">
-<link rel="stylesheet" href="/projetweb1/public/css/variables.css">
-<link rel="stylesheet" href="/projetweb1/public/css/utilities.css">
-<link rel="stylesheet" href="/projetweb1/public/css/product-listing.css">
-<link rel="stylesheet" href="/projetweb1/public/css/auctions.css">
-<link rel="stylesheet" href="/projetweb1/public/css/button.css">
-<link rel="stylesheet" href="/projetweb1/public/css/header.css">
-<link rel="stylesheet" href="/projetweb1/public/css/footer.css">
-<link rel="stylesheet" href="/projetweb1/public/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/product-listing.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/auctions.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/standardization.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/popup.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/projetweb2/public/img/favicon/favicon.ico" sizes="any">
+    
+    <script src="/projetweb2/public/js/popup.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="header__content">
-            <a href="/projetweb1/public/" class="header__logo-link">
-<img src="/projetweb1/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
             </a>
-            <h1 class="header__title">Stampee Auction House</h1>
+            <a href="/projetweb2/public/" class="header__title-link">
+                <h1 class="header__title">Stampee Auction House</h1>
+            </a>
             
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li><a href="/projetweb1/public/" class="header__nav-link">Accueil</a></li>
-                    <li><a href="/projetweb1/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/search" class="header__nav-link">Recherche Avancée</a></li>
                     {% if session.authenticated %}
-                        <li><a href="/projetweb1/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
-                        <li><a href="/projetweb1/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
                     {% endif %}
-                    <li><a href="#" class="header__nav-link">À propos</a></li>
-                    <li><a href="#" class="header__nav-link">Contact</a></li>
                 </ul>
             </nav>
             
+            <!-- Simple Search Bar -->
+            <div class="header__search">
+                <form class="header__search-form" action="/projetweb2/public/auctions/search" method="GET">
+                    <input type="text" name="recherche" placeholder="Rechercher des timbres..." class="header__search-input">
+                    <button type="submit" class="header__search-btn" aria-label="Rechercher">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            
             <div class="header__actions">
                 {% if session.authenticated %}
-                    <span class="header__user">Bonjour, {{ session.username }}</span>
-                    <a href="/projetweb1/public/logout" class="btn btn--secondary">Déconnexion</a>
+                    <div class="header__user-dropdown">
+                        <button class="header__user-btn" aria-label="Menu utilisateur">
+                            <span class="header__user">Bonjour, {{ session.username }}</span>
+                            <svg class="header__dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        						                        <div class="header__dropdown-menu">
+                            <a href="/projetweb2/public/profile" class="header__dropdown-item">Votre profil</a>
+                            <a href="/projetweb2/public/auctions/favorites" class="header__dropdown-item">Mes Favoris</a>
+                            <a href="/projetweb2/public/help" class="header__dropdown-item">Centre d'Aide</a>
+                            <a href="/projetweb2/public/logout" class="header__dropdown-item">Déconnexion</a>
+                        </div>
+                    </div>
                 {% else %}
-                    <a href="/projetweb1/public/login" class="btn btn--secondary">Connexion</a>
-                    <a href="/projetweb1/public/register" class="btn btn--primary">Inscription</a>
+                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
                 {% endif %}
             </div>
             
@@ -58,49 +86,54 @@
 
     <main>
         <div class="search-results">
-            <h1>Résultats de Recherche</h1>
+            {% if filters.featured == '1' %}
+                <h1>{{ filters.page_title }}</h1>
+                <p class="search-subtitle">{{ filters.page_subtitle }}</p>
+            {% else %}
+                <h1>Résultats de Recherche</h1>
+            {% endif %}
             
     
+            {% if filters.featured != '1' %}
             <div class="search-section">
-                <div class="search-container">
-                    <h3 class="search-title">Filtres de Recherche</h3>
-                    <form method="GET" action="/projetweb1/public/auctions/search" class="search-form">
-                        <div class="search-row">
-                            <div class="search-field">
-                                <input type="text" name="recherche" value="{{ filters.recherche }}" placeholder="Nom du timbre ou pays..." class="search-input">
-                            </div>
-                            <div class="search-field">
-                                <select name="pays" class="search-select">
-                                    <option value="">Tous les pays</option>
-                                    <option value="Canada" {{ filters.pays == 'Canada' ? 'selected' : '' }}>Canada</option>
-                                    <option value="États-Unis" {{ filters.pays == 'États-Unis' ? 'selected' : '' }}>États-Unis</option>
-                                    <option value="France" {{ filters.pays == 'France' ? 'selected' : '' }}>France</option>
-                                    <option value="Royaume-Uni" {{ filters.pays == 'Royaume-Uni' ? 'selected' : '' }}>Royaume-Uni</option>
-                                    <option value="Allemagne" {{ filters.pays == 'Allemagne' ? 'selected' : '' }}>Allemagne</option>
-                                    <option value="Japon" {{ filters.pays == 'Japon' ? 'selected' : '' }}>Japon</option>
-                                </select>
-                            </div>
-                            <div class="search-field">
-                                <select name="condition" class="search-select">
-                                    <option value="">Toutes les conditions</option>
-                                    <option value="Parfaite" {{ filters.condition == 'Parfaite' ? 'selected' : '' }}>Parfaite</option>
-                                    <option value="Excellente" {{ filters.condition == 'Excellente' ? 'selected' : '' }}>Excellente</option>
-                                    <option value="Bonne" {{ filters.condition == 'Bonne' ? 'selected' : '' }}>Bonne</option>
-                                    <option value="Moyenne" {{ filters.condition == 'Moyenne' ? 'selected' : '' }}>Moyenne</option>
-                                    <option value="Endommagé" {{ filters.condition == 'Endommagé' ? 'selected' : '' }}>Endommagé</option>
-                                </select>
-                            </div>
-                            <div class="search-field">
-                                <input type="number" name="prix_min" value="{{ filters.prix_min }}" placeholder="Prix min" class="search-input">
-                            </div>
-                            <div class="search-field">
-                                <input type="number" name="prix_max" value="{{ filters.prix_max }}" placeholder="Prix max" class="search-input">
-                            </div>
-                            <button type="submit" class="btn btn--primary">Filtrer</button>
+                <h3 class="search-title">Filtres de Recherche</h3>
+                <form method="GET" action="/projetweb2/public/auctions/search" class="search-form">
+                    <div class="search-row">
+                        <div class="search-field">
+                            <input type="text" name="recherche" value="{{ filters.recherche }}" placeholder="Nom du timbre ou pays..." class="search-input">
                         </div>
-                    </form>
-                </div>
+                        <div class="search-field">
+                            <select name="pays" class="search-select">
+                                <option value="">Tous les pays</option>
+                                <option value="Canada" {{ filters.pays == 'Canada' ? 'selected' : '' }}>Canada</option>
+                                <option value="États-Unis" {{ filters.pays == 'États-Unis' ? 'selected' : '' }}>États-Unis</option>
+                                <option value="France" {{ filters.pays == 'France' ? 'selected' : '' }}>France</option>
+                                <option value="Royaume-Uni" {{ filters.pays == 'Royaume-Uni' ? 'selected' : '' }}>Royaume-Uni</option>
+                                <option value="Allemagne" {{ filters.pays == 'Allemagne' ? 'selected' : '' }}>Allemagne</option>
+                                <option value="Japon" {{ filters.pays == 'Japon' ? 'selected' : '' }}>Japon</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <select name="condition" class="search-select">
+                                <option value="">Toutes les conditions</option>
+                                <option value="Parfaite" {{ filters.condition == 'Parfaite' ? 'selected' : '' }}>Parfaite</option>
+                                <option value="Excellente" {{ filters.condition == 'Excellente' ? 'selected' : '' }}>Excellente</option>
+                                <option value="Bonne" {{ filters.condition == 'Bonne' ? 'selected' : '' }}>Bonne</option>
+                                <option value="Moyenne" {{ filters.condition == 'Moyenne' ? 'selected' : '' }}>Moyenne</option>
+                                <option value="Endommagé" {{ filters.condition == 'Endommagé' ? 'selected' : '' }}>Endommagé</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <input type="number" name="prix_min" value="{{ filters.prix_min }}" placeholder="Prix min" class="search-input">
+                        </div>
+                        <div class="search-field">
+                            <input type="number" name="prix_max" value="{{ filters.prix_max }}" placeholder="Prix max" class="search-input">
+                        </div>
+                        <button type="submit" class="btn btn--primary">Filtrer</button>
+                    </div>
+                </form>
             </div>
+            {% endif %}
 
     
             <div class="results-count">
@@ -112,9 +145,14 @@
                 <div class="auctions-grid">
                     {% for auction in auctions %}
                     <div class="auction-card">
+                        <div class="auction-card__header">
+                            <h3 class="auction-card__title">{{ auction.nom }}</h3>
+                            <p class="auction-card__country">{{ auction.pays_origine }}</p>
+                            <p class="auction-card__condition">{{ auction.condition }}</p>
+                        </div>
                         <div class="auction-card__image">
                             {% if auction.image_principale %}
-                                <img src="/projetweb1/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
+                                <img src="/projetweb2/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
                             {% else %}
                                 <div class="auction-card__no-image">
                                     <span class="no-image-icon">🖼️</span>
@@ -126,34 +164,48 @@
                             {% endif %}
                         </div>
                         <div class="auction-card__content">
-                            <h3 class="auction-card__title">{{ auction.nom }}</h3>
-                            <p class="auction-card__country">{{ auction.pays_origine }}</p>
-                            <p class="auction-card__condition">{{ auction.condition }}</p>
-                            <p class="auction-card__price">
-                                <span class="price-label">{% if auction.prix_actuel and auction.prix_actuel > 0 %}Prix Actuel{% else %}Prix de Départ{% endif %}</span>
-                                <span class="current-price">
-                                    {% if auction.prix_actuel and auction.prix_actuel > 0 %}{{ auction.prix_actuel }}{% else %}{{ auction.prix_plancher }}{% endif %} $
-                                    {% if auction.prix_actuel and auction.prix_actuel > auction.prix_plancher %}
-                                        <span class="price-indicator">↑</span>
+                            <div class="auction-card__info">
+                                <div class="info-item">
+                                    <span class="info-label">{% if auction.prix_actuel and auction.prix_actuel > 0 %}Prix Actuel{% else %}Prix de Départ{% endif %}:</span>
+                                    <span class="current-price">
+                                        {% if auction.prix_actuel and auction.prix_actuel > 0 %}{{ auction.prix_actuel }}{% else %}{{ auction.prix_plancher }}{% endif %} $
+                                        {% if auction.prix_actuel and auction.prix_actuel > auction.prix_plancher %}
+                                            <span class="price-indicator">↑</span>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Prix de départ:</span>
+                                    <span class="starting-price">{{ auction.prix_plancher }} $</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Se termine dans:</span>
+                                    <span class="countdown-timer-card" data-end="{{ auction.date_fin }}">
+                                        <span class="countdown-days">--</span>j
+                                        <span class="countdown-hours">--</span>h
+                                        <span class="countdown-minutes">--</span>m
+                                    </span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Offres:</span>
+                                    {% if auction.nombre_offres > 0 %}
+                                        <span class="bid-count active">{{ auction.nombre_offres }} offre(s)</span>
+                                    {% else %}
+                                        <span class="bid-count">Aucune offre</span>
                                     {% endif %}
-                                </span>
-                                <span class="starting-price">Prix de départ: {{ auction.prix_plancher }} $</span>
-                            </p>
-                            <p class="auction-card__ending">Se termine le {{ auction.date_fin|date('d/m/Y H:i') }}</p>
-                            <p class="auction-card__bids">
-                                {% if auction.nombre_offres > 0 %}
-                                    <span class="bid-count active">{{ auction.nombre_offres }} offre(s)</span>
-                                {% else %}
-                                    <span class="bid-count">Aucune offre</span>
-                                {% endif %}
-                            </p>
+                                </div>
+                            </div>
                             <div class="auction-card__actions">
-                                <a href="/projetweb1/public/auctions/{{ auction.id_enchere }}" class="btn btn--primary">Voir l'Enchère</a>
-                                {% if session.authenticated and session.user_id == auction.id_membre %}
-                                    <div class="owner-actions">
-                                        <a href="/projetweb1/public/auctions/{{ auction.id_enchere }}/edit" class="btn btn--secondary">✏️ Modifier</a>
-                                        <button class="btn btn--danger delete-auction-btn" data-auction-id="{{ auction.id_enchere }}">🗑️ Supprimer</button>
-                                    </div>
+                                <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--primary">Voir l'Enchère</a>
+                                
+                                {% if session.authenticated and (session.user_id == auction.id_membre or session.user_id == 20) %}
+                                    <button class="btn btn--secondary auction-actions-btn" 
+                                            data-auction-id="{{ auction.id_enchere }}"
+                                            data-auction-name="{{ auction.nom }}"
+                                            data-is-owner="{{ session.user_id == auction.id_membre ? '1' : '0' }}"
+                                            data-is-admin="{{ session.user_id == 20 ? '1' : '0' }}">
+                                        ⚙️ Actions
+                                    </button>
                                 {% endif %}
                             </div>
                         </div>
@@ -163,7 +215,7 @@
             {% else %}
                 <div class="empty-state">
                     <p>Aucune enchère ne correspond à vos critères de recherche.</p>
-                    <p>Essayez de modifier vos filtres ou <a href="/projetweb1/public/auctions">voir toutes les enchères</a>.</p>
+                    <p>Essayez de modifier vos filtres ou <a href="/projetweb2/public/auctions">voir toutes les enchères</a>.</p>
                 </div>
             {% endif %}
         </div>
@@ -174,10 +226,10 @@
             <div class="footer__section">
                 <h4 class="footer__subtitle">Liens Rapides</h4>
                 <ul class="footer__links">
-                    <li><a href="/projetweb1/public/" class="footer__link">Accueil</a></li>
-<li><a href="/projetweb1/public/auctions" class="footer__link">Enchères</a></li>
-<li><a href="/projetweb1/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
-<li><a href="/projetweb1/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
                 </ul>
             </div>
             
@@ -221,6 +273,33 @@
                     this.classList.toggle('active');
                 });
             }
+            
+            // User dropdown functionality
+            const userDropdown = document.querySelector('.header__user-dropdown');
+            const userBtn = document.querySelector('.header__user-btn');
+            const dropdownMenu = document.querySelector('.header__dropdown-menu');
+            
+            if (userDropdown && userBtn && dropdownMenu) {
+                // Toggle dropdown on click for mobile
+                userBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!userDropdown.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+                
+                // Handle window resize to reset dropdown state
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
 
             // Delete auction functionality
             const deleteButtons = document.querySelectorAll('.delete-auction-btn');
@@ -229,7 +308,7 @@
                     const auctionId = this.dataset.auctionId;
                     
                     if (confirm('Êtes-vous sûr de vouloir supprimer cette enchère ? Cette action est irréversible.')) {
-                        fetch(`/projetweb1/public/auctions/${auctionId}/delete`, {
+                        fetch(`/projetweb2/public/auctions/${auctionId}/delete`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -251,6 +330,115 @@
                         });
                     }
                 });
+            });
+            
+            // Auction actions popup functionality
+            const auctionActionsBtns = document.querySelectorAll('.auction-actions-btn');
+            auctionActionsBtns.forEach(button => {
+                button.addEventListener('click', function() {
+                    const auctionId = this.dataset.auctionId;
+                    const auctionName = this.dataset.auctionName;
+                    const isOwner = this.dataset.isOwner === '1';
+                    const isAdmin = this.dataset.isAdmin === '1';
+                    
+                    // Create popup content based on user permissions
+                    let popupContent = `<div class="auction-actions-popup">`;
+                    popupContent += `<h4>Actions pour "${auctionName}"</h4>`;
+                    popupContent += `<div class="popup-actions-grid">`;
+                    
+                    if (isOwner) {
+                        popupContent += `
+                            <a href="/projetweb2/public/auctions/${auctionId}/edit" class="btn btn--secondary popup-action-btn">
+                                ✏️ Modifier l'Enchère
+                            </a>
+                            <button class="btn btn--danger popup-action-btn delete-auction-popup-btn" data-auction-id="${auctionId}">
+                                🗑️ Supprimer l'Enchère
+                            </button>
+                        `;
+                    }
+                    
+                    if (isAdmin) {
+                        popupContent += `
+                            <button class="btn btn--danger popup-action-btn admin-delete-auction-btn" data-auction-id="${auctionId}" title="Admin: Supprimer cette enchère">
+                                🗑️ Admin Delete
+                            </button>
+                        `;
+                    }
+                    
+                    popupContent += `</div></div>`;
+                    
+                    // Create and show the popup
+                    const popup = window.PopupSystem.createPopup({
+                        title: 'Actions de l\'Enchère',
+                        content: popupContent,
+                        size: 'small',
+                        closeable: true
+                    });
+                    
+                    // Add event listeners for popup buttons
+                    const deleteBtn = popup.querySelector('.delete-auction-popup-btn');
+                    const adminDeleteBtn = popup.querySelector('.admin-delete-auction-btn');
+                    
+                    if (deleteBtn) {
+                        deleteBtn.addEventListener('click', function() {
+                            if (confirm('Êtes-vous sûr de vouloir supprimer cette enchère ? Cette action est irréversible.')) {
+                                deleteAuction(auctionId);
+                                window.PopupSystem.closePopup(popup);
+                            }
+                        });
+                    }
+                    
+                    if (adminDeleteBtn) {
+                        adminDeleteBtn.addEventListener('click', function() {
+                            if (confirm('Êtes-vous sûr de vouloir supprimer cette enchère en tant qu\'administrateur ? Cette action est irréversible.')) {
+                                deleteAuction(auctionId);
+                                window.PopupSystem.closePopup(popup);
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Countdown timer functionality for auction cards
+            const countdownTimers = document.querySelectorAll('.countdown-timer-card');
+            countdownTimers.forEach(function(timer) {
+                const endDateStr = timer.dataset.end;
+                const endDate = new Date(endDateStr).getTime();
+                
+                function updateCardCountdown() {
+                    const now = new Date().getTime();
+                    const distance = endDate - now;
+                    
+                    if (distance < 0) {
+                        // Auction has ended
+                        timer.innerHTML = '<span class="auction-ended">Enchère terminée</span>';
+                        return;
+                    }
+                    
+                    // Calculate time units
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    // Update display
+                    timer.querySelector('.countdown-days').textContent = days;
+                    timer.querySelector('.countdown-hours').textContent = hours.toString().padStart(2, '0');
+                    timer.querySelector('.countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+                    
+                    // Add urgency styling for last 24 hours
+                    if (distance < 24 * 60 * 60 * 1000) {
+                        timer.classList.add('urgent');
+                    }
+                    
+                    // Add critical styling for last 1 hour
+                    if (distance < 60 * 60 * 1000) {
+                        timer.classList.add('critical');
+                    }
+                }
+                
+                // Update countdown every minute
+                updateCardCountdown();
+                setInterval(updateCardCountdown, 60000);
             });
         });
     </script>

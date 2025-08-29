@@ -1,7 +1,7 @@
 <?php
-namespace App\Providers;
+namespace App\providers;
 
-use App\Models\MembreModel;
+use App\models\MembreModel;
 
 class Validator
 {

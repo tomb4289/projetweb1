@@ -1,8 +1,8 @@
 <?php
-namespace App\Controllers;
+namespace App\controllers;
 
-use App\Providers\Auth;
-use App\Models\AuctionModel;
+use App\providers\Auth;
+use App\models\AuctionModel;
 use PDO;
 use Twig\Environment;
 
@@ -34,6 +34,13 @@ class HomeController extends BaseController
             'session' => $_SESSION ?? [],
             'featuredAuctions' => $featuredAuctions,
             'endingSoonAuctions' => $endingSoonAuctions
+        ]);
+    }
+
+    public function help()
+    {
+        echo $this->twig->render('help/index.twig', [
+            'session' => $_SESSION ?? []
         ]);
     }
 }

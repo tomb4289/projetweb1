@@ -4,44 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer une Enchère - Stampee</title>
-    <link rel="stylesheet" href="/projetweb1/public/css/base.css">
-<link rel="stylesheet" href="/projetweb1/public/css/variables.css">
-<link rel="stylesheet" href="/projetweb1/public/css/forms.css">
-<link rel="stylesheet" href="/projetweb1/public/css/header.css">
-<link rel="stylesheet" href="/projetweb1/public/css/button.css">
-<link rel="stylesheet" href="/projetweb1/public/css/footer.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/forms.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/standardization.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/projetweb2/public/img/favicon/favicon.ico" sizes="any">
 </head>
 <body>
     <header class="header">
         <div class="header__content">
-            <a href="/projetweb1/public/" class="header__logo-link">
-<img src="/projetweb1/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
             </a>
-            <h1 class="header__title">Stampee Auction House</h1>
+            <a href="/projetweb2/public/" class="header__title-link">
+                <h1 class="header__title">Stampee Auction House</h1>
+            </a>
             
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li><a href="/projetweb1/public/" class="header__nav-link">Accueil</a></li>
-                    <li><a href="/projetweb1/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/search" class="header__nav-link">Recherche Avancée</a></li>
                     {% if session.authenticated %}
-                        <li><a href="/projetweb1/public/auctions/favorites" class="header__nav-link">Mes Favoris</a></li>
-                        <li><a href="/projetweb1/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
                     {% endif %}
-                    <li><a href="#" class="header__nav-link">À propos</a></li>
-                    <li><a href="#" class="header__nav-link">Contact</a></li>
                 </ul>
             </nav>
             
+            <!-- Simple Search Bar -->
+            <div class="header__search">
+                <form class="header__search-form" action="/projetweb2/public/auctions/search" method="GET">
+                    <input type="text" name="recherche" placeholder="Rechercher des timbres..." class="header__search-input">
+                    <button type="submit" class="header__search-btn" aria-label="Rechercher">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            
             <div class="header__actions">
                 {% if session.authenticated %}
-                    <span class="header__user">Bonjour, {{ session.username }}</span>
-                    <a href="/projetweb1/public/logout" class="btn btn--secondary">Déconnexion</a>
+                    <div class="header__user-dropdown">
+                        <button class="header__user-btn" aria-label="Menu utilisateur">
+                            <span class="header__user">Bonjour, {{ session.username }}</span>
+                            <svg class="header__dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        						                        <div class="header__dropdown-menu">
+                            <a href="/projetweb2/public/profile" class="header__dropdown-item">Votre profil</a>
+                            <a href="/projetweb2/public/auctions/favorites" class="header__dropdown-item">Mes Favoris</a>
+                            <a href="/projetweb2/public/help" class="header__dropdown-item">Centre d'Aide</a>
+                            <a href="/projetweb2/public/logout" class="header__dropdown-item">Déconnexion</a>
+                        </div>
+                    </div>
                 {% else %}
-                    <a href="/projetweb1/public/login" class="btn btn--secondary">Connexion</a>
-                    <a href="/projetweb1/public/register" class="btn btn--primary">Inscription</a>
+                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
                 {% endif %}
             </div>
             
@@ -53,129 +78,135 @@
         </div>
     </header>
 
-    <div class="form-container">
-        <h1>Créer une Nouvelle Enchère</h1>
-        
-        {% if error %}
-            <div class="error-message">
-                <strong>Erreur :</strong> {{ error }}
-                {% if app.debug %}
-                    <br><small>Détails techniques: Vérifiez la console du navigateur pour plus d'informations</small>
-                {% endif %}
-            </div>
-        {% endif %}
-        
-        {% if success %}
-            <div class="success-message">
-                <strong>Succès :</strong> {{ success }}
-            </div>
-        {% endif %}
-        
-        <form method="POST" enctype="multipart/form-data" class="auction-form" novalidate>
-            <div class="form-section">
-                <h3>Informations du Timbre</h3>
-                
-                <div class="form-group">
-                    <label for="nom">Nom du Timbre <span class="required">*</span></label>
-                    <input type="text" id="nom" name="nom" required minlength="2" maxlength="255" 
-                           placeholder="Ex: Timbre commémoratif de la Tour Eiffel">
-                </div>
-                
-                <div class="form-group">
-                    <label for="pays_origine">Pays d'Origine <span class="required">*</span></label>
-                    <select id="pays_origine" name="pays_origine" required>
-                        <option value="">Sélectionner un pays</option>
-                        <option value="Canada">Canada</option>
-                        <option value="États-Unis">États-Unis</option>
-                        <option value="France">France</option>
-                        <option value="Royaume-Uni">Royaume-Uni</option>
-                        <option value="Allemagne">Allemagne</option>
-                        <option value="Japon">Japon</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="date_creation">Année de Création</label>
-                    <input type="number" id="date_creation" name="date_creation" min="1800" max="2024" 
-                           placeholder="Ex: 1950">
-                </div>
-                
-                <div class="form-group">
-                    <label for="condition">Condition</label>
-                    <select id="condition" name="condition">
-                        <option value="Bonne">Bonne</option>
-                        <option value="Excellente">Excellente</option>
-                        <option value="Parfaite">Parfaite</option>
-                        <option value="Moyenne">Moyenne</option>
-                        <option value="Endommagé">Endommagé</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="couleurs">Couleurs</label>
-                    <input type="text" id="couleurs" name="couleurs" maxlength="100" 
-                           placeholder="ex: Rouge, Bleu, Vert">
-                </div>
-                
-                <div class="form-group">
-                    <label for="tirage">Tirage</label>
-                    <input type="number" id="tirage" name="tirage" min="1" max="999999999" 
-                           placeholder="ex: 1000000">
-                </div>
-                
-                <div class="form-group">
-                    <label for="dimensions">Dimensions</label>
-                    <input type="text" id="dimensions" name="dimensions" maxlength="50" 
-                           placeholder="ex: 25x30mm">
-                </div>
-                
-                <div class="form-group checkbox-group">
-                    <label>
-                        <input type="checkbox" id="certifie" name="certifie">
-                        Timbre certifié
-                    </label>
-                </div>
+    <div class="create-auction-page">
+        <div class="auction-form">
+            <div class="auction-header">
+                <h1 class="auction-title">Créer une Enchère</h1>
+                <div class="auction-subtitle">Ajoutez un nouveau timbre à l'enchère</div>
             </div>
             
-            <div class="form-section">
-                <h3>Détails de l'Enchère</h3>
-                
-                <div class="form-group">
-                    <label for="prix_plancher">Prix de Départ <span class="required">*</span></label>
-                    <input type="number" id="prix_plancher" name="prix_plancher" step="0.01" min="0.01" max="1000000" required 
-                           placeholder="Ex: 25.50">
+            {% if error %}
+                <div class="error-message">
+                    <strong>Erreur :</strong> {{ error }}
+                    {% if app.debug %}
+                        <br><small>Détails techniques: Vérifiez la console du navigateur pour plus d'informations</small>
+                    {% endif %}
                 </div>
-                
-                <div class="form-group">
-                    <label for="date_fin">Date de Fin <span class="required">*</span></label>
-                    <input type="datetime-local" id="date_fin" name="date_fin" required>
-                </div>
-            </div>
+            {% endif %}
             
-            <div class="form-section">
-                <h3>Images du Timbre</h3>
-                
-                <div class="form-group">
-                    <label for="images">Images du Timbre</label>
-                    <input type="file" id="images" name="images[]" multiple accept="image/*">
-                    <small class="form-help">
-                        Vous pouvez sélectionner jusqu'à 5 images. La première sera l'image principale.<br>
-                        <strong>Limites :</strong> Taille maximum 5MB par image. Formats acceptés : JPG, PNG, GIF, WebP.
-                    </small>
+            {% if success %}
+                <div class="success-message">
+                    <strong>Succès :</strong> {{ success }}
                 </div>
-            </div>
+            {% endif %}
             
-            <div class="form-actions">
-                <button type="submit" class="btn btn--primary">Créer l'Enchère</button>
-                <a href="/projetweb1/public/auctions" class="btn btn--secondary">Annuler</a>
-            </div>
-        </form>
+            <form method="POST" enctype="multipart/form-data" class="auction-form-content" novalidate>
+                <div class="form-section">
+                    <h3>Informations du Timbre</h3>
+                    
+                    <div class="form-group">
+                        <label for="nom">Nom du Timbre <span class="required">*</span></label>
+                        <input type="text" id="nom" name="nom" required minlength="2" maxlength="255" 
+                               placeholder="Ex: Timbre commémoratif de la Tour Eiffel">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pays_origine">Pays d'Origine <span class="required">*</span></label>
+                        <select id="pays_origine" name="pays_origine" required>
+                            <option value="">Sélectionner un pays</option>
+                            <option value="Canada">Canada</option>
+                            <option value="États-Unis">États-Unis</option>
+                            <option value="France">France</option>
+                            <option value="Royaume-Uni">Royaume-Uni</option>
+                            <option value="Allemagne">Allemagne</option>
+                            <option value="Japon">Japon</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date_creation">Année de Création</label>
+                        <input type="number" id="date_creation" name="date_creation" min="1800" max="2024" 
+                               placeholder="Ex: 1950">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="condition">Condition</label>
+                        <select id="condition" name="condition">
+                            <option value="">Sélectionner une condition</option>
+                            <option value="Bonne">Bonne</option>
+                            <option value="Excellente">Excellente</option>
+                            <option value="Parfaite">Parfaite</option>
+                            <option value="Moyenne">Moyenne</option>
+                            <option value="Endommagé">Endommagé</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="couleurs">Couleurs</label>
+                        <input type="text" id="couleurs" name="couleurs" maxlength="100" 
+                               placeholder="ex: Rouge, Bleu, Vert">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tirage">Tirage</label>
+                        <input type="number" id="tirage" name="tirage" min="1" max="999999999" 
+                               placeholder="ex: 1000000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dimensions">Dimensions</label>
+                        <input type="text" id="dimensions" name="dimensions" maxlength="50" 
+                               placeholder="ex: 25x30mm">
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="certifie" name="certifie">
+                            Timbre certifié
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Détails de l'Enchère</h3>
+                    
+                    <div class="form-group">
+                        <label for="prix_plancher">Prix de Départ <span class="required">*</span></label>
+                        <input type="number" id="prix_plancher" name="prix_plancher" step="0.01" min="0.01" max="1000000" required 
+                               placeholder="Ex: 25.50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date_fin">Date de Fin <span class="required">*</span></label>
+                        <input type="datetime-local" id="date_fin" name="date_fin" required>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Images du Timbre</h3>
+                    
+                    <div class="form-group">
+                        <label for="images">Images du Timbre</label>
+                        <input type="file" id="images" name="images[]" multiple accept="image/*">
+                        <small class="form-help">
+                            Vous pouvez sélectionner jusqu'à 5 images. La première sera l'image principale.<br>
+                            <strong>Limites :</strong> Taille maximum 5MB par image. Formats acceptés : JPG, PNG, GIF, WebP.
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn--primary">Créer l'Enchère</button>
+                    <a href="/projetweb2/public/auctions" class="btn btn--secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const imageInput = document.getElementById('images');
-            const form = document.querySelector('.auction-form');
+            const form = document.querySelector('.auction-form-content');
             const nomInput = document.getElementById('nom');
             const paysInput = document.getElementById('pays_origine');
             const prixInput = document.getElementById('prix_plancher');
@@ -452,6 +483,33 @@
                     navToggle.classList.toggle('active');
                 });
             }
+            
+            // User dropdown functionality
+            const userDropdown = document.querySelector('.header__user-dropdown');
+            const userBtn = document.querySelector('.header__user-btn');
+            const dropdownMenu = document.querySelector('.header__dropdown-menu');
+            
+            if (userDropdown && userBtn && dropdownMenu) {
+                // Toggle dropdown on click for mobile
+                userBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!userDropdown.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+                
+                // Handle window resize to reset dropdown state
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
 
@@ -460,30 +518,30 @@
             <div class="footer__section">
                 <h4 class="footer__subtitle">Liens Rapides</h4>
                 <ul class="footer__links">
-                    <li><a href="/projetweb1/public/" class="footer__link">Accueil</a></li>
-<li><a href="/projetweb1/public/auctions" class="footer__link">Enchères</a></li>
-<li><a href="/projetweb1/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
-<li><a href="/projetweb1/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
                 </ul>
             </div>
             
             <div class="footer__section">
                 <h4 class="footer__subtitle">Support</h4>
                 <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Centre d'Aide</a></li>
-                    <li><a href="#" class="footer__link">Contactez-nous</a></li>
-                    <li><a href="#" class="footer__link">FAQ</a></li>
-                    <li><a href="#" class="footer__link">Guide des Enchères</a></li>
+                    <li><a href="/projetweb2/public/help" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="/projetweb2/public/help#contact" class="footer__link">Contactez-nous</a></li>
+                    <li><a href="/projetweb2/public/help#faq" class="footer__link">FAQ</a></li>
+                    <li><a href="/projetweb2/public/help#auctions" class="footer__link">Guide des Enchères</a></li>
                 </ul>
             </div>
             
             <div class="footer__section">
                 <h4 class="footer__subtitle">Légal</h4>
                 <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Conditions d'utilisation</a></li>
-                    <li><a href="#" class="footer__link">Politique de confidentialité</a></li>
-                    <li><a href="#" class="footer__link">Règles des enchères</a></li>
-                    <li><a href="#" class="footer__link">Protection des données</a></li>
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="/projetweb2/public/help#auctions" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Protection des données</a></li>
                 </ul>
             </div>
         </div>

@@ -2,6 +2,8 @@
 
 session_start();
 
+date_default_timezone_set('America/New_York'); 
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $config = require_once __DIR__ . '/../config.php';
@@ -40,7 +42,7 @@ $twig = new Environment($loader, [
 ]);
 
 $uri = $_SERVER['REQUEST_URI'];
-$basePath = '/projetweb1/public';
+$basePath = '/projetweb2/public';
 
 if (strpos($uri, $basePath) === 0) {
     $uri = substr($uri, strlen($basePath));
@@ -52,7 +54,7 @@ if ($uri === '') {
     $uri = '/';
 }
 
-if ($config['app']['debug']) {
+if ($config['app']['debug'] && !str_starts_with($uri, '/comments/')) {
     echo "<!-- Debug: URI = '$uri', Method = '{$_SERVER['REQUEST_METHOD']}' -->\n";
 }
 

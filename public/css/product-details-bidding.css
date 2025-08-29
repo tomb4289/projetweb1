@@ -97,7 +97,6 @@
   color: #fff;
 }
 
-/* Countdown Timer Styles */
 .auction-countdown {
   margin: 20px 0;
   padding: 15px;
@@ -133,7 +132,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Remove colons for cleaner alignment */
 .countdown-timer span:not(:last-child)::after {
   display: none;
 }
@@ -141,6 +139,11 @@
 .countdown-timer.urgent {
   color: var(--action-contrast);
   animation: pulse 1s infinite;
+}
+
+.countdown-timer.critical {
+  color: #d32f2f;
+  animation: pulse 0.5s infinite;
 }
 
 @keyframes pulse {
@@ -181,7 +184,6 @@
   margin-left: 2px;
 }
 
-/* Enhanced Bidding Form Styles */
 .bid-form {
   background: var(--neutral-light);
   padding: 20px;
@@ -228,7 +230,6 @@
   font-style: italic;
 }
 
-/* Auction Details Styles */
 .auction-details-info {
   background: var(--neutral-light);
   padding: 20px;
@@ -264,7 +265,6 @@
   font-weight: 600;
 }
 
-/* Bids History Styles */
 .bids-history {
   background: var(--neutral-light);
   padding: 20px;
@@ -311,7 +311,6 @@
   font-style: italic;
 }
 
-/* Price Section Styles */
 .price-section {
   background: var(--neutral-light);
   padding: 20px;

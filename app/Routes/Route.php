@@ -1,5 +1,5 @@
 <?php
-namespace App\Routes;
+namespace App\routes;
 
 class Route {
     private static $routes = [];
@@ -12,8 +12,21 @@ class Route {
         self::$routes['POST'][$uri] = $callback;
     }
 
+    public static function put($uri, $callback) {
+        self::$routes['PUT'][$uri] = $callback;
+    }
+
+    public static function delete($uri, $callback) {
+        self::$routes['DELETE'][$uri] = $callback;
+    }
+
     public static function dispatch($pdo, $twig, $config, $uri, $method) {
-        if ($config['app']['debug']) {
+        
+        if ($method === 'POST' && isset($_POST['_method'])) {
+            $method = strtoupper($_POST['_method']);
+        }
+        
+        if ($config['app']['debug'] && !str_starts_with($uri, '/comments/')) {
             echo "<!-- Debug: Available routes for $method: " . implode(', ', array_keys(self::$routes[$method] ?? [])) . " -->\n";
         }
 
@@ -34,7 +47,7 @@ class Route {
 
         http_response_code(404);
         echo '404 Not Found';
-        if ($config['app']['debug']) {
+        if ($config['app']['debug'] && !str_starts_with($uri, '/comments/')) {
             echo "<br>URI: $uri<br>Method: $method<br>Available routes: " . implode(', ', array_keys(self::$routes[$method] ?? []));
         }
     }
@@ -51,17 +64,24 @@ class Route {
         $controller = new $controllerClass($pdo, $twig, $config);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (method_exists($controller, $methodName)) {
-                $reflection = new \ReflectionMethod($controller, $methodName);
-                $params = $reflection->getParameters();
+            $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+
+            if (strpos($contentType, 'application/json') !== false) {
+                $controller->$methodName(...$arguments);
+            } else {
                 
-                if (!empty($params) && !empty($_POST)) {
-                    $controller->$methodName($_POST);
+                if (method_exists($controller, $methodName)) {
+                    $reflection = new \ReflectionMethod($controller, $methodName);
+                    $params = $reflection->getParameters();
+                    
+                    if (!empty($params) && !empty($_POST)) {
+                        $controller->$methodName($_POST);
+                    } else {
+                        $controller->$methodName(...$arguments);
+                    }
                 } else {
                     $controller->$methodName(...$arguments);
                 }
-            } else {
-                $controller->$methodName(...$arguments);
             }
         } else {
             $controller->$methodName(...$arguments);

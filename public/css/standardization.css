@@ -1,0 +1,449 @@
+/* ========================================
+   STAMPEE DESIGN STANDARDIZATION
+   ======================================== */
+
+/* ========================================
+   TITLE STANDARDS
+   ======================================== */
+
+.page-title,
+.profile-header h1,
+.search-results h1,
+.archives-header h1,
+.help-header h1,
+.about-header h1 {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: var(--principal-blue) !important;
+    font-family: "Playfair Display", serif !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+}
+
+.section-title,
+.discovery-hub__title,
+.featured-auctions .section-title,
+.ending-soon .section-title,
+.archives-section h2,
+.help-section h2,
+.about-section h2 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: var(--principal-blue) !important;
+    font-family: "Playfair Display", serif !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+}
+
+.subsection-title,
+.discovery-card__title,
+.search-title,
+.profile-tabs h3,
+.help-tabs h3,
+.about-tabs h3 {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: var(--principal-blue) !important;
+    font-family: "Lato", sans-serif !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.card-title,
+.auction-card__title,
+.stat-card h4,
+.help-card h4,
+.about-card h4 {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    color: var(--principal-blue) !important;
+    font-family: "Lato", sans-serif !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* ========================================
+   BACKGROUND STANDARDS
+   ======================================== */
+
+.page-background,
+.profile-page,
+.search-results,
+.archives-page,
+.help-page,
+.about-page,
+.create-auction-page,
+body {
+    background: var(--neutral-light) !important;
+}
+
+.main-content-container,
+.profile-container,
+.archives-container,
+.help-container,
+.about-container,
+.auctions-page {
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    margin: 2rem auto !important;
+    padding: 2rem !important;
+    max-width: 1200px !important;
+}
+
+.search-results {
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    margin: 2rem auto !important;
+    padding: 2rem !important;
+    max-width: 1200px !important;
+}
+
+.homepage {
+    background: white !important;
+    border-radius: 0 0 16px 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    border-top: none !important;
+    margin: 0 auto 2rem auto !important;
+    padding: 0 !important;
+    max-width: 1200px !important;
+}
+
+.help-hero,
+.about-hero {
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    margin: 2rem auto !important;
+    padding: 2rem !important;
+    max-width: 1200px !important;
+}
+
+.help-toc,
+.about-story,
+.about-expertise,
+.about-vision {
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    margin: 2rem auto !important;
+    padding: 2rem !important;
+    max-width: 1200px !important;
+}
+
+.help-content {
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    margin: 2rem auto !important;
+    padding: 2rem !important;
+    max-width: 1200px !important;
+}
+
+.hero-section {
+    background: white !important;
+    border-radius: 12px !important;
+}
+
+.section-background,
+.discovery-hub,
+.featured-auctions,
+.ending-soon,
+.archives-section,
+.help-section,
+.about-section {
+    background: white !important;
+    padding: 2rem 0 !important;
+    margin: 2rem 0 !important;
+}
+
+.search-section {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.card-background,
+.discovery-card,
+.auction-card,
+.stat-card,
+.help-card,
+.about-card,
+.search-form {
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    overflow: hidden !important;
+}
+
+.welcome-background,
+.welcome-message,
+.profile-subtitle,
+.search-subtitle,
+.archives-subtitle,
+.help-subtitle,
+.about-subtitle {
+    background: var(--extra-light-blue) !important;
+    color: var(--principal-blue) !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(0, 51, 102, 0.1) !important;
+    margin-bottom: 2rem !important;
+}
+
+.homepage .welcome-message {
+    margin: 0 !important;
+    margin-bottom: 2rem !important;
+    border-radius: 0 0 12px 12px !important;
+    border-top: none !important;
+    position: relative !important;
+    top: 0 !important;
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    box-shadow: none !important;
+    padding: 35px 20px !important;
+    background: var(--extra-light-blue) !important;
+    border: 1px solid rgba(0, 51, 102, 0.1) !important;
+    border-top: none !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+}
+
+.homepage .btn--secondary {
+    background: var(--principal-blue) !important;
+    color: white !important;
+    border: 1px solid var(--principal-blue) !important;
+}
+
+.homepage .btn--secondary:hover {
+    background: var(--secondary-blue) !important;
+    border-color: var(--secondary-blue) !important;
+}
+
+/* ========================================
+   SUBTITLE STANDARDS
+   ======================================== */
+
+.page-subtitle,
+.profile-subtitle,
+.search-subtitle,
+.archives-subtitle,
+.help-subtitle,
+.about-subtitle,
+.discovery-hub__subtitle {
+    font-size: 1.2rem !important;
+    color: var(--neutral-dark) !important;
+    font-family: "Lato", sans-serif !important;
+    margin: 0 0 1.5rem 0 !important;
+    text-align: center !important;
+    max-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* ========================================
+   DESCRIPTION STANDARDS
+   ======================================== */
+
+.card-description,
+.discovery-card__description,
+.auction-card__description,
+.help-card__description,
+.about-card__description {
+    color: var(--neutral-dark) !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    font-family: "Lato", sans-serif !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* ========================================
+   STATISTICS STANDARDS
+   ======================================== */
+
+.stat-number,
+.stat-card .stat-number,
+.profile-stats .stat-number {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: var(--principal-blue) !important;
+    font-family: "Lato", sans-serif !important;
+    margin-bottom: 0.5rem !important;
+    display: block !important;
+}
+
+.stat-label,
+.stat-card .stat-label,
+.profile-stats .stat-label {
+    font-size: 0.9rem !important;
+    color: var(--neutral-dark) !important;
+    font-family: "Lato", sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* ========================================
+   RESPONSIVE STANDARDS
+   ======================================== */
+
+@media (max-width: 768px) {
+    .page-title,
+    .profile-header h1,
+    .search-results h1,
+    .archives-header h1,
+    .help-header h1,
+    .about-header h1 {
+        font-size: 2rem !important;
+    }
+    
+    .section-title,
+    .discovery-hub__title,
+    .featured-auctions .section-title,
+    .ending-soon .section-title,
+    .archives-section h2,
+    .help-section h2,
+    .about-section h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    .subsection-title,
+    .discovery-card__title,
+    .search-title,
+    .profile-tabs h3,
+    .help-tabs h3,
+    .about-tabs h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .card-title,
+    .auction-card__title,
+    .stat-card h4,
+    .help-card h4,
+    .about-card h4 {
+        font-size: 1.1rem !important;
+    }
+    
+    .page-subtitle,
+    .profile-subtitle,
+    .search-subtitle,
+    .archives-subtitle,
+    .help-subtitle,
+    .about-subtitle,
+    .discovery-hub__subtitle {
+        font-size: 1.1rem !important;
+    }
+    
+    .stat-number,
+    .stat-card .stat-number,
+    .profile-stats .stat-number {
+        font-size: 2rem !important;
+    }
+    
+    .main-content-container,
+    .profile-container,
+    .search-container,
+    .archives-container,
+    .help-container,
+    .about-container,
+    .auctions-page,
+    .help-hero,
+    .about-hero,
+    .help-toc,
+    .about-story,
+    .about-expertise,
+    .about-vision,
+    .help-content {
+        margin: 1rem !important;
+        padding: 1.5rem !important;
+    }
+    
+    .homepage {
+        margin: 0 1rem 1rem 1rem !important;
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title,
+    .profile-header h1,
+    .search-results h1,
+    .archives-header h1,
+    .help-header h1,
+    .about-header h1 {
+        font-size: 1.75rem !important;
+    }
+    
+    .section-title,
+    .discovery-hub__title,
+    .featured-auctions .section-title,
+    .ending-soon .section-title,
+    .archives-section h2,
+    .help-section h2,
+    .about-section h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .subsection-title,
+    .discovery-card__title,
+    .search-title,
+    .profile-tabs h3,
+    .help-tabs h3,
+    .about-tabs h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    .card-title,
+    .auction-card__title,
+    .stat-card h4,
+    .help-card h4,
+    .about-card h4 {
+        font-size: 1rem !important;
+    }
+    
+    .page-subtitle,
+    .profile-subtitle,
+    .search-subtitle,
+    .archives-subtitle,
+    .help-subtitle,
+    .about-subtitle,
+    .discovery-hub__subtitle {
+        font-size: 1rem !important;
+    }
+    
+    .stat-number,
+    .stat-card .stat-number,
+    .profile-stats .stat-number {
+        font-size: 1.75rem !important;
+    }
+    
+    .main-content-container,
+    .profile-container,
+    .search-container,
+    .archives-container,
+    .help-container,
+    .about-container,
+    .auctions-page,
+    .help-hero,
+    .about-hero,
+    .help-toc,
+    .about-story,
+    .about-expertise,
+    .about-vision,
+    .help-content {
+        margin: 0.5rem !important;
+        padding: 1rem !important;
+    }
+    
+    .homepage {
+        margin: 0 0.5rem 0.5rem 0.5rem !important;
+        padding: 1rem !important;
+    }
+}

@@ -1,12 +1,12 @@
 <?php
-namespace App\Controllers;
+namespace App\controllers;
 
 use PDO;
 use Twig\Environment;
-use App\Models\AuctionModel;
-use App\Models\TimbreModel;
-use App\Models\OffreModel;
-use App\Models\FavorisModel;
+use App\models\AuctionModel;
+use App\models\TimbreModel;
+use App\models\OffreModel;
+use App\models\FavorisModel;
 
 class AuctionController extends BaseController
 {
@@ -41,10 +41,18 @@ class AuctionController extends BaseController
             'condition' => $_GET['condition'] ?? null,
             'prix_min' => $_GET['prix_min'] ?? null,
             'prix_max' => $_GET['prix_max'] ?? null,
-            'recherche' => $_GET['recherche'] ?? null
+            'recherche' => $_GET['recherche'] ?? null,
+            'featured' => $_GET['featured'] ?? null
         ];
 
-        $auctions = $this->auctionModel->searchAuctions($filters);
+        if ($filters['featured'] == '1') {
+            $auctions = $this->auctionModel->getFeaturedAuctions();
+            
+            $filters['page_title'] = "Coups de Cœur du Lord";
+            $filters['page_subtitle'] = "Les enchères sélectionnées personnellement par Lord Reginald Stampee III";
+        } else {
+            $auctions = $this->auctionModel->searchAuctions($filters);
+        }
         
         if (isset($_GET['ajax'])) {
             header('Content-Type: application/json');
@@ -96,7 +104,7 @@ class AuctionController extends BaseController
         
         if (!isset($_SESSION['user_id'])) {
             error_log("User not logged in, redirecting to login");
-            header('Location: /projetweb1/public/login');
+            header('Location: /projetweb2/public/login');
             return;
         }
 
@@ -203,8 +211,8 @@ class AuctionController extends BaseController
                 error_log("No images to save for timbre ID: $timbreId");
             }
 
-            error_log("Auction creation completed successfully. Redirecting to: /projetweb1/public/auctions/$auctionId");
-            header('Location: /projetweb1/public/auctions/' . $auctionId);
+            error_log("Auction creation completed successfully. Redirecting to: /projetweb2/public/auctions/$auctionId");
+            header('Location: /projetweb2/public/auctions/' . $auctionId);
             exit;
 
         } catch (\Exception $e) {
@@ -549,7 +557,10 @@ class AuctionController extends BaseController
                 throw new \Exception('Cette enchère n\'est plus active');
             }
 
-            if (strtotime($auction['date_fin']) < time()) {
+            $endTimestamp = strtotime($auction['date_fin']);
+            $currentTimestamp = time();
+            
+            if ($endTimestamp < $currentTimestamp) {
                 throw new \Exception('Cette enchère est terminée');
             }
 
@@ -630,7 +641,7 @@ class AuctionController extends BaseController
     public function favorites()
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: /projetweb1/public/login');
+            header('Location: /projetweb2/public/login');
             return;
         }
 
@@ -645,7 +656,7 @@ class AuctionController extends BaseController
     public function edit($id)
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: /projetweb1/public/login');
+            header('Location: /projetweb2/public/login');
             return;
         }
 
@@ -720,7 +731,7 @@ class AuctionController extends BaseController
                 }
             }
 
-            header('Location: /projetweb1/public/auctions/' . $auctionId);
+            header('Location: /projetweb2/public/auctions/' . $auctionId);
             exit;
 
         } catch (\Exception $e) {
@@ -913,6 +924,35 @@ class AuctionController extends BaseController
         } catch (\Exception $e) {
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
+    }
+
+    public function archives()
+    {
+        $archives = $this->auctionModel->getEndedAuctions();
+        
+        $totalBids = 0;
+        $totalValue = 0;
+        $years = [];
+        
+        foreach ($archives as $auction) {
+            $totalBids += $auction['nombre_offres'] ?? 0;
+            $totalValue += $auction['prix_actuel'] ?? $auction['prix_plancher'] ?? 0;
+            
+            $endYear = date('Y', strtotime($auction['date_fin']));
+            if (!in_array($endYear, $years)) {
+                $years[] = $endYear;
+            }
+        }
+        
+        rsort($years);
+        
+        echo $this->twig->render('auctions/archives.twig', [
+            'archives' => $archives,
+            'totalBids' => $totalBids,
+            'totalValue' => number_format($totalValue, 2),
+            'years' => $years,
+            'session' => $_SESSION ?? []
+        ]);
     }
 
     private function isAdmin($userId)

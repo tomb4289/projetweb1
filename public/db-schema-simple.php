@@ -1,11 +1,10 @@
 <?php
-// Simple Database Schema Extractor for Diagram Creation
+
 require_once __DIR__ . '/../app/config/database.php';
 
 try {
     echo "<h1>Stampee Database Schema - Diagram Ready</h1>";
-    
-    // Get all tables
+
     $stmt = $pdo->query("SHOW TABLES");
     $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
     
@@ -14,8 +13,7 @@ try {
     foreach ($tables as $table) {
         echo "<div style='border: 2px solid #ddd; margin: 20px 0; padding: 15px; border-radius: 8px;'>";
         echo "<h3 style='color: #2c5aa0;'>📋 Table: $table</h3>";
-        
-        // Get table structure
+
         $stmt = $pdo->query("DESCRIBE `$table`");
         $columns = $stmt->fetchAll();
         
@@ -49,8 +47,7 @@ try {
         }
         echo "</table>";
         echo "</div>";
-        
-        // Get foreign keys
+
         $stmt = $pdo->query("
             SELECT 
                 COLUMN_NAME,
@@ -76,8 +73,7 @@ try {
         
         echo "</div>";
     }
-    
-    // Generate ERD summary
+
     echo "<hr>";
     echo "<h2>🎯 ERD Summary for Diagram Tools</h2>";
     echo "<div style='background-color: #d1ecf1; padding: 20px; border-radius: 8px; border-left: 5px solid #17a2b8;'>";
@@ -114,8 +110,7 @@ try {
     }
     
     echo "</div>";
-    
-    // Copy-paste section for diagram tools
+
     echo "<h2>📋 Copy-Paste for Diagram Tools</h2>";
     echo "<div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; border: 1px solid #dee2e6;'>";
     echo "<h3>Table Names:</h3>";

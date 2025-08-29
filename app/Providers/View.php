@@ -1,14 +1,14 @@
 <?php
-namespace App\Providers;
+namespace App\providers;
 
 class View
 {
     static public function redirect(string $uri)
     {
         if (strpos($uri, '/') === 0) {
-                    header("Location: /projetweb1/public" . $uri);
-    } else {
-        header("Location: /projetweb1/public/" . $uri);
+            header("Location: /projetweb2/public" . $uri);
+        } else {
+            header("Location: /projetweb2/public/" . $uri);
         }
         exit;
     }

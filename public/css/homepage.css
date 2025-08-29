@@ -1,11 +1,50 @@
-/* Homepage Styles */
+
 .homepage {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Hero Section */
+.welcome-message {
+  text-align: center;
+  background: #e3f2fd;
+  padding: 35px 20px;
+  margin-bottom: 35px;
+  border-radius: 12px;
+  width: 100%;
+  line-height: 1.5;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #bbdefb;
+}
+
+.welcome-message h2 {
+  font-size: 1.4em;
+  margin: 0;
+  color: var(--principal-blue);
+  line-height: 1.2;
+}
+
+.welcome-message p {
+  font-size: 0.9em;
+  color: var(--neutral-dark);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.welcome-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.welcome-actions .btn {
+  padding: 4px 12px;
+  font-size: 0.8em;
+  line-height: 1.2;
+}
+
 .hero-section {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -68,7 +107,253 @@
   transform: scale(1.05);
 }
 
-/* Section Headers */
+.discover-section {
+  margin-bottom: 80px;
+  background: linear-gradient(135deg, var(--neutral-light) 0%, var(--extra-light-blue) 100%);
+  border-radius: 12px;
+  padding: 60px 40px;
+}
+
+.discover-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.discover-content {
+  text-align: left;
+}
+
+.discover-title {
+  font-size: 2.5em;
+  color: var(--principal-blue);
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+.discover-description {
+  font-size: 1.2em;
+  color: var(--neutral-dark);
+  line-height: 1.6;
+  margin-bottom: 2em;
+}
+
+.discover-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.discover-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.discover-stamp {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.discover-stamp:hover {
+  transform: scale(1.05);
+}
+
+.discovery-hub {
+  margin-bottom: 80px;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, var(--extra-light-blue) 0%, var(--neutral-light) 100%);
+  border-radius: 16px;
+}
+
+.discovery-hub__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.discovery-hub__title {
+  font-size: 3em;
+  color: var(--principal-blue);
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+  font-family: 'Playfair Display', serif;
+}
+
+.discovery-hub__subtitle {
+  font-size: 1.3em;
+  color: var(--neutral-dark);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.discovery-hub__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.discovery-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.discovery-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.discovery-card__image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--neutral-light) 0%, var(--extra-light-blue) 100%);
+}
+
+.discovery-stamp {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.discovery-card:hover .discovery-stamp {
+  transform: scale(1.1);
+}
+
+.discovery-card__live-indicator {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(220, 38, 38, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.discovery-card__search-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: var(--principal-blue);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.discovery-card__content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.discovery-card__title {
+  font-size: 1.5em;
+  color: var(--principal-blue);
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+  font-family: 'Playfair Display', serif;
+}
+
+.discovery-card__description {
+  color: var(--neutral-dark);
+  line-height: 1.6;
+  margin-bottom: 1.5em;
+  flex-grow: 1;
+}
+
+.discovery-card__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.discovery-card__actions .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.discovery-hub__cta {
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  padding: 60px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.discovery-hub__cta-title {
+  font-size: 2.5em;
+  color: var(--principal-blue);
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+  font-family: 'Playfair Display', serif;
+}
+
+.discovery-hub__cta-description {
+  font-size: 1.2em;
+  color: var(--neutral-dark);
+  line-height: 1.6;
+  margin-bottom: 2em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.discovery-hub__cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .section-header {
   text-align: center;
   margin-bottom: 40px;
@@ -94,125 +379,34 @@
   border-top: 1px solid var(--secondary-blue);
 }
 
-/* Featured Auctions */
 .featured-auctions {
   margin-bottom: 80px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
 }
 
-.featured-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 40px;
-}
-
-.featured-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-.featured-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.featured-card--large {
-  grid-row: span 2;
-}
-
-.featured-card__image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.featured-card--large .featured-card__image {
-  height: 300px;
-}
-
-.featured-card__content {
-  padding: 20px;
-}
-
-.featured-card__badge {
-  background: var(--action-contrast);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.85em;
-  font-weight: bold;
-  position: absolute;
-  top: 12px;
-  left: 12px;
-}
-
-.featured-card__title {
-  font-size: 1.3em;
-  color: var(--principal-blue);
-  margin-bottom: 0.5em;
-}
-
-.featured-card--large .featured-card__title {
-  font-size: 1.6em;
-}
-
-.featured-card__description {
-  color: var(--neutral-dark);
-  margin-bottom: 1em;
-  line-height: 1.5;
-}
-
-.featured-card__bid {
-  margin-bottom: 1em;
-}
-
-.featured-card__bid-label {
-  color: var(--neutral-dark);
-  font-size: 0.95em;
-}
-
-.featured-card__bid-amount {
-  color: var(--action-contrast);
-  font-size: 1.4em;
-  font-weight: bold;
-  display: block;
-}
-
-.featured-card__time {
-  margin-bottom: 1.5em;
-  padding: 10px;
-  background: var(--extra-light-blue);
-  border-radius: 6px;
-}
-
-.featured-card__time-label {
-  color: var(--neutral-dark);
-  font-size: 0.9em;
-}
-
-.featured-card__time-value {
-  color: #d32f2f;
-  font-weight: bold;
-  display: block;
-}
-
-/* Current Auctions */
-.current-auctions {
+.ending-soon {
   margin-bottom: 80px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
 }
 
 .auctions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+  justify-items: center;
 }
 
-/* About Lord Section */
+.current-auctions {
+  margin-bottom: 80px;
+}
+
 .about-lord {
   margin-bottom: 80px;
   background: var(--extra-light-blue);
@@ -270,7 +464,6 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Recent News */
 .recent-news {
   margin-bottom: 80px;
 }
@@ -343,32 +536,9 @@
   color: var(--principal-blue);
 }
 
-/* Welcome Message */
-.welcome-message {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, var(--principal-blue) 0%, var(--secondary-blue) 100%);
-  color: white;
-  margin-bottom: 0;
-}
-
-.welcome-message h2 {
-  color: white;
-  font-size: 2.5em;
-  margin-bottom: 10px;
-  font-family: "Playfair Display", serif;
-}
-
-.welcome-message p {
-  font-size: 1.2em;
-  margin: 0;
-  opacity: 0.9;
-}
-
-/* Responsive welcome message */
 @media (max-width: 768px) {
   .welcome-message h2 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
   
   .welcome-message p {
@@ -376,9 +546,14 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
   .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+  }
+  
+  .discover-container {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 30px;
@@ -388,16 +563,10 @@
     font-size: 2.5em;
   }
   
-  .featured-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+  .discover-title {
+    font-size: 2em;
   }
-  
-  .featured-card--large {
-    grid-row: span 1;
-    grid-column: span 2;
-  }
-  
+
   .about-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -423,22 +592,22 @@
     padding: 40px 20px;
   }
   
+  .discover-section {
+    padding: 40px 20px;
+  }
+  
   .hero-title {
     font-size: 2em;
+  }
+  
+  .discover-title {
+    font-size: 1.8em;
   }
   
   .section-title {
     font-size: 2em;
   }
-  
-  .featured-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .featured-card--large {
-    grid-column: span 1;
-  }
-  
+
   .auctions-grid {
     grid-template-columns: 1fr;
   }
@@ -454,4 +623,122 @@
   .news-card--featured {
     grid-column: span 1;
   }
+}
+
+@media (max-width: 768px) {
+  .discovery-hub {
+    padding: 60px 20px;
+  }
+  
+  .discovery-hub__title {
+    font-size: 2.5em;
+  }
+  
+  .discovery-hub__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .discovery-hub__cta {
+    padding: 40px 20px;
+  }
+  
+  .discovery-hub__cta-title {
+    font-size: 2em;
+  }
+  
+  .discovery-hub__cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .discovery-hub__cta-actions .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-auctions,
+  .ending-soon {
+    padding: 0 1rem;
+    margin-bottom: 60px;
+  }
+  
+  .auctions-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .section-header {
+    margin-bottom: 30px;
+  }
+  
+  .section-title {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-auctions,
+  .ending-soon {
+    padding: 0 0.5rem;
+    margin-bottom: 40px;
+  }
+  
+  .auctions-grid {
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.8em;
+  }
+}
+
+.featured-auctions .auction-card,
+.ending-soon .auction-card {
+  width: 100%;
+  max-width: 400px;
+  min-height: 500px;
+}
+
+.featured-auctions .auction-card__image,
+.ending-soon .auction-card__image {
+  height: 200px;
+}
+
+.featured-auctions .auction-card__content,
+.ending-soon .auction-card__content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.featured-auctions .auction-card__actions,
+.ending-soon .auction-card__actions {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.featured-auctions .auction-card__title,
+.ending-soon .auction-card__title {
+  margin: 0 !important;
+  color: white !important;
+  background: #1e3a8a !important;
+  padding: 1rem 1.5rem !important;
+  text-align: center !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  display: block !important;
+  margin-left: -1.5rem !important;
+  margin-right: -1.5rem !important;
+  padding-top: 1.5rem !important;
+  margin-top: -1.5rem !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  font-family: "Lato", sans-serif !important;
+  position: relative !important;
+  z-index: 5 !important;
 }

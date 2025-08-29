@@ -47,8 +47,7 @@
   .product-listing__heading {
     font-size: 1.5em;
   }
-  
-  /* Auction Cards Medium Screen Styles */
+
   .auctions-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
@@ -83,8 +82,7 @@
   .stamp-card__bid-amount {
     font-size: 1em;
   }
-  
-  /* Bidding System Mobile Styles */
+
   .countdown-timer {
     flex-direction: column;
     gap: 10px;
@@ -116,8 +114,7 @@
   .current-price {
     font-size: 2em;
   }
-  
-  /* Auction Cards Mobile Styles */
+
   .auctions-grid {
     grid-template-columns: 1fr;
     gap: 1rem;

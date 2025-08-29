@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archives des Enchères Passées - Stampee</title>
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/variables.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/utilities.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/product-listing.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/auctions.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/standardization.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/responsive.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/popup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/projetweb2/public/img/favicon/favicon.ico" sizes="any">
+    <style>
+        /* Archive-specific auction card adjustments */
+        .auction-card__results {
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .auction-card__status {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #6c757d;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: "Lato", sans-serif;
+        }
+
+        /* Enhanced button animations */
+        .btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Enhanced comment animations */
+        .comment-item {
+            animation: slideInUp 0.4s ease-out;
+            transition: all 0.2s ease;
+        }
+
+        .comment-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Popup actions styling */
+        .popup-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        .popup-confirmation p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .popup-alert p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header__content">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            </a>
+            <a href="/projetweb2/public/" class="header__title-link">
+                <h1 class="header__title">Stampee Auction House</h1>
+            </a>
+            
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/search" class="header__nav-link">Recherche Avancée</a></li>
+                    {% if session.authenticated %}
+                        <li><a href="/projetweb2/public/auctions/create" class="header__nav-link">Créer une Enchère</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            
+            <!-- Simple Search Bar -->
+            <div class="header__search">
+                <form class="header__search-form" action="/projetweb2/public/auctions/search" method="GET">
+                    <input type="text" name="recherche" placeholder="Rechercher des timbres..." class="header__search-input">
+                    <button type="submit" class="header__search-btn" aria-label="Rechercher">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="header__actions">
+                {% if session.authenticated %}
+                    <div class="header__user-dropdown">
+                        <button class="header__user-btn" aria-label="Menu utilisateur">
+                            <span class="header__user">Bonjour, {{ session.username }}</span>
+                            <svg class="header__dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="header__dropdown-menu">
+                            <a href="/projetweb2/public/profile" class="header__dropdown-item">Votre profil</a>
+                            <a href="/projetweb2/public/auctions/favorites" class="header__dropdown-item">Mes Favoris</a>
+                            <a href="/projetweb2/public/help" class="header__dropdown-item">Centre d'Aide</a>
+                            <a href="/projetweb2/public/logout" class="header__dropdown-item">Déconnexion</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                    <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
+                {% endif %}
+            </div>
+            
+            <button class="header__nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="archives-page">
+            <div class="archives-header">
+                <h1>Archives des Enchères Passées</h1>
+                <p class="archives-subtitle">Découvrez l'historique complet de nos enchères terminées</p>
+            </div>
+
+            {% if archives %}
+                <div class="archives-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">{{ archives|length }}</span>
+                        <span class="stat-label">Enchères Terminées</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ totalBids }}</span>
+                        <span class="stat-label">Offres Totales</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ totalValue }} $</span>
+                        <span class="stat-label">Valeur Totale</span>
+                    </div>
+                </div>
+
+                <div class="archives-filters">
+                    <div class="filter-group">
+                        <label for="sort-by">Trier par:</label>
+                        <select id="sort-by" class="filter-select">
+                            <option value="date">Date de fin</option>
+                            <option value="price">Prix final</option>
+                            <option value="bids">Nombre d'offres</option>
+                            <option value="name">Nom</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="year-filter">Année:</label>
+                        <select id="year-filter" class="filter-select">
+                            <option value="">Toutes les années</option>
+                            {% for year in years %}
+                                <option value="{{ year }}">{{ year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="auctions-grid">
+                    {% for auction in archives %}
+                    <div class="auction-card" data-year="{{ auction.date_fin|date('Y') }}" data-price="{{ auction.prix_final }}" data-bids="{{ auction.nombre_offres }}" data-name="{{ auction.nom|lower }}">
+                        <div class="auction-card__header">
+                            <h3 class="auction-card__title">{{ auction.nom }}</h3>
+                            <p class="auction-card__country">{{ auction.pays_origine }}</p>
+                            <p class="auction-card__condition">{{ auction.condition }}</p>
+                        </div>
+                        <div class="auction-card__image">
+                            {% if auction.image_principale %}
+                                <img src="/projetweb2/{{ auction.image_principale }}" alt="{{ auction.nom }}" class="auction-image">
+                            {% else %}
+                                <div class="auction-card__no-image">
+                                    <span class="no-image-icon">🖼️</span>
+                                    <span class="no-image-text">Aucune image</span>
+                                </div>
+                            {% endif %}
+                            <div class="auction-card__status">
+                                <span class="status-badge status--ended">Terminée</span>
+                            </div>
+                        </div>
+                        <div class="auction-card__content">
+                            
+                            <div class="auction-card__results">
+                                <div class="result-item">
+                                    <span class="result-label">Prix Final:</span>
+                                    <span class="final-price">{{ auction.prix_final }} $</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Offres:</span>
+                                    <span class="bid-count">{{ auction.nombre_offres }}</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Terminée le:</span>
+                                    <span class="end-date">{{ auction.date_fin|date('d/m/Y H:i') }}</span>
+                                </div>
+                                {% if auction.gagnant %}
+                                <div class="result-item">
+                                    <span class="result-label">Gagnant:</span>
+                                    <span class="winner">{{ auction.gagnant }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="auction-card__actions">
+                                <a href="/projetweb2/public/auctions/{{ auction.id_enchere }}" class="btn btn--secondary">Voir les Détails</a>
+                                <button class="btn btn--outline show-comments-btn" data-auction-id="{{ auction.id_enchere }}" data-auction-name="{{ auction.nom }}">Commentaires</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-archives">
+                    <div class="empty-icon">📚</div>
+                    <h3>Aucune archive disponible</h3>
+                    <p>Les enchères terminées apparaîtront ici une fois qu'elles seront archivées.</p>
+                    <a href="/projetweb2/public/auctions" class="btn btn--primary">Voir les Enchères Actives</a>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <script src="/projetweb2/public/js/popup.js"></script>
+    <script>
+        // Global variables and functions
+        let currentAuctionId = null;
+        let loadCommentsFunction = null;
+
+        // Global functions for comment actions
+        function editComment(commentId, currentContent, currentRating) {
+            const newContent = prompt('Modifier votre commentaire:', currentContent);
+            if (newContent === null || newContent.trim() === '') return;
+            
+            const newRating = prompt('Modifier votre note (1-5, ou laissez vide):', currentRating);
+            if (newRating === null) return;
+            
+            const rating = newRating.trim() === '' ? null : parseInt(newRating);
+            if (rating !== null && (rating < 1 || rating > 5)) {
+                window.NotificationSystem.error('La note doit être entre 1 et 5');
+                return;
+            }
+
+            const commentData = {
+                contenu: newContent.trim(),
+                note: rating
+            };
+
+            fetch(`/projetweb2/public/comments/${commentId}/update`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(commentData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Reload comments in current popup
+                    const activePopup = document.querySelector('.popup-overlay.active');
+                    if (activePopup && loadCommentsFunction) {
+                        loadCommentsFunction(currentAuctionId, activePopup);
+                    }
+                    window.NotificationSystem.success('Commentaire modifié avec succès !');
+                } else {
+                    window.NotificationSystem.error('Erreur: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                window.NotificationSystem.error('Erreur lors de la modification du commentaire');
+            });
+        }
+
+        function deleteComment(commentId) {
+                    window.PopupSystem.confirm({
+            title: 'Confirmation',
+            message: 'Êtes-vous sûr de vouloir supprimer ce commentaire ?',
+            confirmText: 'Supprimer',
+            cancelText: 'Annuler',
+            onConfirm: () => {
+                    fetch(`/projetweb2/public/comments/${commentId}/delete`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Reload comments in current popup
+                            const activePopup = document.querySelector('.popup-overlay.active');
+                            if (activePopup && loadCommentsFunction) {
+                                loadCommentsFunction(currentAuctionId, activePopup);
+                            }
+                            window.NotificationSystem.success('Commentaire supprimé avec succès !');
+                        } else {
+                            window.NotificationSystem.error('Erreur: ' + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        window.NotificationSystem.error('Erreur lors de la suppression du commentaire');
+                    });
+                }
+            });
+        }
+
+        function loadComments(auctionId, popup) {
+            fetch(`/projetweb2/public/comments/${auctionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayComments(data.comments, data.averageRating, data.commentCount, popup);
+                                    } else {
+                    console.error('Error loading comments:', data.error);
+                    window.NotificationSystem.error('Erreur lors du chargement des commentaires');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                window.NotificationSystem.error('Erreur lors du chargement des commentaires');
+            });
+        }
+
+        function displayComments(comments, averageRating, commentCount, popup) {
+            console.log('displayComments called with:', { comments, averageRating, commentCount, popup });
+            
+            let html = '';
+            
+            if (commentCount > 0) {
+                html += `<div class="comments-summary">
+                    <div class="rating-summary">
+                        <span class="average-rating">${averageRating}/5</span>
+                        <span class="comment-count">(${commentCount} commentaire${commentCount > 1 ? 's' : ''})</span>
+                    </div>
+                </div>`;
+            }
+            
+            if (comments.length > 0) {
+                comments.forEach(comment => {
+                    const isOwner = comment.id_membre == {{ session.user_id ?? 'null' }};
+                    html += `
+                    <div class="comment-item" data-comment-id="${comment.id}">
+                        <div class="comment-header">
+                            <span class="comment-author">${comment.nom_utilisateur}</span>
+                            <span class="comment-date">${new Date(comment.date_creation).toLocaleDateString('fr-FR')}</span>
+                            ${comment.note ? `<span class="comment-rating">${'⭐'.repeat(comment.note)}</span>` : ''}
+                            ${isOwner ? `
+                                <div class="comment-actions">
+                                    <button class="btn btn--small btn--outline edit-comment-btn" onclick="editComment(${comment.id}, '${comment.contenu.replace(/'/g, "\\'")}', ${comment.note || 'null'})">Modifier</button>
+                                    <button class="btn btn--small btn--danger delete-comment-btn" onclick="deleteComment(${comment.id})">Supprimer</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="comment-content">
+                            <p>${comment.contenu}</p>
+                        </div>
+                    </div>`;
+                });
+            } else {
+                html += '<div class="no-comments"><p>Aucun commentaire pour le moment. Soyez le premier à en laisser un !</p></div>';
+            }
+            
+            // Add comment form if user is authenticated
+            {% if session.authenticated %}
+            html += `
+            <div class="comment-form">
+                <h4>Ajouter un commentaire</h4>
+                <form class="comment-form__form" id="comment-form">
+                    <div class="form-group">
+                        <label for="comment-content">Votre commentaire</label>
+                        <textarea id="comment-content" name="content" rows="4" placeholder="Partagez votre expérience avec cette enchère..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-rating">Note (optionnel)</label>
+                        <select id="comment-rating" name="rating">
+                            <option value="">Aucune note</option>
+                            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                            <option value="4">⭐⭐⭐⭐ Très bien</option>
+                            <option value="3">⭐⭐⭐ Bien</option>
+                            <option value="2">⭐⭐ Moyen</option>
+                            <option value="1">⭐ Décevant</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Publier le commentaire</button>
+                </form>
+            </div>`;
+            {% else %}
+            html += `
+            <div class="comment-login-prompt">
+                <p>Connectez-vous pour laisser un commentaire</p>
+                <a href="/projetweb2/public/login" class="btn btn--secondary">Se connecter</a>
+            </div>`;
+            {% endif %}
+            
+            console.log('Generated HTML:', html);
+            
+            // Update popup content
+            window.PopupSystem.updateContent(popup, html);
+            
+            // Add form submission handler
+            const commentForm = popup.querySelector('#comment-form');
+            if (commentForm) {
+                commentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const content = this.querySelector('textarea[name="content"]').value;
+                    const rating = this.querySelector('select[name="rating"]').value;
+                    
+                    submitComment(currentAuctionId, content, rating, this, popup);
+                });
+            }
+        }
+
+        function submitComment(auctionId, content, rating, form, popup) {
+            const commentData = {
+                id_enchere: auctionId,
+                contenu: content,
+                note: rating || null
+            };
+
+            fetch('/projetweb2/public/comments/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(commentData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Clear form
+                    form.reset();
+                    
+                    // Reload comments
+                    loadComments(auctionId, popup);
+                    
+                    // Show success message
+                    window.NotificationSystem.success('Commentaire ajouté avec succès !');
+                } else {
+                    window.NotificationSystem.error('Erreur: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                window.NotificationSystem.error('Erreur lors de l\'ajout du commentaire');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile navigation toggle
+            const navToggle = document.querySelector('.header__nav-toggle');
+            const navList = document.querySelector('.header__nav-list');
+            
+            if (navToggle && navList) {
+                navToggle.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+
+            // User dropdown functionality
+            const userDropdown = document.querySelector('.header__user-dropdown');
+            const userBtn = document.querySelector('.header__user-btn');
+            const dropdownMenu = document.querySelector('.header__dropdown-menu');
+            
+            if (userDropdown && userBtn && dropdownMenu) {
+                userBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!userDropdown.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Archives filtering and sorting
+            const sortSelect = document.getElementById('sort-by');
+            const yearFilter = document.getElementById('year-filter');
+            const archiveCards = document.querySelectorAll('.auction-card');
+
+            function sortAndFilter() {
+                const sortBy = sortSelect.value;
+                const yearFilterValue = yearFilter.value;
+                
+                // Filter by year
+                archiveCards.forEach(card => {
+                    const cardYear = card.dataset.year;
+                    if (yearFilterValue === '' || cardYear === yearFilterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Sort the visible cards
+                const visibleCards = Array.from(archiveCards).filter(card => 
+                    card.style.display !== 'none'
+                );
+
+                visibleCards.sort((a, b) => {
+                    let aValue, bValue;
+                    
+                    switch(sortBy) {
+                        case 'date':
+                            aValue = new Date(a.querySelector('.end-date').textContent);
+                            bValue = new Date(b.querySelector('.end-date').textContent);
+                            return bValue - aValue; // Most recent first
+                        case 'price':
+                            aValue = parseFloat(a.dataset.price);
+                            bValue = parseFloat(b.dataset.price);
+                            return bValue - aValue; // Highest price first
+                        case 'bids':
+                            aValue = parseInt(a.dataset.bids);
+                            bValue = parseInt(b.dataset.bids);
+                            return bValue - aValue; // Most bids first
+                        case 'name':
+                            aValue = a.dataset.name;
+                            bValue = b.dataset.name;
+                            return aValue.localeCompare(bValue); // Alphabetical
+                        default:
+                            return 0;
+                    }
+                });
+
+                // Reorder in DOM
+                const grid = document.querySelector('.auctions-grid');
+                visibleCards.forEach(card => grid.appendChild(card));
+            }
+
+            if (sortSelect && yearFilter) {
+                sortSelect.addEventListener('change', sortAndFilter);
+                yearFilter.addEventListener('change', sortAndFilter);
+            }
+
+            // Enhanced Comments Popup System using PopupSystem
+            // Store the loadComments function reference globally
+            loadCommentsFunction = loadComments;
+
+            // Show comments popup
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('show-comments-btn')) {
+                    const auctionId = e.target.dataset.auctionId;
+                    const auctionName = e.target.dataset.auctionName;
+                    
+                    currentAuctionId = auctionId;
+                    
+                    // Create popup with loading state
+                    const popup = window.PopupSystem.createPopup({
+                        title: `Commentaires - ${auctionName}`,
+                        content: `
+                            <div class="popup-loading">
+                                <div class="popup-loading-spinner"></div>
+                                <p>Chargement des commentaires...</p>
+                            </div>
+                        `,
+                        size: 'large',
+                        onOpen: function() {
+                            loadComments(auctionId, this);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Liens Rapides</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/create" class="footer__link">Créer une Enchère</a></li>
+                    <li><a href="/projetweb2/public/auctions/favorites" class="footer__link">Mes Favoris</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Support</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/help" class="footer__link">Centre d'Aide</a></li>
+                    <li><a href="/projetweb2/public/help#contact" class="footer__link">Contactez-nous</a></li>
+                    <li><a href="/projetweb2/public/help#faq" class="footer__link">FAQ</a></li>
+                    <li><a href="/projetweb2/public/help#auctions" class="footer__link">Guide des Enchères</a></li>
+                    <li><a href="/projetweb2/public/about" class="footer__link">À propos de Lord Reginald</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                <h4 class="footer__subtitle">Légal</h4>
+                <ul class="footer__links">
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Conditions d'utilisation</a></li>
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Politique de confidentialité</a></li>
+                    <li><a href="/projetweb2/public/help#auctions" class="footer__link">Règles des enchères</a></li>
+                    <li><a href="/projetweb2/public/help#legal" class="footer__link">Protection des données</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © 2024 Stampee Auction House. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App\models;
 
 use PDO;
 
@@ -212,10 +212,49 @@ class AuctionModel
         return $stmt->fetchAll();
     }
 
+    public function getEndedAuctions()
+    {
+        $sql = "SELECT e.*, t.*, m.nom_utilisateur as vendeur_nom,
+                       COALESCE((SELECT MAX(montant) FROM offre o WHERE o.id_enchere = e.id_enchere), e.prix_plancher) as prix_final,
+                       (SELECT COUNT(*) FROM offre o WHERE o.id_enchere = e.id_enchere) as nombre_offres,
+                       (SELECT chemin FROM images i WHERE i.id_timbre = t.id_timbre ORDER BY i.est_principale DESC, i.id_image ASC LIMIT 1) as image_principale,
+                       (SELECT m2.nom_utilisateur FROM offre o2 
+                        JOIN membre m2 ON o2.id_membre = m2.id_membre 
+                        WHERE o2.id_enchere = e.id_enchere 
+                        ORDER BY o2.montant DESC, o2.date_offre ASC 
+                        LIMIT 1) as gagnant
+                FROM enchere e
+                JOIN timbre t ON e.id_timbre = t.id_timbre
+                JOIN membre m ON e.id_membre = m.id_membre
+                WHERE e.date_fin < NOW()
+                ORDER BY e.date_fin DESC";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function toggleLordFavorite($auctionId)
     {
         $sql = "UPDATE enchere SET coup_de_coeur_lord = NOT coup_de_coeur_lord WHERE id_enchere = :id";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([':id' => $auctionId]);
+    }
+
+    public function getAuctionsByMember(int $memberId): array
+    {
+        $sql = "SELECT e.*, t.*, m.nom_utilisateur as vendeur_nom,
+                       COALESCE((SELECT MAX(montant) FROM offre o WHERE o.id_enchere = e.id_enchere), 0) as prix_actuel,
+                       (SELECT COUNT(*) FROM offre o WHERE o.id_enchere = e.id_enchere) as nombre_offres,
+                       (SELECT chemin FROM images i WHERE i.id_timbre = t.id_timbre ORDER BY i.est_principale DESC, i.id_image ASC LIMIT 1) as image_principale
+                FROM enchere e
+                JOIN timbre t ON e.id_timbre = t.id_timbre
+                JOIN membre m ON e.id_membre = m.id_membre
+                WHERE e.id_membre = :member_id
+                ORDER BY e.date_debut DESC";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':member_id' => $memberId]);
+        return $stmt->fetchAll();
     }
 }

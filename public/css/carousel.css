@@ -1,4 +1,4 @@
-/* Image Carousel Styles */
+
 .image-carousel {
     position: relative;
     width: 100%;
@@ -30,10 +30,14 @@
     align-items: center;
     justify-content: center;
     background: #fff;
+    
+    z-index: 1;
 }
 
 .carousel-slide.active {
     opacity: 1;
+    
+    z-index: 2;
 }
 
 .carousel-slide img {
@@ -42,9 +46,13 @@
     object-fit: contain;
     border-radius: 8px;
     background: #fff;
+    
+    pointer-events: auto;
+    position: relative;
+    z-index: 3;
+    cursor: zoom-in;
 }
 
-/* Navigation Arrows */
 .carousel-nav {
     position: absolute;
     top: 50%;
@@ -84,7 +92,6 @@
     right: 16px;
 }
 
-/* Indicators */
 .carousel-indicators {
     position: absolute;
     bottom: 20px;
@@ -116,7 +123,6 @@
     transform: scale(1.3);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .image-carousel {
         max-width: 100%;
@@ -170,7 +176,6 @@
     }
 }
 
-/* Loading state */
 .carousel-slide.loading {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
@@ -186,7 +191,6 @@
     }
 }
 
-/* Fade transition for smooth image changes */
 .carousel-slide.fade-out {
     opacity: 0;
 }
@@ -195,7 +199,6 @@
     opacity: 1;
 }
 
-/* Image optimization indicators */
 .carousel-slide::after {
     content: attr(data-size);
     position: absolute;
@@ -207,4 +210,198 @@
     border-radius: 4px;
     font-size: 10px;
     opacity: 0.8;
+}
+
+.carousel-slide img {
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+    pointer-events: auto;
+    
+    position: relative;
+    z-index: 3;
+}
+
+.carousel-slide img {
+    pointer-events: auto;
+    cursor: zoom-in;
+    
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.carousel-slide img.zoomed {
+    cursor: grab;
+    transform: scale(2.5);
+    transform-origin: center;
+    
+    z-index: 100;
+    position: relative;
+}
+
+.carousel-slide img.zoomed:active {
+    cursor: grabbing;
+}
+
+.carousel-slide.zoomed {
+    overflow: hidden;
+    
+    z-index: 99;
+}
+
+.carousel-slide img.zoomed-out {
+    transform: scale(1);
+    cursor: zoom-in;
+    z-index: 3;
+}
+
+.zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.carousel-slide.zoomed .zoom-overlay {
+    opacity: 1;
+}
+
+.zoom-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-slide.zoomed .zoom-controls {
+    opacity: 1;
+}
+
+.zoom-btn {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.zoom-reset {
+    font-weight: bold;
+}
+
+.carousel-slide:not(.active) {
+    
+    pointer-events: none;
+}
+
+.carousel-slide:not(.active) img {
+    
+    pointer-events: auto;
+}
+
+.carousel-slide.zoomed img {
+    
+    pointer-events: auto;
+    z-index: 1000;
+    position: relative;
+}
+
+.carousel-slide img {
+    
+    will-change: transform;
+    transform-origin: center center;
+}
+
+.carousel-slide img {
+    
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -moz-transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .carousel-slide img {
+        
+        touch-action: manipulation;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    .carousel-slide img.zoomed {
+        
+        touch-action: pan-x pan-y;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .carousel-slide img.zoomed {
+        
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+.carousel-slide.zoomed {
+    
+    transition: none;
+}
+
+.carousel-slide.zoomed img {
+    
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-nav {
+    
+    z-index: 1001;
+}
+
+.carousel-indicators {
+    
+    z-index: 1001;
+}
+
+.zoom-overlay {
+    
+    z-index: 98;
+}
+
+.zoom-controls {
+    
+    z-index: 1002;
 }

@@ -1,9 +1,9 @@
 <?php
-namespace App\Controllers;
+namespace App\controllers;
 
 use PDO;
 use Twig\Environment;
-use App\Providers\Auth;
+use App\providers\Auth;
 
 abstract class BaseController
 {

@@ -1,7 +1,7 @@
 <?php
-namespace App\Providers;
+namespace App\providers;
 
-use App\Providers\View;
+use App\providers\View;
 
 class Auth {
     static public function session(){

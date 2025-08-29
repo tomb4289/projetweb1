@@ -1,14 +1,11 @@
 <?php
-// Database Schema Extractor for Stampee
-// This script will extract the actual database structure from your running database
 
 require_once __DIR__ . '/../app/config/database.php';
 
 try {
     echo "<h1>Stampee Database Schema Extraction</h1>";
     echo "<h2>Current Database: " . $db . "</h2>";
-    
-    // Get all tables
+
     $stmt = $pdo->query("SHOW TABLES");
     $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
     
@@ -17,8 +14,7 @@ try {
     foreach ($tables as $table) {
         echo "<hr>";
         echo "<h4>Table: <strong>$table</strong></h4>";
-        
-        // Get table structure
+
         $stmt = $pdo->query("DESCRIBE `$table`");
         $columns = $stmt->fetchAll();
         
@@ -38,8 +34,7 @@ try {
             echo "</tr>";
         }
         echo "</table>";
-        
-        // Get indexes
+
         $stmt = $pdo->query("SHOW INDEX FROM `$table`");
         $indexes = $stmt->fetchAll();
         
@@ -55,8 +50,7 @@ try {
             }
             echo "</ul>";
         }
-        
-        // Get foreign keys
+
         $stmt = $pdo->query("
             SELECT 
                 CONSTRAINT_NAME,
@@ -79,8 +73,7 @@ try {
             }
             echo "</ul>";
         }
-        
-        // Get table creation SQL
+
         $stmt = $pdo->query("SHOW CREATE TABLE `$table`");
         $createTable = $stmt->fetch();
         echo "<h5>Create Table SQL:</h5>";
@@ -88,8 +81,7 @@ try {
         echo htmlspecialchars($createTable['Create Table']);
         echo "</pre>";
     }
-    
-    // Generate summary for diagram creation
+
     echo "<hr>";
     echo "<h3>Summary for Diagram Creation</h3>";
     echo "<div style='background-color: #e8f4f8; padding: 15px; border-radius: 5px;'>";

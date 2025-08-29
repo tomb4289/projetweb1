@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App\models;
 
 use PDO;
 
@@ -75,5 +75,23 @@ class FavorisModel
         $stmt->execute([':auction_id' => $auctionId]);
         $result = $stmt->fetch();
         return $result['count'];
+    }
+
+    public function getFavoritesByMember(int $memberId): array
+    {
+        $sql = "SELECT f.*, e.*, t.*, m.nom_utilisateur as vendeur_nom,
+                       COALESCE((SELECT MAX(montant) FROM offre o WHERE o.id_enchere = e.id_enchere), 0) as prix_actuel,
+                       (SELECT COUNT(*) FROM offre o WHERE o.id_enchere = e.id_enchere) as nombre_offres,
+                       (SELECT chemin FROM images i WHERE i.id_timbre = t.id_timbre ORDER BY i.est_principale DESC, i.id_image ASC LIMIT 1) as image_principale
+                FROM favoris f
+                JOIN enchere e ON f.id_enchere = e.id_enchere
+                JOIN timbre t ON e.id_timbre = t.id_timbre
+                JOIN membre m ON e.id_membre = m.id_membre
+                WHERE f.id_membre = :member_id
+                ORDER BY f.date_ajout DESC";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':member_id' => $memberId]);
+        return $stmt->fetchAll();
     }
 }

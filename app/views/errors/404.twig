@@ -4,32 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Non Trouvée - Stampee</title>
-    <link rel="stylesheet" href="/projetweb1/public/css/base.css">
-<link rel="stylesheet" href="/projetweb1/public/css/button.css">
-<link rel="stylesheet" href="/projetweb1/public/css/header.css">
-<link rel="stylesheet" href="/projetweb1/public/css/footer.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/base.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/button.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/header.css">
+    <link rel="stylesheet" href="/projetweb2/public/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/projetweb2/public/img/favicon/favicon.ico" sizes="any">
 </head>
 <body>
     <header class="header">
         <div class="header__content">
-            <a href="/projetweb1/public/" class="header__logo-link">
-<img src="/projetweb1/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
+            <a href="/projetweb2/public/" class="header__logo-link">
+                <img src="/projetweb2/public/img/redcrownlogo.png" alt="Red Crown Logo" class="header__logo">
             </a>
-            <h1 class="header__title">Stampee Auction House</h1>
+            <a href="/projetweb2/public/" class="header__title-link">
+				<h1 class="header__title">Stampee Auction House</h1>
+			</a>
             
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li><a href="/projetweb1/public/" class="header__nav-link">Accueil</a></li>
-<li><a href="/projetweb1/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/" class="header__nav-link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="header__nav-link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/auctions/search" class="header__nav-link">Recherche Avancée</a></li>
                 </ul>
             </nav>
             
+            <!-- Simple Search Bar -->
+            <div class="header__search">
+                <form class="header__search-form" action="/projetweb2/public/auctions/search" method="GET">
+                    <input type="text" name="recherche" placeholder="Rechercher des timbres..." class="header__search-input">
+                    <button type="submit" class="header__search-btn" aria-label="Rechercher">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            
             <div class="header__actions">
-                <a href="/projetweb1/public/login" class="btn btn--secondary">Connexion</a>
-<a href="/projetweb1/public/register" class="btn btn--primary">Inscription</a>
+                <a href="/projetweb2/public/login" class="btn btn--secondary">Connexion</a>
+                <a href="/projetweb2/public/register" class="btn btn--primary">Inscription</a>
             </div>
             
             <button class="header__nav-toggle" aria-label="Toggle navigation">
@@ -45,8 +61,8 @@
         <h2>Page Non Trouvée</h2>
         <p>La page que vous recherchez n'existe pas ou a été déplacée.</p>
         <div class="error-actions">
-            <a href="/projetweb1/public/" class="btn btn--primary">Retour à l'Accueil</a>
-<a href="/projetweb1/public/auctions" class="btn btn--secondary">Voir les Enchères</a>
+            <a href="/projetweb2/public/" class="btn btn--primary">Retour à l'Accueil</a>
+            <a href="/projetweb2/public/auctions" class="btn btn--secondary">Voir les Enchères</a>
         </div>
     </div>
 
@@ -70,8 +86,8 @@
             <div class="footer__section">
                 <h4 class="footer__subtitle">Liens Rapides</h4>
                 <ul class="footer__links">
-                    <li><a href="/projetweb1/public/" class="footer__link">Accueil</a></li>
-<li><a href="/projetweb1/public/auctions" class="footer__link">Enchères</a></li>
+                    <li><a href="/projetweb2/public/" class="footer__link">Accueil</a></li>
+                    <li><a href="/projetweb2/public/auctions" class="footer__link">Enchères</a></li>
                 </ul>
             </div>
         </div>

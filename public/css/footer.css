@@ -101,7 +101,6 @@
   margin: 0;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .footer {
     padding: 2rem 0 1.5rem 0;
