@@ -1,4 +1,4 @@
-[PDF User Guide: documentation/Bourgeois-Tommy_Projetweb1_Guide-Utilisateur.pdf](https://github.com/tomb4289/projetweb1/blob/master/documentation/Bourgeois-Tommy_Projetweb1_Guide-Utilisateur.pdf)
+PDF User Guide: https://github.com/tomb4289/projetweb1/blob/master/documentation/Bourgeois-Tommy_Projetweb1_Guide-Utilisateur.pdf
 
 User Guide: https://github.com/tomb4289/projetweb1/blob/master/documentation/STAMPEE_USER_GUIDE.txt
 
